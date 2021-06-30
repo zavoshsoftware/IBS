@@ -1,0 +1,114 @@
+﻿
+@{
+		Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta name="viewport" content="width=device-width" />
+	<title>Index</title>
+	<link rel="stylesheet" href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css'>
+	<script src='https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js'></script>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+	<link href="~/Content/style.css" rel="stylesheet" />
+</head>
+<body>
+<div class="container mt-sm-5 my-1">
+	<div class="logo">
+		<img src="~/Content/logo-ibs.png" />
+	</div>
+	<p class="summery">
+		The following questions refer to your general we;; being over the last few weeks. Please choose the answer which most
+		accurately describe how you feel.
+	</p>
+	<div class="question ml-sm-5 pl-sm-5 pt-2">
+		<div class="py-2 h5"><b>a. I feel tense or woand up</b>
+		</div>
+		<div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3 " id="options">
+			<label class="options">Most of the time <input type="radio" name="radio"> <span class="checkmark"></span> </label> 
+			<label class="options">A lot of the time <input type="radio" name="radio"> <span class="checkmark"></span> </label>
+			<label class="options">From time to time, occasionally <input type="radio" name="radio"> <span class="checkmark"></span> </label> 
+			<label class="options">Not at all <input type="radio" name="radio"> <span class="checkmark"></span> </label>
+		</div>
+	</div>
+	
+	
+
+	<div class="question ml-sm-5 pl-sm-5 pt-2">
+		<div class="py-2 h5">
+			<b>b. I still enjoy the things i used to enjoy</b>
+		</div>
+		<div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+			<label class="options">definitely <input type="radio" name="radio2"> <span class="checkmark"></span> </label>
+			<label class="options">Not quite so much <input type="radio" name="radio2"> <span class="checkmark"></span> </label>
+			<label class="options">Only a little <input type="radio" name="radio2"> <span class="checkmark"></span> </label>
+			<label class="options">Hardly at all <input type="radio" name="radio2"> <span class="checkmark"></span> </label>
+		</div>
+	</div>
+
+	<div class="question ml-sm-5 pl-sm-5 pt-2">
+		<div class="py-2 h5">
+			<b>c. I get a sort of frightened feeling as if  </b>
+		</div>
+		<div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+			<label class="options"> Very definitely and quite badly<input type="radio" name="radio3"> <span class="checkmark"></span> </label>
+			<label class="options"> Yew but not too badly<input type="radio" name="radio3"> <span class="checkmark"></span> </label>
+			<label class="options"> A little but it dosn't worry mc<input type="radio" name="radio3"> <span class="checkmark"></span> </label>
+			<label class="options"> Not at all<input type="radio" name="radio3"> <span class="checkmark"></span> </label>
+		</div>
+	</div>
+	
+
+	<div class="question ml-sm-5 pl-sm-5 pt-2">
+		<div class="py-2 h5">
+			<b>d. I can laugh and see the funny side of thinsg </b>
+		</div>
+		<div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+			<label class="options"> As much as I always could<input type="radio" name="radio4"> <span class="checkmark"></span> </label>
+			<label class="options"> Not quite so much now<input type="radio" name="radio4"> <span class="checkmark"></span> </label>
+			<label class="options"> Definitely not so mmuch now<input type="radio" name="radio4"> <span class="checkmark"></span> </label>
+			<label class="options"> Not at all<input type="radio" name="radio4"> <span class="checkmark"></span> </label>
+		</div>
+	</div>
+	
+
+	
+
+	<div class="question ml-sm-5 pl-sm-5 pt-2">
+		<div class="py-2 h5">
+			<b>e. Worrying thoughts go through my mind </b>
+		</div>
+		<div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+			<label class="options"> A great deal of the time<input type="radio" name="radio5"> <span class="checkmark"></span> </label>
+			<label class="options"> A lot of the time<input type="radio" name="radio5"> <span class="checkmark"></span> </label>
+			<label class="options"> From time to time, but not too often<input type="radio" name="radio5"> <span class="checkmark"></span> </label>
+			<label class="options"> Only occasionally<input type="radio" name="radio5"> <span class="checkmark"></span> </label>
+		</div>
+	</div>
+	
+
+
+	<div class="question ml-sm-5 pl-sm-5 pt-2">
+		<div class="py-2 h5">
+			<b>f. I feel cheerful </b>
+		</div>
+		<div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+			<label class="options"> Not att all<input type="radio" name="radio6"> <span class="checkmark"></span> </label>
+			<label class="options"> Not often<input type="radio" name="radio6"> <span class="checkmark"></span> </label>
+			<label class="options"> sometimes<input type="radio" name="radio6"> <span class="checkmark"></span> </label>
+			<label class="options"> Most of the time<input type="radio" name="radio6"> <span class="checkmark"></span> </label>
+		</div>
+	</div>
+	
+
+	<div class="d-flex align-items-center pt-3">
+		<div id="prev"> <button class="btn btn-primary">Clear Form</button>
+		</div>
+		<div class="ml-auto mr-sm-5"> <a href="/home/play" class="btn btn-success">Submit</a>
+		</div>
+	</div>
+</div>
+</body>
+</html>
