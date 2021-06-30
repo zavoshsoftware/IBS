@@ -17,5 +17,6 @@ namespace Models
         public virtual AudioGroup AudioGroup { get; set; }
         [Display(Name = "فایل")]
         public string FileUrl { get; set; }
+        public virtual ICollection<UserSelectedAudio> UserSelectedAudios { get; set; }
     }
 }

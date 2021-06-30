@@ -1,4 +1,4 @@
-﻿@model Models.AnswerItem
+﻿@model Models.UserSelectedAudio
 
 @{
     ViewBag.Title = "افزودن " + Server.HtmlDecode(Html.DisplayNameFor(model => model).ToString());
@@ -7,7 +7,8 @@
 
 <h2>افزودن @Html.DisplayNameFor(model => model)</h2>
 
-@using (Html.BeginForm("Create", "AnswerItems",FormMethod.Post, new { enctype = "multipart/form-data" })) 
+
+@using (Html.BeginForm("Create", "UserSelectedAudios",FormMethod.Post, new { enctype = "multipart/form-data" })) 
 {
     @Html.AntiForgeryToken()
     
@@ -16,39 +17,36 @@
 
         <div class="form-group">
         <div class="form-group">
-            @Html.LabelFor(model => model.Order, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.UserId, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                    @Html.EditorFor(model => model.Order)
-
-                @Html.ValidationMessageFor(model => model.Order)
+                @Html.DropDownList("UserId", String.Empty)
+                @Html.ValidationMessageFor(model => model.UserId)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Title, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.AudioId, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                    @Html.EditorFor(model => model.Title)
-
-                @Html.ValidationMessageFor(model => model.Title)
+                @Html.DropDownList("AudioId", String.Empty)
+                @Html.ValidationMessageFor(model => model.AudioId)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Score, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.WeekNo, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Score)
+                    @Html.EditorFor(model => model.WeekNo)
 
-                @Html.ValidationMessageFor(model => model.Score)
+                @Html.ValidationMessageFor(model => model.WeekNo)
             </div>
         </div>
 
         <div class="form-group">
-			<div class="col-md-2">
-            </div>
+            @Html.LabelFor(model => model.IsActive, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                    @Html.EditorFor(model => model.IsActive)
+                @Html.EditorFor(model => model.IsActive)
 
-				@Html.LabelFor(model => model.IsActive)
+
                 @Html.ValidationMessageFor(model => model.IsActive)
             </div>
         </div>
@@ -65,10 +63,14 @@
         <div class="form-group" id="buttons">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="ایجاد" class="btn btn-primary" />
-				@Html.ActionLink("بازگشت به فهرست", "Index",new{id=@ViewBag.QuestionId})
+				@Html.ActionLink("بازگشت به فهرست", "Index")
             </div>
         </div>
         </div>
 </div>
 }
 
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

@@ -15,7 +15,10 @@ namespace Models
 	    [Display(Name="عنوان پاسخ")]
 	    public string Title { get; set; }
 
-	    [Display(Name="پرسش")]
+		[Display(Name = "نمره")]
+		public int Score { get; set; }
+
+		[Display(Name="پرسش")]
 	    public Guid QuestionId { get; set; }
 	    public virtual Question Question { get; set; }
 	}

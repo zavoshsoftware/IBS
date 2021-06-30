@@ -147,7 +147,7 @@ namespace IBS.Controllers
             List<QuestionListViewModel> result = new List<QuestionListViewModel>();
 
             List<QuestionGroup> questionGroups =
-                db.QuestionGroups.Where(c => c.IsDeleted == false).OrderBy(c => c.Order).ToList();
+                db.QuestionGroups.Where(c => c.IsDeleted == false && c.IsActive == true).OrderBy(c => c.Order).ToList();
 
             foreach (QuestionGroup questionGroup in questionGroups)
             {

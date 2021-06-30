@@ -65,9 +65,6 @@
 	This form is designed to enable us to record and monitor the severity of your IBS. It is to be expected that your symptoms might vary over time, so please try and answer the questions based on how you currently feel (i.e. over the last 10 days or so). All information will be kept in strict confidence.
 </p>
 <p class="summery">
-	This form is designed to enable us to record and monitor the severity of your IBS. It is to be expected that your symptoms might vary over time, so please try and answer the questions based on how you currently feel (i.e. over the last 10 days or so). All information will be kept in strict confidence.
-</p>
-<p class="summery">
 	1. For questions where a number of different responses are a possibility please circle the response appropriate to you.
 </p>
 <p class="summery">
@@ -78,7 +75,7 @@
 </p>
 <p class="summery">
 
-	<img src="~/Images/tutorial.png" class="img-responsive"/>
+	<img src="~/Images/tutorial.jpg" class="img-responsive"/>
 </p>
 		
 	</div>
@@ -136,7 +133,7 @@
 								}
 								else if (question.AnswerType.Title == "percentage")
 								{
-									<input type="range" min="0" max="100" step="5" id="testValue" data-rangeslider>
+									<input type="range" min="0" max="100" step="1" id="testValue" data-rangeslider>
 									<output></output>
 								}
 								else if (question.AnswerType.Title == "number")
@@ -167,7 +164,7 @@
 										<div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options(@question.Order)">
 											@foreach (var answerItem in question.AnswerItems)
 											{
-												<label class="options(@question.Order)"> @answerItem.Title<input type="radio" name="radio(@question.Order)"> <span class="checkmark"></span> </label>
+												<label id="options(@question.Order)" class="options">  @answerItem.Title<input type="radio" name="radio(@question.Order)"> <span class="checkmark"></span> </label>
 												<br/>
 											}
 										</div>
@@ -188,7 +185,7 @@
 </div>
 
 
-<div class="row userinfo question-card" id="part7">
+<div class="row userinfo question-card" id="part3">
 	<div class="col-md-12">
 		<p>
 			your questionnaire submitted successfully,
