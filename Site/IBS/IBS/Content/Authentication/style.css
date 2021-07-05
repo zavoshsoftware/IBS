@@ -1,0 +1,43 @@
+﻿ 
+.card-body input, textarea.form-control {
+    text-align: left;
+}
+
+/*.button-box {
+    direction: rtl;
+}
+
+.k-grid table {
+    direction: rtl;
+}*/
+
+.k-filter-row > th:first-child, .k-grid tbody td:first-child, .k-grid tfoot td:first-child, .k-grid-header th.k-header:first-child {
+    border-left-width: 1px !important;
+}
+
+.k-filter-row > th:last-child, .k-grid tbody td:last-child, .k-grid tfoot td:last-child, .k-grid-header th.k-header:last-child {
+    border-left-width: 0;
+}
+
+/*.btn-box, select.form-control {
+    direction: rtl;
+    text-align: right;
+}*/
+
+.app-main__inner .col-md-8, .app-main__inner .col-md-4 {
+    float: left;
+}
+
+/*iframe.k-content  {
+    direction: rtl;
+    text-align: right;
+}*/
+
+.signup-suggest {
+    margin-top: 30px;
+    text-align: center;
+    border-top: 1px solid #00bfff;
+    padding-top: 20px;
+    font-family: fantasy
+
+}

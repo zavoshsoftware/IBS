@@ -1,0 +1,177 @@
+﻿
+@model ViewModels.RegisterViewModel
+
+@{
+	Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html lang="en" class="bg-dark">
+<head>
+	<meta name="viewport" content="width=device-width" />
+	<title>Register</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+	<link href="~/Content/Authentication/main.css" rel="stylesheet" />
+	<link href="~/Content/Authentication/style.css" rel="stylesheet" />
+
+	<style>
+		body, html {
+			height: 100%;
+			margin: 0;
+		}
+
+
+		.card-body h5 {
+			text-align: center;
+			font-size: 1.3rem;
+		}
+
+		.btn-primary {
+			width: 100%;
+			font-size: 1rem;
+		}
+	</style>
+</head>
+<body>
+	<div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
+		<div class="container">
+
+
+			<div class="row" style="padding-top: 50px;">
+				<div class="col-md-3"></div>
+				<div class="col-md-6">
+					<div class="main-card mb-3 card">
+						<div class="card-body">
+							<div style="text-align: center; padding-bottom: 30px">
+								<img src="~/Content/logo.png" />
+							</div>
+							<h5 class="card-title">Login</h5>
+
+							@if (TempData["success"] != null)
+							{                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+								<p class="alert alert-success">@TempData["success"]</p>
+							}
+							@if (TempData["duplicateUser"] != null)
+							{
+								<p class="alert alert-danger">@TempData["duplicateUser"]</p>
+							}
+							@using (Html.BeginForm("Register", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "panel-body wrapper-lg", role = "form" }))
+							{
+								@Html.AntiForgeryToken()
+								@Html.ValidationSummary(false, "", new { @class = "alert-danger" })
+
+								<div class="position-relative form-group">
+
+									@Html.LabelFor(model => model.FullName, new { @for = "FullName" })
+									@Html.TextBoxFor(m => m.FullName, new { @class = "form-control", @placeholder = Html.DisplayNameFor(model => model.FullName) })
+
+								</div>
+								<div class="position-relative form-group">
+
+									@Html.LabelFor(model => model.Email, new { @for = "Email" })
+									@Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = Html.DisplayNameFor(model => model.Email) })
+
+								</div>
+								<div class="position-relative form-group">
+									@Html.LabelFor(model => model.Password, new { @for = "Password" })
+									@Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = Html.DisplayNameFor(model => model.Password) })
+
+								</div>
+
+
+								<div class="position-relative form-group">
+
+									@Html.LabelFor(model => model.Age, new { @for = "Age" })
+									@Html.TextBoxFor(m => m.Age, new { @class = "form-control", @placeholder = Html.DisplayNameFor(model => model.Age) })
+
+								</div>
+								<div class="position-relative form-group">
+
+									@Html.RadioButtonFor(model => model.Gender, true)
+									<span>Male</span>
+
+									@Html.RadioButtonFor(model => model.Gender, false)
+									<span>FeMale</span>
+
+								</div>
+								<div class="position-relative form-group">
+									@Html.CheckBoxFor(m => m.Privacy)
+									@Html.LabelFor(m => m.Privacy)
+									@Html.ValidationMessageFor(m => m.Privacy)
+
+								</div>
+								<button type="submit" class="mt-1 btn btn-primary">Register</button>
+
+							}
+
+							<div class="signup-suggest">
+								Do you have active account? <a href="/login">Login Now</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+			</div>
+
+
+
+
+		</div>
+
+
+	</div>
+
+
+
+	@*
+		<section id="content" class=" wrapper-md animated fadeInUp bg"   >
+			<div class="container aside-xxl">
+
+			 <section class="panel panel-default bg-white  login">
+					<header class="panel-heading text-center" style="direction: rtl;">
+						<strong style="direction: rtl;"></strong>
+					</header>
+
+					@if (TempData["WrongPass"] != null)
+					{
+						<p class="alert alert-danger" id="wrongEmail">@TempData["WrongPass"]</p>
+					}
+
+					@using (Html.BeginForm("Login", "Account", new {ReturnUrl = ViewBag.ReturnUrl}, FormMethod.Post, new {@class = "panel-body wrapper-lg", role = "form"}))
+					{
+						<img src="~/Content/profile.jpeg" class="img-responsive" />
+
+						@Html.AntiForgeryToken()
+						@Html.ValidationSummary(false, "", new {@class = "alert-danger"})
+
+						<div class="form-group">
+
+							@Html.LabelFor(model => model.Username, new {@class = "control-label"})
+							@Html.TextBoxFor(m => m.Username, new {@class = "form-control input-lg", @placeholder = Html.DisplayNameFor(model => model.Username)})
+
+						</div>
+						<div class="form-group">
+							@Html.LabelFor(model => model.Password, new {@class = "control-label"})
+							@Html.PasswordFor(m => m.Password, new {@class = "form-control input-lg", @placeholder = Html.DisplayNameFor(model => model.Password)})
+						</div>
+
+						<div class="form-group">
+							<button type="submit" class="btn btn-primary ">ورود</button>
+						</div>
+
+					}
+
+					<footer  class="panel-heading text-center" style="direction: rtl;">
+						<p style="margin-bottom: 0; font-size: 11px;">
+						 توسعه نرم افزار توسط <a target="_blank" href="https://zavoshsoftware.com">زاوش</a>
+						</p>
+					</footer>
+				</section>
+			</div>
+		</section>*@
+
+	<script type="text/javascript" src="/scripts/admin/main.js"></script>
+</body>
+</html>

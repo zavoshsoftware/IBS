@@ -162,5 +162,15 @@ namespace IBS.Controllers
 
             return View(result);
         }
+        public ActionResult ChooseVoice()
+        {
+            ChooseVoiceViewModel result = new ChooseVoiceViewModel();
+
+           result.Audios =
+                db.Audios.Where(c => c.IsDeleted == false && c.IsActive == true).OrderBy(c => c.Order).ToList();
+
+          
+            return View(result);
+        }
     }
 }

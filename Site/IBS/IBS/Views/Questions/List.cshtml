@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<ViewModels.QuestionListViewModel>
 @{
-		Layout = null;
+	Layout = null;
 }
 
 <!DOCTYPE html>
@@ -55,251 +55,158 @@
 	<![endif]-->
 </head>
 <body>
-<div class="container">
-<div class="row">
-	<div class="col-md-12">
-<div class="logo">
-	<img src="~/Content/logo-ibs.png"/>
-</div>
-<p class="summery">
-	This form is designed to enable us to record and monitor the severity of your IBS. It is to be expected that your symptoms might vary over time, so please try and answer the questions based on how you currently feel (i.e. over the last 10 days or so). All information will be kept in strict confidence.
-</p>
-<p class="summery">
-	1. For questions where a number of different responses are a possibility please circle the response appropriate to you.
-</p>
-<p class="summery">
-	2. Some questions will require you to write in an appropriate response.
-</p>
-<p class="summery">
-	3. Some questions require you to put a cross on a line which enables us to judge the severity of a particular problem.
-</p>
-<p class="summery">
-
-	<img src="~/Images/tutorial.jpg" class="img-responsive"/>
-</p>
-		
-	</div>
-</div>
-	<div class="row userinfo question-card" id="part0">
-	<div class="col-md-2"></div>
-	<div class="col-md-12">
+	<div class="container">
 		<div class="row">
-			<label class="col-md-3">Full Name</label>
-			<input type="text" class="form-control" placeholder="Full Name"/>
+			<div class="col-md-12">
+				<div class="logo">
+					<img src="~/Content/logo.png" />
+				</div>
+				<p class="summery">
+					This form is designed to enable us to record and monitor the severity of your IBS. It is to be expected that your symptoms might vary over time, so please try and answer the questions based on how you currently feel (i.e. over the last 10 days or so). All information will be kept in strict confidence.
+				</p>
+				<p class="summery">
+					1. For questions where a number of different responses are a possibility please circle the response appropriate to you.
+				</p>
+				<p class="summery">
+					2. Some questions will require you to write in an appropriate response.
+				</p>
+				<p class="summery">
+					3. Some questions require you to put a cross on a line which enables us to judge the severity of a particular problem.
+				</p>
+				<p class="summery">
+
+					<img src="~/Images/tutorial.jpg" class="img-responsive" />
+				</p>
+
+			</div>
 		</div>
-		<div class="row">
-			<label class="col-md-3">CellNumber</label>
-			<input type="text" class="form-control" placeholder="CellNumber"/>
-		</div>
-		<div class="row">
-			<label class="col-md-3">Email</label>
-			<input type="text" class="form-control" placeholder="Email"/>
-		</div>
-		<div class="row">
-			<button type="button" class="btn btn-success" onclick="apearDiv('part1');">Start Questions</button>
-		</div>
-	</div>
-</div>
-
-<div class="row userinfo">
-	<div class="col-md-2"></div>
-	<div class="col-md-8">
-
-		@{
-			int i = 1;
-
-			foreach (var questionGroup in Model)
-			{
-
-
-				<div class="question-card" id="part@(i)">
-					<div class="question-card-heading">
-						Part @questionGroup.QuestionGroup.Order: @questionGroup.QuestionGroup.Title
-
+		@*<div class="row userinfo question-card" id="part0">
+				<div class="col-md-2"></div>
+				<div class="col-md-12">
+					<div class="row">
+						<label class="col-md-3">Full Name</label>
+						<input type="text" class="form-control" placeholder="Full Name"/>
 					</div>
-					<div class="question-card-body">
-						@foreach (var question in questionGroup.Questions)
-						{
-							<div class="question-item">
-								<p>
-									<strong>Question @question.Order:</strong> @question.Title
-								</p>
-								@if (question.AnswerType.Title == "yes/no")
-								{
-									<select class="form-control">
-										<option>Yes</option>
-										<option>No</option>
-									</select>
-								}
-								else if (question.AnswerType.Title == "percentage")
-								{
-									<input type="range" min="0" max="100" step="1" id="testValue" data-rangeslider>
-									<output></output>
-								}
-								else if (question.AnswerType.Title == "number")
-								{
-									<p>
-										Number of days with pain:
+					<div class="row">
+						<label class="col-md-3">CellNumber</label>
+						<input type="text" class="form-control" placeholder="CellNumber"/>
+					</div>
+					<div class="row">
+						<label class="col-md-3">Email</label>
+						<input type="text" class="form-control" placeholder="Email"/>
+					</div>
+					<div class="row">
+						<button type="button" class="btn btn-success" onclick="apearDiv('part1');">Start Questions</button>
+					</div>
+				</div>
+			</div>*@
 
-										<input class="form-control" type="number"/>
-									</p>
-								}
-								else if (question.AnswerType.Title == "numberwithoption")
-								{
-									<p>
-										Number of times:
+		<div class="row userinfo">
+			<div class="col-md-2"></div>
+			<div class="col-md-8">
 
-										<input class="form-control" type="number"/>
-										per
-										<select class="form-control">
-											<option>day</option>
-											<option>week</option>
-											<option>month</option>
-										</select>
-									</p>
-								}
-								else if (question.AnswerType.Title == "multioption")
+				@{
+					int i = 1;
+
+					foreach (var questionGroup in Model)
+					{
+
+
+						<div class="question-card" id="part@(i)">
+							<div class="question-card-heading">
+								Part @questionGroup.QuestionGroup.Order: @questionGroup.QuestionGroup.Title
+
+							</div>
+							<div class="question-card-body">
+								@foreach (var question in questionGroup.Questions)
 								{
-									<div class=" ml-sm-5 pl-sm-5 pt-2">
-										<div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options(@question.Order)">
-											@foreach (var answerItem in question.AnswerItems)
-											{
-												<label id="options(@question.Order)" class="options">  @answerItem.Title<input type="radio" name="radio(@question.Order)"> <span class="checkmark"></span> </label>
-												<br/>
-											}
-										</div>
+									<div class="question-item">
+										<p>
+											<strong>Question @question.Order:</strong> @question.Title
+										</p>
+										@if (question.AnswerType.Title == "yes/no")
+										{
+											<select class="form-control">
+												<option>Yes</option>
+												<option>No</option>
+											</select>
+										}
+										else if (question.AnswerType.Title == "percentage")
+										{
+											<input type="range" min="0" max="100" step="1" id="testValue" data-rangeslider>
+											<output></output>
+										}
+										else if (question.AnswerType.Title == "number")
+										{
+											<p>
+												Number of days with pain:
+
+												<input class="form-control" type="number" />
+											</p>
+										}
+										else if (question.AnswerType.Title == "numberwithoption")
+										{
+											<p>
+												Number of times:
+
+												<input class="form-control" type="number" />
+												per
+												<select class="form-control">
+													<option>day</option>
+													<option>week</option>
+													<option>month</option>
+												</select>
+											</p>
+										}
+										else if (question.AnswerType.Title == "multioption")
+										{
+											<div class=" ml-sm-5 pl-sm-5 pt-2">
+												<div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options(@question.Order)">
+													@foreach (var answerItem in question.AnswerItems)
+													{
+														<label id="options(@question.Order)" class="options">  @answerItem.Title<input type="radio" name="radio(@question.Order)"> <span class="checkmark"></span> </label>
+														<br />
+													}
+												</div>
+											</div>
+										}
 									</div>
 								}
+								<div class="question-card-footer">
+									<button onclick="apearDiv('part@(i + 1)');" type="button" class="btn btn-success">Next Step</button>
+								</div>
 							</div>
-						}
-						<div class="question-card-footer">
-							<button onclick="apearDiv('part@(i + 1)');" type="button" class="btn btn-success">Next Step</button>
-						</div>
-					</div>
 
-				</div>
-				i++;
-			}
-		}
-	</div>
-</div>
-
-
-<div class="row userinfo question-card" id="part3">
-	<div class="col-md-12">
-		<p>
-			your questionnaire submitted successfully,
-			Result: you have pain and excited
-			<div class="row">
-				<div class="col-md-4">
-					<div class="audiogroup-card">
-						<div class="audiogroup-card-head">
-							Week 1:
 						</div>
-						<div class="audiogroup-card-body">
-							<a href="#" class="btn btn-success">audio 1</a>
-							<a href="#" class="btn btn-success">audio 2</a>
-							<a href="#" class="btn btn-success">audio 3</a>
-							<a href="#" class="btn btn-success">audio 4</a>
-							<a href="#" class="btn btn-success">audio 5</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="audiogroup-card">
-						<div class="audiogroup-card-head">
-							Week 2:
-						</div>
-						<div class="audiogroup-card-body">
-							<a href="#" class="btn btn-success">audio 1</a>
-							<a href="#" class="btn btn-success">audio 2</a>
-							<a href="#" class="btn btn-success">audio 3</a>
-							<a href="#" class="btn btn-success">audio 4</a>
-							<a href="#" class="btn btn-success">audio 5</a>
-						</div>
-					</div>
-
-				</div>
-				<div class="col-md-4">
-					<div class="audiogroup-card">
-						<div class="audiogroup-card-head">
-							Week 3:
-						</div>
-						<div class="audiogroup-card-body">
-							<a href="#" class="btn btn-success">audio 1</a>
-							<a href="#" class="btn btn-success">audio 2</a>
-							<a href="#" class="btn btn-success">audio 3</a>
-							<a href="#" class="btn btn-success">audio 4</a>
-							<a href="#" class="btn btn-success">audio 5</a>
-						</div>
-					</div>
-
-				</div>
-				<div class="col-md-4">
-					<div class="audiogroup-card">
-						<div class="audiogroup-card-head">
-							Week 4:
-						</div>
-						<div class="audiogroup-card-body">
-							<a href="#" class="btn btn-success">audio 1</a>
-							<a href="#" class="btn btn-success">audio 2</a>
-							<a href="#" class="btn btn-success">audio 3</a>
-							<a href="#" class="btn btn-success">audio 4</a>
-							<a href="#" class="btn btn-success">audio 5</a>
-						</div>
-					</div>
-
-				</div>
-				<div class="col-md-4">
-					<div class="audiogroup-card">
-						<div class="audiogroup-card-head">
-							Week 5:
-						</div>
-						<div class="audiogroup-card-body">
-							<a href="#" class="btn btn-success">audio 1</a>
-							<a href="#" class="btn btn-success">audio 2</a>
-							<a href="#" class="btn btn-success">audio 3</a>
-							<a href="#" class="btn btn-success">audio 4</a>
-							<a href="#" class="btn btn-success">audio 5</a>
-						</div>
-					</div>
-
-				</div>
-				<div class="col-md-4">
-					<div class="audiogroup-card">
-						<div class="audiogroup-card-head">
-							Week 6:
-						</div>
-						<div class="audiogroup-card-body">
-							<a href="#" class="btn btn-success">audio 1</a>
-							<a href="#" class="btn btn-success">audio 2</a>
-							<a href="#" class="btn btn-success">audio 3</a>
-							<a href="#" class="btn btn-success">audio 4</a>
-							<a href="#" class="btn btn-success">audio 5</a>
-						</div>
-					</div>
-
-				</div>
+						i++;
+					}
+				}
 			</div>
-		</p>
+		</div>
+
+
 	</div>
-</div>
-</div>
 
 	<script src="~/Scripts/kendo/2017.3.913/jquery.min.js"></script>
 	<script src="/Scripts/rangeslider.js"></script>
 	<script>
 		$(document).ready(function () {
 			$(".question-card").css('display', 'none');
-			$("#part0").css('display', 'flex');
+
+			apearDiv('part1');
 		});
 
 		function apearDiv(id) {
-			$(".question-card").css('display', 'none');
-			$("#" + id).css('display', 'block');
-			$("html, body").animate({
-				scrollTop: 800
-			}, 1000);    
+			if (id === 'part3') {
+				window.location.href = "/questions/choosevoice";
+			}
+			else {
+				$(".question-card").css('display', 'none');
+				$("#" + id).css('display', 'block');
+				$("html, body").animate({
+					scrollTop: 800
+				}, 1000);
+			}
 		}
 
 		$(function () {
