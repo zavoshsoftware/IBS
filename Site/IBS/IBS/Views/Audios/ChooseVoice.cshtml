@@ -1,0 +1,204 @@
+﻿@model  ViewModels.ChooseVoiceViewModel
+@{
+	Layout = "~/Views/Shared/FrontEnd/_FronEndLayout.cshtml";
+
+}
+
+@section head{
+	<link href="~/Content/Admin/admin-font-awesome.css" rel="stylesheet" />
+	<style>
+		*,
+		*:before,
+		*:after {
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			box-sizing: border-box;
+		}
+
+		output {
+			display: block;
+			font-size: 30px;
+			font-weight: bold;
+			text-align: center;
+			margin: 30px 0;
+			width: 100%;
+		}
+
+		.u-left {
+			float: left;
+		}
+
+		.u-cf:before,
+		.u-cf:after {
+			content: "";
+			display: table;
+		}
+
+		.u-cf:after {
+			clear: both;
+		}
+
+		.u-text-left {
+			text-align: left;
+		}
+
+		.audio-item a {
+			width: 70% !important;
+			float: left;
+		}
+
+		.audio-item button {
+			width: 20% !important;
+			float: left;
+		}
+
+		.audio-item input {
+			margin: 10px 0 0 0;
+			text-align: left;
+			float: left;
+		}
+
+		.pause {
+			display: none;
+		}
+	</style>
+}
+
+<div class="row">
+	<div class="col-md-12">
+		<div class="logo">
+			<img src="~/Content/logo.png" />
+		</div>
+
+	</div>
+</div>
+<div class="row userinfo question-card">
+	<div class="col-md-12">
+		<p>
+			your questionnaire submitted successfully,
+			Result: you have pain and excited
+		</p>
+		<p>
+			<select id="ddlGender" class="form-control">
+				<option value="1">Man</option>
+				<option value="0">Woman</option>
+			</select>
+		</p>
+		<div class="row">
+			@foreach (var audio in Model.Audios)
+			{
+				<div class="col-md-3">
+					<div class="audiogroup-card">
+						<div class="audiogroup-card-head">
+							@audio.AudioGroup.Title
+						</div>
+						<div class="audiogroup-card-body">
+							@foreach (var item in audio.Audios)
+							{
+								<div class="audio-item">
+									@if (ViewBag.gender == "1")
+									{
+										<input type="radio" value="@item.Id" name="m_@audio.AudioGroup.Id" />
+									}
+									else
+									{
+										<input type="radio" value="@item.Id" name="f_@audio.AudioGroup.Id" />
+									}
+									<a href="#" class="btn btn-success" for="@item.Id">@item.Title</a>
+
+									<button id="play_@item.Id" class="btn btn-default play" type="button" onclick="play('audio_@item.Id')"><i class="fa fa-play"></i></button>
+									<button id="pause_@item.Id" class="btn btn-default pause" type="button" onclick="pause('audio_@item.Id')"><i class="fa fa-pause"></i></button>
+									<audio id="audio_@item.Id" src="@item.FileUrl"></audio>
+									<div class="clearfix"></div>
+								</div>
+							}
+						</div>
+					</div>
+				</div>
+			}
+
+
+		</div>
+		<div class="row">
+			<button class="btn btn-primary" style="width: 100%" onclick="submitUserAudio('@ViewBag.gender');">Submit</button>
+		</div>
+	</div>
+</div>
+
+@section scripts
+{
+
+	<script>
+		function submitUserAudio(gender) {
+
+		if (gender === '1') {
+			var audiomen1 = $("input[name='m_7b678ab5-0838-4d4a-95d0-8952f74a99d9']:checked").val();
+			var audiomen2 = $("input[name='m_8f1e5363-6eb6-4e15-bf5a-a4ed82d853f5']:checked").val();
+			var audiomen3 = $("input[name='m_1e5656c8-d07d-4f33-94cb-2eeff052cc42']:checked").val();
+			var audiomen4 = $("input[name='m_92231fc8-8bc0-4f3d-9677-09e3d4b64fca']:checked").val();
+		} else {
+			var audiowomen1 = $("input[name='f_7b678ab5-0838-4d4a-95d0-8952f74a99d9']:checked").val();
+			var audiowomen2 = $("input[name='f_8f1e5363-6eb6-4e15-bf5a-a4ed82d853f5']:checked").val();
+			var audiowomen3 = $("input[name='f_1e5656c8-d07d-4f33-94cb-2eeff052cc42']:checked").val();
+			var audiowomen4 = $("input[name='f_92231fc8-8bc0-4f3d-9677-09e3d4b64fca']:checked").val();
+		}
+		var id = '@Html.Raw(ViewBag.qId)';
+		var gender = $('#ddlGender').val();
+
+		$.ajax(
+			{
+				url: "/audios/SubmitaudioCollection",
+				data: {
+					Audiomen1: audiomen1,	Audiomen2: audiomen2,	Audiomen3: audiomen3,	Audiomen4: audiomen4,
+					Audiowomen1: audiowomen1, Audiowowomen2: audiowomen2, Audiowomen3: audiowomen3, Audiowomen4: audiowomen4,
+					QuestionnarieId: id,
+					gender: gender
+				},
+				type: "GET"
+			}).done(function (result) {
+			alert('success');
+			console.log(result);
+		});
+	}
+
+	function play(id) {
+		var audio = document.getElementById(id);
+		var audioId = id.split("_");
+		$('#play_' + audioId[1]).css('display', 'none');
+		$('#pause_' + audioId[1]).css('display', 'block');
+		audio.play();
+	}
+	function pause(id) {
+		var audio = document.getElementById(id);
+		var audioId = id.split("_");
+		$('#play_' + audioId[1]).css('display', 'block');
+		$('#pause_' + audioId[1]).css('display', 'none');
+		audio.pause();
+	}
+
+
+	$('#ddlGender').on('change',
+		function () {
+			var result = '@Html.Raw(@ViewBag.result)';
+			var qId = '@Html.Raw(@ViewBag.qId)';
+			var selectedValue = $(this).val();
+
+			if (result !== '') {
+				window.location.href = "/audios/choosevoice?qid=" + qId+"&result=" + result + "&gender=" + selectedValue;
+			} else {
+				window.location.href = "/audios/choosevoice?qid=" + qId+"&gender=" + selectedValue;
+			}
+		});
+
+	$( document ).ready(function() {
+		var gender = '@Html.Raw(@ViewBag.gender)';
+		if (gender === '1') {
+			$('#ddlGender').val('1');
+		}
+
+		if (gender === '0') {
+			$('#ddlGender').val('0');
+		}
+	});
+	</script>
+}

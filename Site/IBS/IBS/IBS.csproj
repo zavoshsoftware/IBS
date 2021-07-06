@@ -910,6 +910,26 @@
     <Compile Include="Migrations\202107041709004_V08.Designer.cs">
       <DependentUpon>202107041709004_V08.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202107060649323_V09.cs" />
+    <Compile Include="Migrations\202107060649323_V09.Designer.cs">
+      <DependentUpon>202107060649323_V09.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107060906154_V10.cs" />
+    <Compile Include="Migrations\202107060906154_V10.Designer.cs">
+      <DependentUpon>202107060906154_V10.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107061352199_V11.cs" />
+    <Compile Include="Migrations\202107061352199_V11.Designer.cs">
+      <DependentUpon>202107061352199_V11.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107061409591_V12.cs" />
+    <Compile Include="Migrations\202107061409591_V12.Designer.cs">
+      <DependentUpon>202107061409591_V12.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107061413175_V13.cs" />
+    <Compile Include="Migrations\202107061413175_V13.Designer.cs">
+      <DependentUpon>202107061413175_V13.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DatabaseContext.cs" />
     <Compile Include="Models\DatabaseContextInitializer.cs" />
@@ -929,10 +949,14 @@
     <Compile Include="Models\Entities\UserSelectedAudio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\AudioSelectionViewModel.cs" />
     <Compile Include="ViewModels\ChooseVoiceViewModel.cs" />
+    <Compile Include="ViewModels\QuestionSubmitViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\QuestionListViewModel.cs" />
+    <Compile Include="ViewModels\UserQuestionnaireDetailViewModel.cs" />
+    <Compile Include="ViewModels\UserSelectedAudioViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -1138,14 +1162,17 @@
     <Content Include="Views\AnswerItems\Details.cshtml" />
     <Content Include="Views\AnswerItems\Edit.cshtml" />
     <Content Include="Views\AnswerItems\Index.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Audios\ChooseVoice.cshtml" />
+    <Content Include="Views\UserQuestionnaires\List.cshtml" />
+    <Content Include="Views\UserQuestionnaires\UserDetails.cshtml" />
     <Content Include="Views\UserSelectedAudios\Create.cshtml" />
     <Content Include="Views\UserSelectedAudios\Delete.cshtml" />
     <Content Include="Views\UserSelectedAudios\Details.cshtml" />
     <Content Include="Views\UserSelectedAudios\Edit.cshtml" />
     <Content Include="Views\UserSelectedAudios\Index.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Questions\ChooseVoice.cshtml" />
+    <Content Include="Views\UserSelectedAudios\List.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1155,6 +1182,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Uploads\audio\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202104171217310_V01.resx">
@@ -1180,6 +1208,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202107041709004_V08.resx">
       <DependentUpon>202107041709004_V08.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107060649323_V09.resx">
+      <DependentUpon>202107060649323_V09.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107060906154_V10.resx">
+      <DependentUpon>202107060906154_V10.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107061352199_V11.resx">
+      <DependentUpon>202107061352199_V11.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107061409591_V12.resx">
+      <DependentUpon>202107061409591_V12.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107061413175_V13.resx">
+      <DependentUpon>202107061413175_V13.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

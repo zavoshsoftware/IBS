@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Models.UserSelectedAudio>
 
 @{
-ViewBag.Title = "صداهای انتخاب شده";
+ViewBag.Title = "فهرست " + Server.HtmlDecode(Html.DisplyModelPluralName(model => model).ToString());
     
     Layout = "~/Views/Shared/BackEndLayout/_BackEndLayout.cshtml";
 }
@@ -13,7 +13,7 @@ ViewBag.Title = "صداهای انتخاب شده";
               .Columns(columns =>
                   {
                           columns.Bound(model => model.Audio.Title);
-        columns.Bound(model => model.User.Password);
+        columns.Bound(model => model.UserQuestionnaire.Result);
         columns.Bound(model => model.WeekNo);
         columns.Bound(model => model.IsActive);
         columns.Bound(model => model.CreationDate);

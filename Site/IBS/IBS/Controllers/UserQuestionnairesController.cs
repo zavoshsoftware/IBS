@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using ViewModels;
 using Models;
 
 namespace IBS.Controllers
@@ -33,7 +34,17 @@ namespace IBS.Controllers
             {
                 return HttpNotFound();
             }
-            return View(userQuestionnaire);
+
+            UserQuestionnaireDetailViewModel result = new UserQuestionnaireDetailViewModel()
+            {
+                UserQuestionnaire = userQuestionnaire,
+            
+                UserQuestionnaireDetails = db.UserQuestionnaireDetails
+                    .Include(c=>c.Question) .Where(c => c.UserQuestionnaireId == userQuestionnaire.Id && c.IsDeleted == false).
+                    OrderBy(c=>c.Question.QuestionGroupId).ThenBy(c=>c.Question.Order).ToList()
+            };
+
+            return View(result);
         }
 
         // GET: UserQuestionnaires/Create
@@ -140,5 +151,47 @@ namespace IBS.Controllers
             }
             base.Dispose(disposing);
         }
+
+        [Authorize(Roles = "customer")]
+        public ActionResult List()
+        {
+            var identity = (System.Security.Claims.ClaimsIdentity)User.Identity;
+
+            string id = identity.FindFirst(System.Security.Claims.ClaimTypes.Name).Value;
+            Guid userId = new Guid(id);
+
+            var userQuestionnaires = db.UserQuestionnaires.Include(u => u.PatientType).Where(u => u.IsDeleted == false)
+                .OrderByDescending(u => u.CreationDate).Include(u => u.User)
+                .Where(c=>c.UserId==userId&&c.IsDeleted==false);
+
+            return View(userQuestionnaires.ToList());
+        }
+
+        // GET: UserQuestionnaires/Details/5
+        public ActionResult UserDetails(Guid? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            UserQuestionnaire userQuestionnaire = db.UserQuestionnaires.Find(id);
+            if (userQuestionnaire == null)
+            {
+                return HttpNotFound();
+            }
+
+            UserQuestionnaireDetailViewModel result = new UserQuestionnaireDetailViewModel()
+            {
+                UserQuestionnaire = userQuestionnaire,
+
+                UserQuestionnaireDetails = db.UserQuestionnaireDetails
+                    .Include(c => c.Question).Where(c => c.UserQuestionnaireId == userQuestionnaire.Id && c.IsDeleted == false).
+                    OrderBy(c => c.Question.QuestionGroupId).ThenBy(c => c.Question.Order).ToList()
+            };
+
+            return View(result);
+        }
+
+
     }
 }

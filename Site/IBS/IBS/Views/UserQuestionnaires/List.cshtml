@@ -1,0 +1,71 @@
+﻿@model IEnumerable<Models.UserQuestionnaire>
+@{
+	Layout = "~/Views/Shared/FrontEnd/_FronEndLayout.cshtml";
+
+}
+
+@section head{
+
+	<style>
+		*,
+		*:before,
+		*:after {
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			box-sizing: border-box;
+		}
+
+		output {
+			display: block;
+			font-size: 30px;
+			font-weight: bold;
+			text-align: center;
+			margin: 30px 0;
+			width: 100%;
+		}
+
+		.u-left {
+			float: left;
+		}
+
+		.u-cf:before,
+		.u-cf:after {
+			content: "";
+			display: table;
+		}
+
+		.u-cf:after {
+			clear: both;
+		}
+
+		.u-text-left {
+			text-align: left;
+		}
+	</style>
+}
+
+<div class="row">
+	<div class="col-md-12">
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>Date</th>
+					<th>Result</th>
+					<th>Detail</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var questionnaire in Model)
+				{
+					<tr>
+						<td>@questionnaire.CreationDate</td>
+						<td>@questionnaire.Result</td>
+						<td><a class="btn btn-default" href="/UserQuestionnaires/UserDetails/@questionnaire.Id">Detail</a>
+							<a class="btn btn-default" href="/UserSelectedAudios/List/@questionnaire.Id">Selected Audio</a></td>
+					</tr>
+				}
+			</tbody>
+		</table>
+
+	</div>
+</div>

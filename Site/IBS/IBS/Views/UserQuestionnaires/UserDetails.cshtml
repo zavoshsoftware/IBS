@@ -1,0 +1,66 @@
+﻿@model ViewModels.UserQuestionnaireDetailViewModel
+
+@{
+		ViewBag.Title = "Details"; 
+	Layout = "~/Views/Shared/FrontEnd/_FronEndLayout.cshtml";
+
+}
+ 
+
+<div>
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			User Info
+		</div>
+		<div class="panel-body">
+			<table class="table" style="direction: ltr; text-align: left">
+				<tr>
+					<td><b>FullName:</b></td>
+					<td>@Model.UserQuestionnaire.User.FullName</td>	
+					<td><b>Email:</b></td>
+					<td>@Model.UserQuestionnaire.User.Email</td>	
+				 
+				</tr>
+				<tr>
+					<td><b>Questionarrie Submit Date:</b></td>
+					<td>@Model.UserQuestionnaire.CreationDate</td>	
+					<td><b>Result:</b></td>
+					<td>@Model.UserQuestionnaire.Result</td>	
+				 
+				</tr>
+			</table>
+		</div>
+	</div>
+
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				User Questionnarie
+			</div>
+			<div class="panel-body">
+
+
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th>Question Part</th>
+							<th>Question</th>
+							<th>Answer</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						@foreach (var userQuestionnaireDetail in Model.UserQuestionnaireDetails)
+						{
+							<tr>
+								<td>@userQuestionnaireDetail.Question.QuestionGroup.Title</td>
+								<td>@userQuestionnaireDetail.Question.Title</td>
+								<td>@userQuestionnaireDetail.Answer</td>
+							</tr>
+						}
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+	</div>
+ 

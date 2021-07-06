@@ -1,107 +1,65 @@
-﻿@model Models.UserQuestionnaire
+﻿@model ViewModels.UserQuestionnaireDetailViewModel
 
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/BackEndLayout/_BackEndLayout.cshtml";
 }
-
-<h2>Details</h2>
+ 
 
 <div>
-    <h4>UserQuestionnaire</h4>
-	<hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.PatientType.Title)
-        </dt>
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			User Info
+		</div>
+		<div class="panel-body">
+			<table class="table" style="direction: ltr; text-align: left">
+				<tr>
+					<td><b>FullName:</b></td>
+					<td>@Model.UserQuestionnaire.User.FullName</td>	
+					<td><b>Email:</b></td>
+					<td>@Model.UserQuestionnaire.User.Email</td>	
+				 
+				</tr>
+				<tr>
+					<td><b>Questionarrie Submit Date:</b></td>
+					<td>@Model.UserQuestionnaire.CreationDate</td>	
+					<td><b>Result:</b></td>
+					<td>@Model.UserQuestionnaire.Result</td>	
+				 
+				</tr>
+			</table>
+		</div>
+	</div>
 
-        <dd>
-            @Html.DisplayFor(model => model.PatientType.Title)
-        </dd>
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				User Questionnarie
+			</div>
+			<div class="panel-body">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.User.Password)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.User.Password)
-        </dd>
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th>Question Part</th>
+							<th>Question</th>
+							<th>Answer</th>
+						</tr>
+					</thead>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.StartDate)
-        </dt>
+					<tbody>
+						@foreach (var userQuestionnaireDetail in Model.UserQuestionnaireDetails)
+						{
+							<tr>
+								<td>@userQuestionnaireDetail.Question.QuestionGroup.Title</td>
+								<td>@userQuestionnaireDetail.Question.Title</td>
+								<td>@userQuestionnaireDetail.Answer</td>
+							</tr>
+						}
+					</tbody>
+				</table>
+			</div>
+		</div>
 
-        <dd>
-            @Html.DisplayFor(model => model.StartDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.EndDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EndDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Result)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Result)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IsActive)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IsActive)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CreationDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CreationDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LastModifiedDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LastModifiedDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IsDeleted)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IsDeleted)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DeletionDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DeletionDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+	</div>
+ 

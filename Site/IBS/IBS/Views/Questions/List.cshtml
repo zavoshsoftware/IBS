@@ -1,19 +1,11 @@
 ﻿@model IEnumerable<ViewModels.QuestionListViewModel>
 @{
-	Layout = null;
+	Layout = "~/Views/Shared/FrontEnd/_FronEndLayout.cshtml";
+
 }
 
-<!DOCTYPE html>
-<html>
-<head>
-	<meta name="viewport" content="width=device-width" />
-	<title>Index</title>
-	<link rel="stylesheet" href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css'>
-	<script src='https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js'></script>
-	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
-	<link rel="stylesheet" href="/Scripts/rangeslider.css">
+@section head{
 
-	<link href="~/Content/style.css" rel="stylesheet" />
 	<style>
 		*,
 		*:before,
@@ -50,147 +42,123 @@
 			text-align: left;
 		}
 	</style>
-	<!--[if lt IE 9]>
-		<script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
-	<![endif]-->
-</head>
-<body>
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<div class="logo">
-					<img src="~/Content/logo.png" />
-				</div>
-				<p class="summery">
-					This form is designed to enable us to record and monitor the severity of your IBS. It is to be expected that your symptoms might vary over time, so please try and answer the questions based on how you currently feel (i.e. over the last 10 days or so). All information will be kept in strict confidence.
-				</p>
-				<p class="summery">
-					1. For questions where a number of different responses are a possibility please circle the response appropriate to you.
-				</p>
-				<p class="summery">
-					2. Some questions will require you to write in an appropriate response.
-				</p>
-				<p class="summery">
-					3. Some questions require you to put a cross on a line which enables us to judge the severity of a particular problem.
-				</p>
-				<p class="summery">
+}
 
-					<img src="~/Images/tutorial.jpg" class="img-responsive" />
-				</p>
-
-			</div>
+<div class="row">
+	<div class="col-md-12">
+		<div class="logo">
 		</div>
-		@*<div class="row userinfo question-card" id="part0">
-				<div class="col-md-2"></div>
-				<div class="col-md-12">
-					<div class="row">
-						<label class="col-md-3">Full Name</label>
-						<input type="text" class="form-control" placeholder="Full Name"/>
-					</div>
-					<div class="row">
-						<label class="col-md-3">CellNumber</label>
-						<input type="text" class="form-control" placeholder="CellNumber"/>
-					</div>
-					<div class="row">
-						<label class="col-md-3">Email</label>
-						<input type="text" class="form-control" placeholder="Email"/>
-					</div>
-					<div class="row">
-						<button type="button" class="btn btn-success" onclick="apearDiv('part1');">Start Questions</button>
-					</div>
-				</div>
-			</div>*@
+		<p class="summery">
+			This form is designed to enable us to record and monitor the severity of your IBS. It is to be expected that your symptoms might vary over time, so please try and answer the questions based on how you currently feel (i.e. over the last 10 days or so). All information will be kept in strict confidence.
+		</p>
+		<p class="summery">
+			1. For questions where a number of different responses are a possibility please Choose the option appropriate to you.
+		</p>
+		<p class="summery">
+			2. Some questions will require you to write in an appropriate response.
+		</p>
+		<p class="summery">
+			3. Some questions require you to use the sliding bar which enables us to judge the severity of a particular problem.
+		</p>
+		<p class="summery">
 
-		<div class="row userinfo">
-			<div class="col-md-2"></div>
-			<div class="col-md-8">
-
-				@{
-					int i = 1;
-
-					foreach (var questionGroup in Model)
-					{
-
-
-						<div class="question-card" id="part@(i)">
-							<div class="question-card-heading">
-								Part @questionGroup.QuestionGroup.Order: @questionGroup.QuestionGroup.Title
-
-							</div>
-							<div class="question-card-body">
-								@foreach (var question in questionGroup.Questions)
-								{
-									<div class="question-item">
-										<p>
-											<strong>Question @question.Order:</strong> @question.Title
-										</p>
-										@if (question.AnswerType.Title == "yes/no")
-										{
-											<select class="form-control">
-												<option>Yes</option>
-												<option>No</option>
-											</select>
-										}
-										else if (question.AnswerType.Title == "percentage")
-										{
-											<input type="range" min="0" max="100" step="1" id="testValue" data-rangeslider>
-											<output></output>
-										}
-										else if (question.AnswerType.Title == "number")
-										{
-											<p>
-												Number of days with pain:
-
-												<input class="form-control" type="number" />
-											</p>
-										}
-										else if (question.AnswerType.Title == "numberwithoption")
-										{
-											<p>
-												Number of times:
-
-												<input class="form-control" type="number" />
-												per
-												<select class="form-control">
-													<option>day</option>
-													<option>week</option>
-													<option>month</option>
-												</select>
-											</p>
-										}
-										else if (question.AnswerType.Title == "multioption")
-										{
-											<div class=" ml-sm-5 pl-sm-5 pt-2">
-												<div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options(@question.Order)">
-													@foreach (var answerItem in question.AnswerItems)
-													{
-														<label id="options(@question.Order)" class="options">  @answerItem.Title<input type="radio" name="radio(@question.Order)"> <span class="checkmark"></span> </label>
-														<br />
-													}
-												</div>
-											</div>
-										}
-									</div>
-								}
-								<div class="question-card-footer">
-									<button onclick="apearDiv('part@(i + 1)');" type="button" class="btn btn-success">Next Step</button>
-								</div>
-							</div>
-
-						</div>
-						i++;
-					}
-				}
-			</div>
-		</div>
-
+			<img src="~/Images/tutorial.jpg" class="img-responsive" />
+		</p>
 
 	</div>
+</div>
+ 
+<div class="row userinfo">
+	<div class="col-md-2"></div>
+	<div class="col-md-8">
 
-	<script src="~/Scripts/kendo/2017.3.913/jquery.min.js"></script>
+		@{
+			int i = 1;
+
+			foreach (var questionGroup in Model)
+			{
+
+
+				<div class="question-card" id="part@(i)">
+					<div class="question-card-heading">
+						Part @questionGroup.QuestionGroup.Order: @questionGroup.QuestionGroup.Title
+
+					</div>
+					<div class="question-card-body">
+						@foreach (var question in questionGroup.Questions)
+						{
+							<div class="question-item">
+								<p>
+									<strong>Question @question.Order:</strong> @question.Title
+								</p>
+								@if (question.AnswerType.Title == "yes/no")
+								{
+									<select id="@question.Id" class="form-control">
+										<option>Yes</option>
+										<option>No</option>
+									</select>
+								}
+								else if (question.AnswerType.Title == "percentage")
+								{
+									<input type="range" min="0" max="100" step="1" id="@question.Id" data-rangeslider>
+									<output></output>
+								}
+								else if (question.AnswerType.Title == "number")
+								{
+									<p>
+										Number of days with pain:
+
+										<input id="@question.Id" class="form-control" type="number" />
+									</p>
+								}
+								else if (question.AnswerType.Title == "numberwithoption")
+								{
+									<p>
+										Number of times:
+
+										<input class="form-control" type="number" />
+										per
+										<select class="form-control" id="@question.Id">
+											<option>day</option>
+											<option>week</option>
+											<option>month</option>
+										</select>
+									</p>
+								}
+								else if (question.AnswerType.Title == "multioption")
+								{
+									<div class=" ml-sm-5 pl-sm-5 pt-2">
+										<div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options(@question.Order)">
+											@foreach (var answerItem in question.AnswerItems)
+											{
+												<label id="options(@question.Order)" class="options">
+													@answerItem.Title
+													<input type="radio" name="radio(@question.Order)" value="@answerItem.Id" id="@answerItem.Id">
+													<span class="checkmark"></span>
+												</label>
+												<br />
+											}
+										</div>
+									</div>
+								}
+							</div>
+						}
+						<div class="question-card-footer">
+							<button onclick="apearDiv('part@(i + 1)');" type="button" class="btn btn-success">Next Step</button>
+						</div>
+					</div>
+
+				</div>
+				i++;
+			}
+		}
+	</div>
+</div>
+
+@section scripts{
 	<script src="/Scripts/rangeslider.js"></script>
 	<script>
-		$(document).ready(function () {
+		$(document).ready(function() {
 			$(".question-card").css('display', 'none');
 
 			apearDiv('part1');
@@ -198,18 +166,88 @@
 
 		function apearDiv(id) {
 			if (id === 'part3') {
-				window.location.href = "/questions/choosevoice";
-			}
-			else {
+				var q1 = $('#3592deef-ce88-45fc-bf3d-4fef9f767aaf').val();
+				var q2 = $('#3b96726a-8a0d-487c-b992-1a31fa6fd0d7').val();
+				var q3 = $('#fb85df1d-e3f7-46db-a1dc-b5f70e23438e').val();
+				var q4 = $('#18a28495-9433-4493-a1ae-e751eb1faf5d').val();
+				var q5 = $('#802374e7-0c5d-4dd8-b88e-e8c9139bb298').val();
+				var q6 = $('#44edc10a-4271-4a60-a34f-6bbf258f046c').val();
+				var q7 = $('#4ec1ece0-44db-4574-8895-af0086f1ba1a').val();
+
+				var r1 = $("input[name='radio(1)']:checked").val();
+				var r2 = $("input[name='radio(2)']:checked").val();
+				var r3 = $("input[name='radio(3)']:checked").val();
+				var r4 = $("input[name='radio(4)']:checked").val();
+				var r5 = $("input[name='radio(5)']:checked").val();
+				var r6 = $("input[name='radio(6)']:checked").val();
+				var r7 = $("input[name='radio(7)']:checked").val();
+				var r8 = $("input[name='radio(8)']:checked").val();
+				var r9 = $("input[name='radio(9)']:checked").val();
+				var r10 = $("input[name='radio(10)']:checked").val();
+				var r11 = $("input[name='radio(11)']:checked").val();
+				var r12 = $("input[name='radio(1)']:checked").val();
+				var r13 = $("input[name='radio(13)']:checked").val();
+				var r14 = $("input[name='radio(14)']:checked").val();
+
+
+				$.ajax(
+					{
+						url: "/Questions/SubmitQuestion",
+						data: {
+							Q1: q1,
+							Q2: q2,
+							Q3: q3,
+							Q4: q4,
+							Q5: q5,
+							Q6: q6,
+							Q7: q7,
+							R1: r1,
+							R2: r2,
+							R3: r3,
+							R4: r4,
+							R5: r5,
+							R6: r6,
+							R7: r7,
+							R8: r8,
+							R9: r9,
+							R10: r10,
+							R11: r11,
+							R12: r12,
+							R13: r13,
+							R14: r14
+						},
+						type: "GET"
+					}).done(function(result) {
+
+					if (result !== 'false') {
+
+						var res = result.split('|');
+						if (res[1] !== '') {
+							window.location.href = "/audios/choosevoice?qId=" + res[0] + "&result=" + res[1];
+
+						} else {
+							window.location.href = "/audios/choosevoice?qId=" + res[0];
+
+						}
+
+					} else {
+						alert('an error occurred');
+					}
+
+				});
+
+
+			} else {
 				$(".question-card").css('display', 'none');
 				$("#" + id).css('display', 'block');
 				$("html, body").animate({
-					scrollTop: 800
-				}, 1000);
+						scrollTop: 800
+					},
+					1000);
 			}
 		}
 
-		$(function () {
+		$(function() {
 
 			var $document = $(document);
 			var selector = '[data-rangeslider]';
@@ -217,6 +255,7 @@
 
 			// For ie8 support
 			var textContent = ('textContent' in document) ? 'textContent' : 'innerText';
+
 			// Example functionality to demonstrate a value feedback
 			function valueOutput(element) {
 				var value = element.value;
@@ -236,44 +275,50 @@
 
 			}
 
-			$document.on('input', 'input[type="range"], ' + selector, function (e) {
-				valueOutput(e.target);
-			});
+			$document.on('input',
+				'input[type="range"], ' + selector,
+				function(e) {
+					valueOutput(e.target);
+				});
 
 			// Example functionality to demonstrate disabled functionality
-			$document.on('click', '#js-example-disabled button[data-behaviour="toggle"]', function (e) {
-				var $inputRange = $(selector, e.target.parentNode);
+			$document.on('click',
+				'#js-example-disabled button[data-behaviour="toggle"]',
+				function(e) {
+					var $inputRange = $(selector, e.target.parentNode);
 
-				if ($inputRange[0].disabled) {
-					$inputRange.prop("disabled", false);
-				}
-				else {
-					$inputRange.prop("disabled", true);
-				}
-				$inputRange.rangeslider('update');
-			});
+					if ($inputRange[0].disabled) {
+						$inputRange.prop("disabled", false);
+					} else {
+						$inputRange.prop("disabled", true);
+					}
+					$inputRange.rangeslider('update');
+				});
 
 			// Example functionality to demonstrate programmatic value changes
-			$document.on('click', '#js-example-change-value button', function (e) {
-				var $inputRange = $(selector, e.target.parentNode);
-				var value = $('input[type="number"]', e.target.parentNode)[0].value;
+			$document.on('click',
+				'#js-example-change-value button',
+				function(e) {
+					var $inputRange = $(selector, e.target.parentNode);
+					var value = $('input[type="number"]', e.target.parentNode)[0].value;
 
-				$inputRange.val(value).change();
-			});
+					$inputRange.val(value).change();
+				});
 
 			// Example functionality to demonstrate programmatic attribute changes
-			$document.on('click', '#js-example-change-attributes button', function (e) {
-				var $inputRange = $(selector, e.target.parentNode);
-				var attributes = {
-					min: $('input[name="min"]', e.target.parentNode)[0].value,
-					max: $('input[name="max"]', e.target.parentNode)[0].value,
-					step: $('input[name="step"]', e.target.parentNode)[0].value
-				};
+			$document.on('click',
+				'#js-example-change-attributes button',
+				function(e) {
+					var $inputRange = $(selector, e.target.parentNode);
+					var attributes = {
+						min: $('input[name="min"]', e.target.parentNode)[0].value,
+						max: $('input[name="max"]', e.target.parentNode)[0].value,
+						step: $('input[name="step"]', e.target.parentNode)[0].value
+					};
 
-				$inputRange.attr(attributes);
-				$inputRange.rangeslider('update', true);
-			});
-
+					$inputRange.attr(attributes);
+					$inputRange.rangeslider('update', true);
+				});
 
 
 			// Basic rangeslider initialization
@@ -283,24 +328,28 @@
 				polyfill: false,
 
 				// Callback function
-				onInit: function () {
+				onInit: function() {
 					valueOutput(this.$element[0]);
 				},
 
 				// Callback function
-				onSlide: function (position, value) {
+				onSlide: function(position, value) {
 					console.log('onSlide');
 					console.log('position: ' + position, 'value: ' + value);
 				},
 
 				// Callback function
-				onSlideEnd: function (position, value) {
+				onSlideEnd: function(position, value) {
 					console.log('onSlideEnd');
 					console.log('position: ' + position, 'value: ' + value);
 				}
 			});
 
 		});
+
+		function submitAnswers() {
+
+		}
 	</script>
-</body>
-</html>
+}
+ 

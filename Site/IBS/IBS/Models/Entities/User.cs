@@ -38,7 +38,6 @@
  
         public virtual Role Role { get; set; }
         public virtual ICollection<UserQuestionnaire> UserQuestionnaires { get; set; }
-        public virtual ICollection<UserSelectedAudio> UserSelectedAudios { get; set; }
 
 
     }

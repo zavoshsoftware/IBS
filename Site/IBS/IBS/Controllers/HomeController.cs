@@ -11,7 +11,7 @@ namespace IBS.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("login", "Account");
         }
         public ActionResult Play()
         {
