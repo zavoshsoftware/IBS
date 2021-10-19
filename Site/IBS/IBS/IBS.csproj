@@ -872,6 +872,8 @@
     <Compile Include="Controllers\PatientTypesController.cs" />
     <Compile Include="Controllers\QuestionGroupsController.cs" />
     <Compile Include="Controllers\QuestionsController.cs" />
+    <Compile Include="Controllers\TextItemsController.cs" />
+    <Compile Include="Controllers\TextItemTypesController.cs" />
     <Compile Include="Controllers\UserQuestionnairesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\UserSelectedAudiosController.cs" />
@@ -930,6 +932,10 @@
     <Compile Include="Migrations\202107061413175_V13.Designer.cs">
       <DependentUpon>202107061413175_V13.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202110190947065_v14.cs" />
+    <Compile Include="Migrations\202110190947065_v14.Designer.cs">
+      <DependentUpon>202110190947065_v14.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DatabaseContext.cs" />
     <Compile Include="Models\DatabaseContextInitializer.cs" />
@@ -943,6 +949,8 @@
     <Compile Include="Models\Entities\Question.cs" />
     <Compile Include="Models\Entities\QuestionGroup.cs" />
     <Compile Include="Models\Entities\Role.cs" />
+    <Compile Include="Models\Entities\TextItem.cs" />
+    <Compile Include="Models\Entities\TextItemType.cs" />
     <Compile Include="Models\Entities\User.cs" />
     <Compile Include="Models\Entities\UserQuestionnaire.cs" />
     <Compile Include="Models\Entities\UserQuestionnaireDetail.cs" />
@@ -1173,6 +1181,16 @@
     <Content Include="Views\UserSelectedAudios\Edit.cshtml" />
     <Content Include="Views\UserSelectedAudios\Index.cshtml" />
     <Content Include="Views\UserSelectedAudios\List.cshtml" />
+    <Content Include="Views\TextItems\Create.cshtml" />
+    <Content Include="Views\TextItems\Delete.cshtml" />
+    <Content Include="Views\TextItems\Details.cshtml" />
+    <Content Include="Views\TextItems\Edit.cshtml" />
+    <Content Include="Views\TextItems\Index.cshtml" />
+    <Content Include="Views\TextItemTypes\Create.cshtml" />
+    <Content Include="Views\TextItemTypes\Delete.cshtml" />
+    <Content Include="Views\TextItemTypes\Details.cshtml" />
+    <Content Include="Views\TextItemTypes\Edit.cshtml" />
+    <Content Include="Views\TextItemTypes\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1190,6 +1208,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202104171236133_V02.resx">
       <DependentUpon>202104171236133_V02.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202104241104346_V03.resx">
       <DependentUpon>202104241104346_V03.cs</DependentUpon>
@@ -1223,6 +1242,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202107061413175_V13.resx">
       <DependentUpon>202107061413175_V13.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110190947065_v14.resx">
+      <DependentUpon>202110190947065_v14.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

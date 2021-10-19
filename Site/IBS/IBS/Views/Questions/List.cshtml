@@ -46,8 +46,9 @@
 
 <div class="row">
 	<div class="col-md-12">
-		<div class="logo">
-		</div>
+        <div class="logo">
+        </div>
+        <div style="background-color: white">
 		<p class="summery">
 			This form is designed to enable us to record and monitor the severity of your IBS. It is to be expected that your symptoms might vary over time, so please try and answer the questions based on how you currently feel (i.e. over the last 10 days or so). All information will be kept in strict confidence.
 		</p>
@@ -64,10 +65,10 @@
 
 			<img src="~/Images/tutorial.jpg" class="img-responsive" />
 		</p>
-
+        </div>
 	</div>
 </div>
- 
+
 <div class="row userinfo">
 	<div class="col-md-2"></div>
 	<div class="col-md-8">
@@ -108,7 +109,7 @@
 									<p>
 										Number of days with pain:
 
-										<input id="@question.Id" class="form-control" type="number" />
+										<input id="@question.Id" class="form-control" min="0" type="number" />
 									</p>
 								}
 								else if (question.AnswerType.Title == "numberwithoption")
@@ -116,7 +117,7 @@
 									<p>
 										Number of times:
 
-										<input class="form-control" type="number" />
+										<input class="form-control" type="number" min="0" />
 										per
 										<select class="form-control" id="@question.Id">
 											<option>day</option>
@@ -143,9 +144,14 @@
 								}
 							</div>
 						}
-						<div class="question-card-footer">
-							<button onclick="apearDiv('part@(i + 1)');" type="button" class="btn btn-success">Next Step</button>
-						</div>
+                        <div class="question-card-footer">
+                            @if (i == 2)
+                            {
+                                <button onclick="apearDiv('part@(i - 1)');" type="button" class="btn btn-success">previous Step</button>
+                            }
+                            <button onclick="apearDiv('part@(i + 1)');" type="button" class="btn btn-success">Next Step</button>
+
+                        </div>
 					</div>
 
 				</div>
@@ -260,17 +266,17 @@
 			function valueOutput(element) {
 				var value = element.value;
 				var output = element.parentNode.getElementsByTagName('output')[0] || element.parentNode.parentNode.getElementsByTagName('output')[0];
-				if (value === '0') {
-					value = '0- no pain';
-				} else if (value === '25') {
-					value = '25- not very severe';
-				} else if (value === '50') {
-					value = '50- quite severe';
-				} else if (value === '75') {
-					value = '75- severe';
-				} else if (value === '100') {
-					value = '100- very severe';
-				}
+				//if (value === '0') {
+				//	value = '0- no pain';
+				//} else if (value === '25') {
+				//	value = '25- not very severe';
+				//} else if (value === '50') {
+				//	value = '50- quite severe';
+				//} else if (value === '75') {
+				//	value = '75- severe';
+				//} else if (value === '100') {
+				//	value = '100- very severe';
+				//}
 				output[textContent] = value;
 
 			}

@@ -21,5 +21,7 @@ namespace Models
         public DbSet<UserQuestionnaireDetail> UserQuestionnaireDetails { get; set; }
         public DbSet<AnswerItem> AnswerItems { get; set; }
         public DbSet<UserSelectedAudio> UserSelectedAudios { get; set; }
+        public DbSet<TextItem> TextItems { get; set; }
+        public DbSet<TextItemType> TextItemTypes { get; set; }
     }
 }
