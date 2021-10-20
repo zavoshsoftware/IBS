@@ -1,4 +1,5 @@
-﻿@model IEnumerable<ViewModels.QuestionListViewModel>
+﻿@using Telerik.Windows.Documents.Spreadsheet.Expressions.Functions
+@model IEnumerable<ViewModels.QuestionListViewModel>
 @{
 	Layout = "~/Views/Shared/FrontEnd/_FronEndLayout.cshtml";
 
@@ -44,122 +45,163 @@
 	</style>
 }
 
-<div class="row">
-	<div class="col-md-12">
-        <div class="logo">
+@{
+    int i = 1;
+
+    foreach (var questionGroup in Model)
+    {
+    <div class="question-card" id="part@(i)">
+        @if (i == 1)
+        {
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="logo">
+                </div>
+                <div style="background-color: white">
+                    @*<p class="summery">
+                        This form is designed to enable us to record and monitor the severity of your IBS. It is to be expected that your symptoms might vary over time, so please try and answer the questions based on how you currently feel (i.e. over the last 10 days or so). All information will be kept in strict confidence.
+                    </p>
+                    <p class="summery">
+                        1. For questions where a number of different responses are a possibility please Choose the option appropriate to you.
+                    </p>
+                    <p class="summery">
+                        2. Some questions will require you to write in an appropriate response.
+                    </p>
+                    <p class="summery">
+                        3. Some questions require you to use the sliding bar which enables us to judge the severity of a particular problem.
+                    </p>
+                    <p class="summery">
+
+                        <img src="~/Images/tutorial.jpg" class="img-responsive" />
+                    </p>*@
+                @Html.Raw(@questionGroup.TextItems[0].Body)
+                </div>
+            </div>
         </div>
-        <div style="background-color: white">
-		<p class="summery">
-			This form is designed to enable us to record and monitor the severity of your IBS. It is to be expected that your symptoms might vary over time, so please try and answer the questions based on how you currently feel (i.e. over the last 10 days or so). All information will be kept in strict confidence.
-		</p>
-		<p class="summery">
-			1. For questions where a number of different responses are a possibility please Choose the option appropriate to you.
-		</p>
-		<p class="summery">
-			2. Some questions will require you to write in an appropriate response.
-		</p>
-		<p class="summery">
-			3. Some questions require you to use the sliding bar which enables us to judge the severity of a particular problem.
-		</p>
-		<p class="summery">
+        }
 
-			<img src="~/Images/tutorial.jpg" class="img-responsive" />
-		</p>
+        @if (i == 2)
+        {
+        <div class="row">
+            <div class="col-md-12">
+                <div class="logo">
+                </div>
+                <div style="background-color: white">
+                    @*<p class="summery">
+                        this form is designed to enable us to record and monitor the severity of your IBS. It is to be expected that your symptoms might vary over time, so please try and answer the questions based on how you currently feel (i.e. over the last 10 days or so). All information will be kept in strict confidence.
+                    </p>
+                    <p class="summery">
+                        1. For questions where a number of different responses are a possibility please Choose the option appropriate to you.
+                    </p>
+                    <p class="summery">
+                        2. Some questions will require you to write in an appropriate response.
+                    </p>
+                    <p class="summery">
+                        3. Some questions require you to use the sliding bar which enables us to judge the severity of a particular problem.
+                    </p>
+                    <p class="summery">
+
+                        <img src="~/Images/tutorial.jpg" class="img-responsive" />
+                    </p>*@
+                @Html.Raw(@questionGroup.TextItems[1].Body)
+                </div>
+            </div>
         </div>
-	</div>
-</div>
+        }
 
-<div class="row userinfo">
-	<div class="col-md-2"></div>
-	<div class="col-md-8">
-
-		@{
-			int i = 1;
-
-			foreach (var questionGroup in Model)
-			{
+        <div class="row userinfo">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
 
 
-				<div class="question-card" id="part@(i)">
-					<div class="question-card-heading">
-						Part @questionGroup.QuestionGroup.Order: @questionGroup.QuestionGroup.Title
 
-					</div>
-					<div class="question-card-body">
-						@foreach (var question in questionGroup.Questions)
-						{
-							<div class="question-item">
-								<p>
-									<strong>Question @question.Order:</strong> @question.Title
-								</p>
-								@if (question.AnswerType.Title == "yes/no")
-								{
-									<select id="@question.Id" class="form-control">
-										<option>Yes</option>
-										<option>No</option>
-									</select>
-								}
-								else if (question.AnswerType.Title == "percentage")
-								{
-									<input type="range" min="0" max="100" step="1" id="@question.Id" data-rangeslider>
-									<output></output>
-								}
-								else if (question.AnswerType.Title == "number")
-								{
-									<p>
-										Number of days with pain:
 
-										<input id="@question.Id" class="form-control" min="0" type="number" />
-									</p>
-								}
-								else if (question.AnswerType.Title == "numberwithoption")
-								{
-									<p>
-										Number of times:
 
-										<input class="form-control" type="number" min="0" />
-										per
-										<select class="form-control" id="@question.Id">
-											<option>day</option>
-											<option>week</option>
-											<option>month</option>
-										</select>
-									</p>
-								}
-								else if (question.AnswerType.Title == "multioption")
-								{
-									<div class=" ml-sm-5 pl-sm-5 pt-2">
-										<div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options(@question.Order)">
-											@foreach (var answerItem in question.AnswerItems)
-											{
-												<label id="options(@question.Order)" class="options">
-													@answerItem.Title
-													<input type="radio" name="radio(@question.Order)" value="@answerItem.Id" id="@answerItem.Id">
-													<span class="checkmark"></span>
-												</label>
-												<br />
-											}
-										</div>
-									</div>
-								}
-							</div>
-						}
-                        <div class="question-card-footer">
-                            @if (i == 2)
+                <div class="question-card-heading">
+                    Part @questionGroup.QuestionGroup.Order: @questionGroup.QuestionGroup.Title
+
+                </div>
+                <div class="question-card-body">
+                    @foreach (var question in questionGroup.Questions)
+                    {
+                        <div class="question-item">
+                            <p>
+                                <strong>Question @question.Order:</strong> @question.Title
+                            </p>
+                            @if (question.AnswerType.Title == "yes/no")
                             {
-                                <button onclick="apearDiv('part@(i - 1)');" type="button" class="btn btn-success">previous Step</button>
+                                <select id="@question.Id" class="form-control">
+                                    <option>Yes</option>
+                                    <option>No</option>
+                                </select>
                             }
-                            <button onclick="apearDiv('part@(i + 1)');" type="button" class="btn btn-success">Next Step</button>
+                            else if (question.AnswerType.Title == "percentage")
+                            {
+                                <input type="range" min="0" max="100" step="1" id="@question.Id" data-rangeslider>
+                                <output></output>
+                            }
+                            else if (question.AnswerType.Title == "number")
+                            {
+                                <p>
+                                    Number of days with pain:
 
+                                    <input id="@question.Id" class="form-control" min="0" type="number" />
+                                </p>
+                            }
+                            else if (question.AnswerType.Title == "numberwithoption")
+                            {
+                                <p>
+                                    Number of times:
+
+                                    <input class="form-control" type="number" min="0" />
+                                    per
+                                    <select class="form-control" id="@question.Id">
+                                        <option>day</option>
+                                        <option>week</option>
+                                        <option>month</option>
+                                    </select>
+                                </p>
+                            }
+                            else if (question.AnswerType.Title == "multioption")
+                            {
+                                <div class=" ml-sm-5 pl-sm-5 pt-2">
+                                    <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options(@question.Order)">
+                                        @foreach (var answerItem in question.AnswerItems)
+                                        {
+                                            <label id="options(@question.Order)" class="options">
+                                                @answerItem.Title
+                                                <input type="radio" name="radio(@question.Order)" value="@answerItem.Id" id="@answerItem.Id">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                            <br />
+                                        }
+                                    </div>
+                                </div>
+                            }
                         </div>
-					</div>
+                    }
+                    <div class="question-card-footer">
+                        @if (i == 2)
+                        {
+                            <button onclick="apearDiv('part@(i - 1)');" type="button" class="btn btn-success">previous Step</button>
+                        }
+                        <button onclick="apearDiv('part@(i + 1)');" type="button" class="btn btn-success">Next Step</button>
 
-				</div>
-				i++;
-			}
-		}
-	</div>
-</div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+    </div>
+        i++;
+        
+    }
+}
 
 @section scripts{
 	<script src="/Scripts/rangeslider.js"></script>

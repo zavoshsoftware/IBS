@@ -150,13 +150,17 @@ namespace IBS.Controllers
 
             List<QuestionGroup> questionGroups =
                 db.QuestionGroups.Where(c => c.IsDeleted == false && c.IsActive == true).OrderBy(c => c.Order).ToList();
-
+            var headerTextFirstPage = db.TextItems.FirstOrDefault(x => x.Name == "firstPageTextOfQuestionList");
+            var headerTextSecondPage = db.TextItems.FirstOrDefault(x => x.Name == "secondPageTextOfQuestionList");
+            var textItems = new List<TextItem>();
+            textItems.Add(headerTextFirstPage);
+            textItems.Add(headerTextSecondPage);
             foreach (QuestionGroup questionGroup in questionGroups)
             {
                 result.Add(new QuestionListViewModel()
                 {
                     QuestionGroup = questionGroup,
-
+                    TextItems = textItems.OrderBy(x => x.CreationDate).ToList(),
                     Questions = db.Questions.Where(c => c.QuestionGroupId == questionGroup.Id && c.IsDeleted == false)
                         .OrderBy(c => c.Order).ToList()
                 });

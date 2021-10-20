@@ -64,16 +64,64 @@
 		.pause {
 			display: none;
 		}
+        .tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+        .tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 22px 16px;
+            transition: 0.3s;
+        }
+        .tab button:hover {
+            background-color: #ddd;
+        }
+        .tab button.active {
+            background-color: #ccc;
+        }
+        /*.tab {*/
+        /*    float: left;*/
+            /*border: 1px solid #ccc;
+            background-color: #f1f1f1;
+
+        }*/
+
+        /* Style the buttons that are used to open the tab content */
+        /*.tab button {
+            display: block;
+            background-color: inherit;
+            color: black;
+            padding: 22px 16px;
+            border: none;
+            outline: none;
+            text-align: left;
+            cursor: pointer;
+            transition: 0.3s;
+        }*/
+        
 	</style>
 }
 
 <div class="row">
-	<div class="col-md-12">
-		<div class="logo">
-			<img src="~/Content/logo.png" />
-		</div>
+    <div class="col-md-12">
+        <div class="logo">
+            <img src="~/Content/logo.png" />
+        </div>
 
-	</div>
+    </div>
+</div>
+<div class="tab">
+    <button class="tablinks" onclick="selectAudio(event, 'Week1')">Week1</button>
+    <button class="tablinks" onclick="selectAudio(event, 'Week2')">Week2</button>
+    <button class="tablinks" onclick="selectAudio(event, 'Week3')">Week3</button>
+    <button class="tablinks" onclick="selectAudio(event, 'Week4')">Week4</button>
+    <button class="tablinks" onclick="selectAudio(event, 'Week5')">Week5</button>
+    <button class="tablinks" onclick="selectAudio(event, 'Week6')">Week6</button>
 </div>
 <div class="row userinfo question-card">
 	<div class="col-md-12">
@@ -101,11 +149,11 @@
 								<div class="audio-item">
 									@if (ViewBag.gender == "1")
 									{
-										<input type="radio" value="@item.Id" name="m_@audio.AudioGroup.Id" />
+										<input type="radio" value="@item.Id" id="@item.Id" name="m_@audio.AudioGroup.Id" />
 									}
 									else
 									{
-										<input type="radio" value="@item.Id" name="f_@audio.AudioGroup.Id" />
+										<input type="radio" value="@item.Id" id="@item.Id" name="f_@audio.AudioGroup.Id" />
 									}
 									<a href="#" class="btn btn-success" for="@item.Id">@item.Title</a>
 
@@ -131,77 +179,185 @@
 @section scripts
 {
 
-	<script>
-		function submitUserAudio(gender) {
+    <script>
+        function selectAudio(evt, weekName) {
+            var i, tablinks, gender;
+            var result = '@Html.Raw(@ViewBag.result)';
+            tablinks = document.getElementsByClassName("tablinks");
+            gender = document.getElementById("ddlGender").value;
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            evt.currentTarget.className += " active";
+            if (weekName === "Week1" && gender === "1") {
+                document.getElementById("8943fc84-53aa-4fb0-9e94-9fe8bc407435").checked = true;
+                document.getElementById("c49835c8-a058-40bd-8097-3bc12df94929").checked = true;
+                document.getElementById("0c8d365c-eeb2-4602-bfea-af76e0b78f49").checked = true;
+                document.getElementById("71075b73-45b8-4b6a-ac9e-9723ffd56b92").checked = true;
+            }
+            else if (weekName === "Week1" && gender === "0") {
+                document.getElementById("1137dbd3-2e50-47c3-97c7-4fae78c737cd").checked = true;
+                document.getElementById("bd4dfc53-dcbf-49ba-8680-8bd88663057b").checked = true;
+                document.getElementById("3cd7d9ab-d7de-4217-b54b-1d2a2a03ad89").checked = true;
+                document.getElementById("75c8f1ec-2535-4c02-8918-54656c518eb3").checked = true;
+            }
+            else if (weekName === "Week2" && gender === "1") {
+                document.getElementById("8943fc84-53aa-4fb0-9e94-9fe8bc407435").checked = true;
+                document.getElementById("3eff7266-54c3-4847-85f1-a0cbb26304de").checked = true;
+                //document.getElementById("4ca8e8f2-8f6a-426b-b54f-6380d7a33d64").checked = true;
+                document.getElementById("a2484cfa-03af-412f-b789-1988bc39d747").checked = true;
+                //document.getElementById("3eff7266-54c3-4847-85f1-a0cbb26304de").checked = true;
+                document.getElementById("f80ab932-df7e-448b-b41a-2b39db53b42f").checked = true;
+            }
+            else if (weekName === "Week2" && gender === "0") {
+                document.getElementById("1137dbd3-2e50-47c3-97c7-4fae78c737cd").checked = true;
+                document.getElementById("2d6025c6-1ca2-44db-bb1a-5a2e0862f42e").checked = true;
+                //document.getElementById("b11a5c07-7753-453f-8427-a5d3b469737a").checked = true;
+                document.getElementById("8e169830-6125-4eb4-979e-71e04ca5982d").checked = true;
+                //document.getElementById("af702236-9933-4bdb-8ebe-f733662f3f09").checked = true;
+                document.getElementById("ecef5b59-fce8-4cfb-be20-fe9491f429b8").checked = true;
+            }
+            else if (weekName === "Week3" && gender === "1") {
+                document.getElementById("8943fc84-53aa-4fb0-9e94-9fe8bc407435").checked = true;
+                document.getElementById("d34b94b8-28bc-4b63-9025-683edd63a4e0").checked = true;
+                //document.getElementById("4ca8e8f2-8f6a-426b-b54f-6380d7a33d64").checked = true;
+                document.getElementById("a39e639e-a902-4fd5-8352-8bc5009198ac").checked = true;
+                //document.getElementById("a2484cfa-03af-412f-b789-1988bc39d747").checked = true;
+                document.getElementById("f80ab932-df7e-448b-b41a-2b39db53b42f").checked = true;
+            }
+            else if (weekName === "Week3" && gender === "0") {
+                document.getElementById("1137dbd3-2e50-47c3-97c7-4fae78c737cd").checked = true;
+                document.getElementById("1c5674eb-a104-472b-84b3-b10bb4b943cf").checked = true;
+                //document.getElementById("b11a5c07-7753-453f-8427-a5d3b469737a").checked = true;
+                document.getElementById("6c681c2d-ce9b-4a06-be07-f9568a4a5ef8").checked = true;
+                //document.getElementById("af702236-9933-4bdb-8ebe-f733662f3f09").checked = true;
+                document.getElementById("ecef5b59-fce8-4cfb-be20-fe9491f429b8").checked = true;
+            }
+            else if (weekName === "Week4" && gender === "1") {
+                document.getElementById("8943fc84-53aa-4fb0-9e94-9fe8bc407435").checked = true;
+                document.getElementById("f5bf7fc2-64f4-49ba-8647-6e93ead68b77").checked = true;
+                //document.getElementById("4ca8e8f2-8f6a-426b-b54f-6380d7a33d64").checked = true;
+                document.getElementById("a39e639e-a902-4fd5-8352-8bc5009198ac").checked = true;
+                //document.getElementById("6251bdb5-7b8d-43c7-8e83-797e01d13d96").checked = true;
+                document.getElementById("f80ab932-df7e-448b-b41a-2b39db53b42f").checked = true;
+            }
+            else if (weekName === "Week4" && gender === "0") {
+                document.getElementById("1137dbd3-2e50-47c3-97c7-4fae78c737cd").checked = true;
+                document.getElementById("e393b8ac-9c68-4556-a171-a2ebb4d009e3").checked = true;
+                //document.getElementById("b11a5c07-7753-453f-8427-a5d3b469737a").checked = true;
+                document.getElementById("6c681c2d-ce9b-4a06-be07-f9568a4a5ef8").checked = true;
+                //document.getElementById("4f0a6769-4076-4252-9057-8a1c2dc74d30").checked = true;
+                document.getElementById("ecef5b59-fce8-4cfb-be20-fe9491f429b8").checked = true;
+            }
+            else if (weekName === "Week5" && gender === "1") {
+                document.getElementById("8943fc84-53aa-4fb0-9e94-9fe8bc407435").checked = true;
+                document.getElementById("ed08ede9-3051-41a5-bcad-b8e43536d45a").checked = true;
+                //document.getElementById("4ca8e8f2-8f6a-426b-b54f-6380d7a33d64").checked = true;
+                document.getElementById("a39e639e-a902-4fd5-8352-8bc5009198ac").checked = true;
+                //document.getElementById("a2484cfa-03af-412f-b789-1988bc39d747").checked = true;
+                document.getElementById("f80ab932-df7e-448b-b41a-2b39db53b42f").checked = true;
+            }
+            else if (weekName === "Week5" && gender === "0") {
+                document.getElementById("1137dbd3-2e50-47c3-97c7-4fae78c737cd").checked = true;
+                document.getElementById("d41491b7-f923-4172-88ff-5e78b6927cf4").checked = true;
+                //document.getElementById("b11a5c07-7753-453f-8427-a5d3b469737a").checked = true;
+                document.getElementById("6c681c2d-ce9b-4a06-be07-f9568a4a5ef8").checked = true;
+                //document.getElementById("af702236-9933-4bdb-8ebe-f733662f3f09").checked = true;
+                document.getElementById("ecef5b59-fce8-4cfb-be20-fe9491f429b8").checked = true;
+            }
+            else if (weekName === "Week6" && gender === "1") {
+                document.getElementById("8943fc84-53aa-4fb0-9e94-9fe8bc407435").checked = true;
+                document.getElementById("4ca8e8f2-8f6a-426b-b54f-6380d7a33d64").checked = true;
+                document.getElementById("a39e639e-a902-4fd5-8352-8bc5009198ac").checked = true;
+                //document.getElementById("6251bdb5-7b8d-43c7-8e83-797e01d13d96").checked = true;
+                document.getElementById("f80ab932-df7e-448b-b41a-2b39db53b42f").checked = true;
+            }
+            else if (weekName === "Week6" && gender === "0") {
+                document.getElementById("1137dbd3-2e50-47c3-97c7-4fae78c737cd").checked = true;
+                document.getElementById("b11a5c07-7753-453f-8427-a5d3b469737a").checked = true;
+                document.getElementById("6c681c2d-ce9b-4a06-be07-f9568a4a5ef8").checked = true;
+                //document.getElementById("4f0a6769-4076-4252-9057-8a1c2dc74d30").checked = true;
+                document.getElementById("ecef5b59-fce8-4cfb-be20-fe9491f429b8").checked = true;
+            }
+        }
 
-		if (gender === '1') {
-			var audiomen1 = $("input[name='m_7b678ab5-0838-4d4a-95d0-8952f74a99d9']:checked").val();
-			var audiomen2 = $("input[name='m_8f1e5363-6eb6-4e15-bf5a-a4ed82d853f5']:checked").val();
-			var audiomen3 = $("input[name='m_1e5656c8-d07d-4f33-94cb-2eeff052cc42']:checked").val();
-			var audiomen4 = $("input[name='m_92231fc8-8bc0-4f3d-9677-09e3d4b64fca']:checked").val();
-		} else {
-			var audiowomen1 = $("input[name='f_7b678ab5-0838-4d4a-95d0-8952f74a99d9']:checked").val();
-			var audiowomen2 = $("input[name='f_8f1e5363-6eb6-4e15-bf5a-a4ed82d853f5']:checked").val();
-			var audiowomen3 = $("input[name='f_1e5656c8-d07d-4f33-94cb-2eeff052cc42']:checked").val();
-			var audiowomen4 = $("input[name='f_92231fc8-8bc0-4f3d-9677-09e3d4b64fca']:checked").val();
-		}
-		var id = '@Html.Raw(ViewBag.qId)';
-		var gender = $('#ddlGender').val();
+        function submitUserAudio(gender) {
 
-		$.ajax(
-			{
-				url: "/audios/SubmitaudioCollection",
-				data: {
-					Audiomen1: audiomen1,	Audiomen2: audiomen2,	Audiomen3: audiomen3,	Audiomen4: audiomen4,
-					Audiowomen1: audiowomen1, Audiowowomen2: audiowomen2, Audiowomen3: audiowomen3, Audiowomen4: audiowomen4,
-					QuestionnarieId: id,
-					gender: gender
-				},
-				type: "GET"
-			}).done(function (result) {
-			alert('success');
-			console.log(result);
-		});
-	}
+            if (gender === '1') {
+                var audiomen1 = $("input[name='m_7b678ab5-0838-4d4a-95d0-8952f74a99d9']:checked").val();
+                var audiomen2 = $("input[name='m_8f1e5363-6eb6-4e15-bf5a-a4ed82d853f5']:checked").val();
+                var audiomen3 = $("input[name='m_1e5656c8-d07d-4f33-94cb-2eeff052cc42']:checked").val();
+                var audiomen4 = $("input[name='m_92231fc8-8bc0-4f3d-9677-09e3d4b64fca']:checked").val();
+            } else {
+                var audiowomen1 = $("input[name='f_7b678ab5-0838-4d4a-95d0-8952f74a99d9']:checked").val();
+                var audiowomen2 = $("input[name='f_8f1e5363-6eb6-4e15-bf5a-a4ed82d853f5']:checked").val();
+                var audiowomen3 = $("input[name='f_1e5656c8-d07d-4f33-94cb-2eeff052cc42']:checked").val();
+                var audiowomen4 = $("input[name='f_92231fc8-8bc0-4f3d-9677-09e3d4b64fca']:checked").val();
+            }
+            var id = '@Html.Raw(ViewBag.qId)';
+            var gender = $('#ddlGender').val();
 
-	function play(id) {
-		var audio = document.getElementById(id);
-		var audioId = id.split("_");
-		$('#play_' + audioId[1]).css('display', 'none');
-		$('#pause_' + audioId[1]).css('display', 'block');
-		audio.play();
-	}
-	function pause(id) {
-		var audio = document.getElementById(id);
-		var audioId = id.split("_");
-		$('#play_' + audioId[1]).css('display', 'block');
-		$('#pause_' + audioId[1]).css('display', 'none');
-		audio.pause();
-	}
+            $.ajax(
+                {
+                    url: "/audios/SubmitaudioCollection",
+                    data: {
+                        Audiomen1: audiomen1,
+                        Audiomen2: audiomen2,
+                        Audiomen3: audiomen3,
+                        Audiomen4: audiomen4,
+                        Audiowomen1: audiowomen1,
+                        Audiowowomen2: audiowomen2,
+                        Audiowomen3: audiowomen3,
+                        Audiowomen4: audiowomen4,
+                        QuestionnarieId: id,
+                        gender: gender
+                    },
+                    type: "GET"
+                }).done(function(result) {
+                alert('success');
+                console.log(result);
+            });
+        }
+
+        function play(id) {
+            var audio = document.getElementById(id);
+            var audioId = id.split("_");
+            $('#play_' + audioId[1]).css('display', 'none');
+            $('#pause_' + audioId[1]).css('display', 'block');
+            audio.play();
+        }
+
+        function pause(id) {
+            var audio = document.getElementById(id);
+            var audioId = id.split("_");
+            $('#play_' + audioId[1]).css('display', 'block');
+            $('#pause_' + audioId[1]).css('display', 'none');
+            audio.pause();
+        }
 
 
-	$('#ddlGender').on('change',
-		function () {
-			var result = '@Html.Raw(@ViewBag.result)';
-			var qId = '@Html.Raw(@ViewBag.qId)';
-			var selectedValue = $(this).val();
+        $('#ddlGender').on('change',
+            function() {
+                var result = '@Html.Raw(@ViewBag.result)';
+                var qId = '@Html.Raw(@ViewBag.qId)';
+                var selectedValue = $(this).val();
 
-			if (result !== '') {
-				window.location.href = "/audios/choosevoice?qid=" + qId+"&result=" + result + "&gender=" + selectedValue;
-			} else {
-				window.location.href = "/audios/choosevoice?qid=" + qId+"&gender=" + selectedValue;
-			}
-		});
+                if (result !== '') {
+                    window.location.href = "/audios/choosevoice?qid=" + qId + "&result=" + result + "&gender=" + selectedValue;
+                } else {
+                    window.location.href = "/audios/choosevoice?qid=" + qId + "&gender=" + selectedValue;
+                }
+            });
 
-	$( document ).ready(function() {
-		var gender = '@Html.Raw(@ViewBag.gender)';
-		if (gender === '1') {
-			$('#ddlGender').val('1');
-		}
+        $(document).ready(function() {
+            var gender = '@Html.Raw(@ViewBag.gender)';
+            if (gender === '1') {
+                $('#ddlGender').val('1');
+            }
 
-		if (gender === '0') {
-			$('#ddlGender').val('0');
-		}
-	});
-	</script>
+            if (gender === '0') {
+                $('#ddlGender').val('0');
+            }
+        });
+    </script>
 }
