@@ -377,7 +377,7 @@ namespace IBS.Controllers
                     IsDeleted = false,
                     UserQuestionnaireId = new Guid(input.QuestionnarieId),
                     AudioId = new Guid(audio1),
-                    WeekNo = 1,
+                    WeekNo = input.WeekNo,
                 };
 
                 db.UserSelectedAudios.Add(userSelectedAudio);
@@ -390,7 +390,7 @@ namespace IBS.Controllers
                     IsDeleted = false,
                     UserQuestionnaireId = new Guid(input.QuestionnarieId),
                     AudioId = new Guid(audio2),
-                    WeekNo = 1,
+                    WeekNo = input.WeekNo,
                 };
 
                 db.UserSelectedAudios.Add(userSelectedAudio);
@@ -403,7 +403,7 @@ namespace IBS.Controllers
                     IsDeleted = false,
                     UserQuestionnaireId = new Guid(input.QuestionnarieId),
                     AudioId = new Guid(audio3),
-                    WeekNo = 1,
+                    WeekNo = input.WeekNo,
                 };
 
                 db.UserSelectedAudios.Add(userSelectedAudio);
@@ -416,7 +416,7 @@ namespace IBS.Controllers
                     IsDeleted = false,
                     UserQuestionnaireId = new Guid(input.QuestionnarieId),
                     AudioId = new Guid(audio4),
-                    WeekNo = 1,
+                    WeekNo = input.WeekNo,
                 };
 
                 db.UserSelectedAudios.Add(userSelectedAudio);
