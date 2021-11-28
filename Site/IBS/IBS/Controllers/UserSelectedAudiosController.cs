@@ -24,31 +24,54 @@ namespace IBS.Controllers
         [Authorize(Roles = "customer")]
         public ActionResult List(Guid id)
         {
-
-            var userSelectedAudios = db.UserSelectedAudios.Include(u => u.Audio).Where(u => u.IsDeleted == false)
-                .OrderByDescending(u => u.CreationDate).Include(u => u.UserQuestionnaire)
-                .Where(c => c.IsDeleted == false && c.UserQuestionnaireId == id);
-
-            UserSelectedAudioViewModel res = new UserSelectedAudioViewModel();
-
-            foreach (var userSelectedAudio in userSelectedAudios)
+            List<UserSelectedAudioViewModel> res = new List<UserSelectedAudioViewModel>();
+            ViewBag.Id = id;
+            for (int i = 1; i <= 4; i++)
             {
-                if (userSelectedAudio.Audio.AudioGroup.Title.ToLower() == "induction")
+                List<UserSelectedAudio> userSelectedAudios = db.UserSelectedAudios.Include(u => u.Audio)
+                    .Where(u => u.IsDeleted == false && u.UserQuestionnaireId == id && u.WeekNo == i)
+                    .OrderByDescending(u => u.CreationDate).Include(u => u.UserQuestionnaire)
+                    .ToList();
+
+                int weekNo = i;
+                string inductionAudio="";
+                string deepeningAudio = "";
+                string endingAudio = "";
+                string TherapyAudio = "";
+                bool isChoose = false;
+
+                foreach (var userSelectedAudio in userSelectedAudios)
                 {
-                    res.InductionAudio = userSelectedAudio.Audio.FileUrl;
+                    if (userSelectedAudio.Audio.AudioGroup.Title.ToLower() == "induction")
+                    {
+                        inductionAudio = userSelectedAudio.Audio.FileUrl;
+                    }
+                    if (userSelectedAudio.Audio.AudioGroup.Title.ToLower() == "deepening")
+                    {
+                        deepeningAudio = userSelectedAudio.Audio.FileUrl;
+                    }
+
+                    if (userSelectedAudio.Audio.AudioGroup.Title.ToLower() == "therapy")
+                    {
+                        TherapyAudio = userSelectedAudio.Audio.FileUrl;
+                    }
+                    if (userSelectedAudio.Audio.AudioGroup.Title.ToLower() == "ending")
+                    {
+                        endingAudio = userSelectedAudio.Audio.FileUrl;
+                    }
+
+                    isChoose = true;
                 }
-                if (userSelectedAudio.Audio.AudioGroup.Title.ToLower() == "deepening")
+
+                res.Add(new UserSelectedAudioViewModel()
                 {
-                    res.DeepeningAudio = userSelectedAudio.Audio.FileUrl;
-                }
-                if (userSelectedAudio.Audio.AudioGroup.Title.ToLower() == "therapy")
-                {
-                    res.TherapyAudio = userSelectedAudio.Audio.FileUrl;
-                }
-                if (userSelectedAudio.Audio.AudioGroup.Title.ToLower() == "ending")
-                {
-                    res.EndingAudio = userSelectedAudio.Audio.FileUrl;
-                }
+                    DeepeningAudio = deepeningAudio,
+                    EndingAudio = endingAudio,
+                    InductionAudio = inductionAudio,
+                    TherapyAudio = TherapyAudio,
+                    WeekNo = weekNo,
+                    IsChoose = isChoose
+                });
             }
 
             return View(res);
@@ -173,5 +196,13 @@ namespace IBS.Controllers
             }
             base.Dispose(disposing);
         }
+
+
+        public ActionResult SelectNewAudios(Guid id,int weekNo)
+        {
+       
+            return View();
+        }
+
     }
 }

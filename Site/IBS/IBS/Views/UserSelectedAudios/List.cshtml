@@ -1,4 +1,4 @@
-﻿@model ViewModels.UserSelectedAudioViewModel
+﻿@model IEnumerable<ViewModels.UserSelectedAudioViewModel>
 @{
 	Layout = "~/Views/Shared/FrontEnd/_FronEndLayout.cshtml";
 
@@ -49,45 +49,74 @@
 		<table class="table table-bordered">
 			<thead>
 				<tr>
+					<th>Week</th>
 					<th>Induction</th>
 					<th>Deepening</th>
 					<th>Therapy</th>
 					<th>Ending</th>
+					<th>Select Audio</th>
 				</tr>
 			</thead>
 			<tbody>
+				@foreach (var item in Model)
+				{
+					<tr>
+						<td>
+							@item.WeekNo
+						</td>
+						<td>
+							@if (!string.IsNullOrEmpty(item.InductionAudio))
+							{
+								<button onclick="play('Induction')">
+									<i class="fa fa-play"></i>Play
+								</button>
+								<audio id="Induction" src="@item.InductionAudio"></audio>
+							}
+						</td>
 
-				<tr>
-					<td>
-						<button onclick="play('Induction')">
-							<i class="fa fa-play"></i>Play
-						</button>
-						<audio id="Induction" src="@Model.InductionAudio"></audio>
-					</td>
+						<td>
+							@if (!string.IsNullOrEmpty(item.DeepeningAudio))
+							{
+								<button onclick="play('Deepening')">
+									<i class="fa fa-play"></i>Play
+								</button>
+								<audio id="Deepening" src="@item.DeepeningAudio"></audio>
+							}
+						</td>
 
-					<td>
-						<button onclick="play('Deepening')">
-							<i class="fa fa-play"></i>Play
-						</button>
-						<audio id="Deepening" src="@Model.DeepeningAudio"></audio>
-					</td>
+						<td>
+							@if (!string.IsNullOrEmpty(item.TherapyAudio))
+							{
+								<button onclick="play('Therapy')">
+									<i class="fa fa-play"></i>Play
+								</button>
+								<audio id="Therapy" src="@item.TherapyAudio"></audio>
+							}
+						</td>
 
-					<td>
-						<button onclick="play('Therapy')">
-							<i class="fa fa-play"></i>Play
-						</button>
-						<audio id="Therapy" src="@Model.TherapyAudio"></audio>
-					</td>
+						<td>
+							@if (!string.IsNullOrEmpty(item.EndingAudio))
+							{
+								<button onclick="play('Ending')">
+									<i class="fa fa-play"></i>Play
+								</button>
+								<audio id="Ending" src="@item.EndingAudio"></audio>
+							}
+						</td>
 
-					<td>
-						<button onclick="play('Ending')">
-							<i class="fa fa-play"></i>Play
-						</button>
-						<audio id="Ending" src="@Model.EndingAudio"></audio>
-					</td>
+						<td>
+							@if (!item.IsChoose)
+							{
+							<a href="/userselectedaudios/SelectNewAudios/@ViewBag.Id?weekNo=@item.WeekNo">
+								select
+							</a>
+							}
+						</td>
 
-			 
-				</tr>
+
+					</tr>
+				}
+
 
 			</tbody>
 		</table>
@@ -99,7 +128,7 @@
 	<script>
 		function play(id) {
 			var audio = document.getElementById(id);
-		 
+
 			audio.play();
 		}
 	</script>
