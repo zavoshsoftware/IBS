@@ -17,5 +17,6 @@ namespace ViewModels
         public string Audiowomen2 { get; set; }
         public string Audiowomen3 { get; set; }
         public string Audiowomen4 { get; set; }
+        public int WeekNo { get; set; }
     }
 }
