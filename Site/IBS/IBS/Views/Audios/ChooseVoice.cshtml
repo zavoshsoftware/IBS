@@ -486,7 +486,7 @@
 
         function submitUserAudio(gender) {
             var weekName = document.getElementById("week").value;
-            alert(weekName);
+  
             if (gender === '1') {
                 if (weekName === "week1") {
                     var audiomen1 = $("input[name='week1_m_7b678ab5-0838-4d4a-95d0-8952f74a99d9']:checked").val();
@@ -496,7 +496,6 @@
                     var audiomen3 = $("input[name='week1_m_1e5656c8-d07d-4f33-94cb-2eeff052cc42']:checked").val();
                     var audiomen4 = $("input[name='week1_m_92231fc8-8bc0-4f3d-9677-09e3d4b64fca']:checked").val();
          
-                    console.log('t');
                 }
                 else if (weekName === "week2") {
                     var audiomen1 = $("input[name='week2_m_7b678ab5-0838-4d4a-95d0-8952f74a99d9']:checked").val();
