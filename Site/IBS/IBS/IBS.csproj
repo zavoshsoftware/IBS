@@ -532,6 +532,7 @@
     <Content Include="fonts\fontAwesome\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Images\avatar_default.jpg" />
     <Content Include="Images\tutorial.jpg" />
     <Content Include="Images\tutorial.png" />
     <Content Include="Scripts\AdminJS\app.v2.js" />
