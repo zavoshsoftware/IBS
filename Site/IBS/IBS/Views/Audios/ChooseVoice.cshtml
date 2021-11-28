@@ -185,6 +185,10 @@
         $(document).ready(function () {
             document.getElementById("week").value = "week1";
             document.getElementById("week1").click();
+            //var t1 = $('#ddlGender').val();
+            //var t = $('#ddlGender :selected').text();
+            //alert('p');
+            //alert(t);
         });
 
         function selectAudio(evt, weekName) {
@@ -195,27 +199,28 @@
             for (i = 0; i < tablinks.length; i++) {
                 tablinks[i].className = tablinks[i].className.replace(" active", "");
             }
+            
             evt.currentTarget.className += " active";
             if (weekName === "Week1" && gender === "1") {
                 $("input:radio").attr("checked", false);
                 document.getElementById("week").value = "week1";
-                var nameofweek = document.getElementById('8943fc84-53aa-4fb0-9e94-9fe8bc407435').getAttribute('name');
+
+                var nameofweek = $("input[name*='7b678ab5-0838-4d4a-95d0-8952f74a99d9']").attr('name');
                 var nameofweeks = nameofweek.split("_");
-                var weekId = document.getElementById('8943fc84-53aa-4fb0-9e94-9fe8bc407435');
-                weekId.setAttribute("name", "week1" + "_" + nameofweeks[1] + "_" + nameofweeks[2]);
-                var nameofweek1 = document.getElementById('c49835c8-a058-40bd-8097-3bc12df94929').getAttribute('name');
+                $("input[name*='7b678ab5-0838-4d4a-95d0-8952f74a99d9']").attr("name", "week1" + "_" + nameofweeks[1] + "_" + nameofweeks[2]);
+
+                var nameofweek1 = $("input[name*='8f1e5363-6eb6-4e15-bf5a-a4ed82d853f5']").attr('name');
                 var nameofweeks1 = nameofweek1.split("_");
-                var weekId1 = document.getElementById('c49835c8-a058-40bd-8097-3bc12df94929');
-                weekId1.setAttribute("name", "week1" + "_" + nameofweeks1[1] + "_" + nameofweeks1[2]);
-                var nameofweek2 = document.getElementById('0c8d365c-eeb2-4602-bfea-af76e0b78f49').getAttribute('name');
+                $("input[name*='8f1e5363-6eb6-4e15-bf5a-a4ed82d853f5']").attr("name", "week1" + "_" + nameofweeks1[1] + "_" + nameofweeks1[2]);
+
+                var nameofweek2 = $("input[name*='1e5656c8-d07d-4f33-94cb-2eeff052cc42']").attr('name');
                 var nameofweeks2 = nameofweek2.split("_");
-                var weekId2 = document.getElementById('0c8d365c-eeb2-4602-bfea-af76e0b78f49');
-                weekId2.setAttribute("name", "week1" + "_" + nameofweeks2[1] + "_" + nameofweeks2[2]);
-                var nameofweek3 = document.getElementById('71075b73-45b8-4b6a-ac9e-9723ffd56b92').getAttribute('name');
+                $("input[name*='1e5656c8-d07d-4f33-94cb-2eeff052cc42']").attr("name", "week1" + "_" + nameofweeks2[1] + "_" + nameofweeks2[2]);
+
+                var nameofweek3 = $("input[name*='92231fc8-8bc0-4f3d-9677-09e3d4b64fca']").attr('name');
                 var nameofweeks3 = nameofweek3.split("_");
-                var weekId3 = document.getElementById('71075b73-45b8-4b6a-ac9e-9723ffd56b92');
-                weekId3.setAttribute("name", "week1" + "_" + nameofweeks3[1] + "_" + nameofweeks3[2]);
-              
+                $("input[name*='92231fc8-8bc0-4f3d-9677-09e3d4b64fca']").attr("name", "week1" + "_" + nameofweeks3[1] + "_" + nameofweeks3[2]);
+               
                 document.getElementById("8943fc84-53aa-4fb0-9e94-9fe8bc407435").checked = true;
                 document.getElementById("c49835c8-a058-40bd-8097-3bc12df94929").checked = true;
                 document.getElementById("0c8d365c-eeb2-4602-bfea-af76e0b78f49").checked = true;
@@ -224,22 +229,22 @@
             else if (weekName === "Week1" && gender === "0") {
                 $("input:radio").attr("checked", false);
                 document.getElementById("week").value = "week1";
-                var nameofweek = document.getElementById('1137dbd3-2e50-47c3-97c7-4fae78c737cd').getAttribute('name');
+
+                var nameofweek = $("input[name*='7b678ab5-0838-4d4a-95d0-8952f74a99d9']").attr('name');
                 var nameofweeks = nameofweek.split("_");
-                var weekId = document.getElementById('1137dbd3-2e50-47c3-97c7-4fae78c737cd');
-                weekId.setAttribute("name", "week1" + "_" + nameofweeks[1] + "_" + nameofweeks[2]);
-                var nameofweek1 = document.getElementById('bd4dfc53-dcbf-49ba-8680-8bd88663057b').getAttribute('name');
+                $("input[name*='7b678ab5-0838-4d4a-95d0-8952f74a99d9']").attr("name", "week1" + "_" + nameofweeks[1] + "_" + nameofweeks[2]);
+                
+                var nameofweek1 = $("input[name*='8f1e5363-6eb6-4e15-bf5a-a4ed82d853f5']").attr('name');
                 var nameofweeks1 = nameofweek1.split("_");
-                var weekId1 = document.getElementById('bd4dfc53-dcbf-49ba-8680-8bd88663057b');
-                weekId1.setAttribute("name", "week1" + "_" + nameofweeks1[1] + "_" + nameofweeks1[2]);
-                var nameofweek2 = document.getElementById('3cd7d9ab-d7de-4217-b54b-1d2a2a03ad89').getAttribute('name');
+                $("input[name*='8f1e5363-6eb6-4e15-bf5a-a4ed82d853f5']").attr("name", "week1" + "_" + nameofweeks1[1] + "_" + nameofweeks1[2]);
+
+                var nameofweek2 = $("input[name*='1e5656c8-d07d-4f33-94cb-2eeff052cc42']").attr('name');
                 var nameofweeks2 = nameofweek2.split("_");
-                var weekId2 = document.getElementById('3cd7d9ab-d7de-4217-b54b-1d2a2a03ad89');
-                weekId2.setAttribute("name", "week1" + "_" + nameofweeks2[1] + "_" + nameofweeks2[2]);
-                var nameofweek3 = document.getElementById('75c8f1ec-2535-4c02-8918-54656c518eb3').getAttribute('name');
+                $("input[name*='1e5656c8-d07d-4f33-94cb-2eeff052cc42']").attr("name", "week1" + "_" + nameofweeks2[1] + "_" + nameofweeks2[2]);
+
+                var nameofweek3 = $("input[name*='92231fc8-8bc0-4f3d-9677-09e3d4b64fca']").attr('name');
                 var nameofweeks3 = nameofweek3.split("_");
-                var weekId3 = document.getElementById('75c8f1ec-2535-4c02-8918-54656c518eb3');
-                weekId3.setAttribute("name", "week1" + "_" + nameofweeks3[1] + "_" + nameofweeks3[2]);
+                $("input[name*='92231fc8-8bc0-4f3d-9677-09e3d4b64fca']").attr("name", "week1" + "_" + nameofweeks3[1] + "_" + nameofweeks3[2]);
 
                 document.getElementById("1137dbd3-2e50-47c3-97c7-4fae78c737cd").checked = true;
                 document.getElementById("bd4dfc53-dcbf-49ba-8680-8bd88663057b").checked = true;
@@ -249,22 +254,22 @@
             else if (weekName === "Week2" && gender === "1") {
                 $("input:radio").attr("checked", false);
                 document.getElementById("week").value = "week2";
-                var nameofweek = document.getElementById('8943fc84-53aa-4fb0-9e94-9fe8bc407435').getAttribute('name');
+
+                var nameofweek = $("input[name*='7b678ab5-0838-4d4a-95d0-8952f74a99d9']").attr('name');
                 var nameofweeks = nameofweek.split("_");
-                var weekId = document.getElementById('8943fc84-53aa-4fb0-9e94-9fe8bc407435');
-                weekId.setAttribute("name", "week2" + "_" + nameofweeks[1] + "_" + nameofweeks[2]); 
-                var nameofweek1 = document.getElementById('3404b0ca-b07a-4d22-addb-bba71df175f5').getAttribute('name');
+                $("input[name*='7b678ab5-0838-4d4a-95d0-8952f74a99d9']").attr("name", "week1" + "_" + nameofweeks[1] + "_" + nameofweeks[2]);
+
+                var nameofweek1 = $("input[name*='8f1e5363-6eb6-4e15-bf5a-a4ed82d853f5']").attr('name');
                 var nameofweeks1 = nameofweek1.split("_");
-                var weekId1 = document.getElementById('3404b0ca-b07a-4d22-addb-bba71df175f5');
-                weekId1.setAttribute("name", "week2" + "_" + nameofweeks1[1] + "_" + nameofweeks1[2]);
-                var nameofweek2 = document.getElementById('a2484cfa-03af-412f-b789-1988bc39d747').getAttribute('name');
+                $("input[name*='8f1e5363-6eb6-4e15-bf5a-a4ed82d853f5']").attr("name", "week1" + "_" + nameofweeks1[1] + "_" + nameofweeks1[2]);
+
+                var nameofweek2 = $("input[name*='1e5656c8-d07d-4f33-94cb-2eeff052cc42']").attr('name');
                 var nameofweeks2 = nameofweek2.split("_");
-                var weekId2 = document.getElementById('a2484cfa-03af-412f-b789-1988bc39d747');
-                weekId2.setAttribute("name", "week2" + "_" + nameofweeks2[1] + "_" + nameofweeks2[2]);
-                var nameofweek3 = document.getElementById('f80ab932-df7e-448b-b41a-2b39db53b42f').getAttribute('name');
+                $("input[name*='1e5656c8-d07d-4f33-94cb-2eeff052cc42']").attr("name", "week1" + "_" + nameofweeks2[1] + "_" + nameofweeks2[2]);
+
+                var nameofweek3 = $("input[name*='92231fc8-8bc0-4f3d-9677-09e3d4b64fca']").attr('name');
                 var nameofweeks3 = nameofweek3.split("_");
-                var weekId3 = document.getElementById('f80ab932-df7e-448b-b41a-2b39db53b42f');
-                weekId3.setAttribute("name", "week2" + "_" + nameofweeks3[1] + "_" + nameofweeks3[2]);
+                $("input[name*='92231fc8-8bc0-4f3d-9677-09e3d4b64fca']").attr("name", "week1" + "_" + nameofweeks3[1] + "_" + nameofweeks3[2]);
 
                 document.getElementById("8943fc84-53aa-4fb0-9e94-9fe8bc407435").checked = true;
                 document.getElementById("3404b0ca-b07a-4d22-addb-bba71df175f5").checked = true;
@@ -274,25 +279,22 @@
             else if (weekName === "Week2" && gender === "0") {
                 $("input:radio").attr("checked", false);
                 document.getElementById("week").value = "week2";
-                var nameofweek = document.getElementById('1137dbd3-2e50-47c3-97c7-4fae78c737cd').getAttribute('name');
+
+                var nameofweek = $("input[name*='7b678ab5-0838-4d4a-95d0-8952f74a99d9']").attr('name');
                 var nameofweeks = nameofweek.split("_");
-                var weekId = document.getElementById('1137dbd3-2e50-47c3-97c7-4fae78c737cd');
-                weekId.setAttribute("name", "week2" + "_" + nameofweeks[1] + "_" + nameofweeks[2]);
-                
-                var nameofweek1 = document.getElementById('2d6025c6-1ca2-44db-bb1a-5a2e0862f42e').getAttribute('name');
+                $("input[name*='7b678ab5-0838-4d4a-95d0-8952f74a99d9']").attr("name", "week1" + "_" + nameofweeks[1] + "_" + nameofweeks[2]);
+
+                var nameofweek1 = $("input[name*='8f1e5363-6eb6-4e15-bf5a-a4ed82d853f5']").attr('name');
                 var nameofweeks1 = nameofweek1.split("_");
-                var weekId1 = document.getElementById('2d6025c6-1ca2-44db-bb1a-5a2e0862f42e');
-                weekId1.setAttribute("name", "week2" + "_" + nameofweeks1[1] + "_" + nameofweeks1[2]);
+                $("input[name*='8f1e5363-6eb6-4e15-bf5a-a4ed82d853f5']").attr("name", "week1" + "_" + nameofweeks1[1] + "_" + nameofweeks1[2]);
 
-                var nameofweek2 = document.getElementById('8e169830-6125-4eb4-979e-71e04ca5982d').getAttribute('name');
+                var nameofweek2 = $("input[name*='1e5656c8-d07d-4f33-94cb-2eeff052cc42']").attr('name');
                 var nameofweeks2 = nameofweek2.split("_");
-                var weekId2 = document.getElementById('8e169830-6125-4eb4-979e-71e04ca5982d');
-                weekId2.setAttribute("name", "week2" + "_" + nameofweeks2[1] + "_" + nameofweeks2[2]);
+                $("input[name*='1e5656c8-d07d-4f33-94cb-2eeff052cc42']").attr("name", "week1" + "_" + nameofweeks2[1] + "_" + nameofweeks2[2]);
 
-                var nameofweek3 = document.getElementById('ecef5b59-fce8-4cfb-be20-fe9491f429b8').getAttribute('name');
+                var nameofweek3 = $("input[name*='92231fc8-8bc0-4f3d-9677-09e3d4b64fca']").attr('name');
                 var nameofweeks3 = nameofweek3.split("_");
-                var weekId3 = document.getElementById('ecef5b59-fce8-4cfb-be20-fe9491f429b8');
-                weekId3.setAttribute("name", "week2" + "_" + nameofweeks3[1] + "_" + nameofweeks3[2]);
+                $("input[name*='92231fc8-8bc0-4f3d-9677-09e3d4b64fca']").attr("name", "week1" + "_" + nameofweeks3[1] + "_" + nameofweeks3[2]);
 
                 document.getElementById("1137dbd3-2e50-47c3-97c7-4fae78c737cd").checked = true;
                 document.getElementById("2d6025c6-1ca2-44db-bb1a-5a2e0862f42e").checked = true;
@@ -302,25 +304,22 @@
             else if (weekName === "Week3" && gender === "1") {
                 $("input:radio").attr("checked", false);
                 document.getElementById("week").value = "week3";
-                var nameofweek = document.getElementById('8943fc84-53aa-4fb0-9e94-9fe8bc407435').getAttribute('name');
+
+                var nameofweek = $("input[name*='7b678ab5-0838-4d4a-95d0-8952f74a99d9']").attr('name');
                 var nameofweeks = nameofweek.split("_");
-                var weekId = document.getElementById('8943fc84-53aa-4fb0-9e94-9fe8bc407435');
-                weekId.setAttribute("name", "week3" + "_" + nameofweeks[1] + "_" + nameofweeks[2]);
+                $("input[name*='7b678ab5-0838-4d4a-95d0-8952f74a99d9']").attr("name", "week1" + "_" + nameofweeks[1] + "_" + nameofweeks[2]);
 
-                var nameofweek1 = document.getElementById('d34b94b8-28bc-4b63-9025-683edd63a4e0').getAttribute('name');
+                var nameofweek1 = $("input[name*='8f1e5363-6eb6-4e15-bf5a-a4ed82d853f5']").attr('name');
                 var nameofweeks1 = nameofweek1.split("_");
-                var weekId1 = document.getElementById('d34b94b8-28bc-4b63-9025-683edd63a4e0');
-                weekId1.setAttribute("name", "week3" + "_" + nameofweeks1[1] + "_" + nameofweeks1[2]);
+                $("input[name*='8f1e5363-6eb6-4e15-bf5a-a4ed82d853f5']").attr("name", "week1" + "_" + nameofweeks1[1] + "_" + nameofweeks1[2]);
 
-                var nameofweek2 = document.getElementById('a39e639e-a902-4fd5-8352-8bc5009198ac').getAttribute('name');
+                var nameofweek2 = $("input[name*='1e5656c8-d07d-4f33-94cb-2eeff052cc42']").attr('name');
                 var nameofweeks2 = nameofweek2.split("_");
-                var weekId2 = document.getElementById('a39e639e-a902-4fd5-8352-8bc5009198ac');
-                weekId2.setAttribute("name", "week3" + "_" + nameofweeks2[1] + "_" + nameofweeks2[2]);
+                $("input[name*='1e5656c8-d07d-4f33-94cb-2eeff052cc42']").attr("name", "week1" + "_" + nameofweeks2[1] + "_" + nameofweeks2[2]);
 
-                var nameofweek3 = document.getElementById('f80ab932-df7e-448b-b41a-2b39db53b42f').getAttribute('name');
+                var nameofweek3 = $("input[name*='92231fc8-8bc0-4f3d-9677-09e3d4b64fca']").attr('name');
                 var nameofweeks3 = nameofweek3.split("_");
-                var weekId3 = document.getElementById('f80ab932-df7e-448b-b41a-2b39db53b42f');
-                weekId3.setAttribute("name", "week3" + "_" + nameofweeks3[1] + "_" + nameofweeks3[2]);
+                $("input[name*='92231fc8-8bc0-4f3d-9677-09e3d4b64fca']").attr("name", "week1" + "_" + nameofweeks3[1] + "_" + nameofweeks3[2]);
 
                 document.getElementById("8943fc84-53aa-4fb0-9e94-9fe8bc407435").checked = true;
                 document.getElementById("d34b94b8-28bc-4b63-9025-683edd63a4e0").checked = true;
@@ -330,25 +329,22 @@
             else if (weekName === "Week3" && gender === "0") {
                 $("input:radio").attr("checked", false);
                 document.getElementById("week").value = "week3";
-                var nameofweek = document.getElementById('1137dbd3-2e50-47c3-97c7-4fae78c737cd').getAttribute('name');
+
+                var nameofweek = $("input[name*='7b678ab5-0838-4d4a-95d0-8952f74a99d9']").attr('name');
                 var nameofweeks = nameofweek.split("_");
-                var weekId = document.getElementById('1137dbd3-2e50-47c3-97c7-4fae78c737cd');
-                weekId.setAttribute("name", "week3" + "_" + nameofweeks[1] + "_" + nameofweeks[2]);
+                $("input[name*='7b678ab5-0838-4d4a-95d0-8952f74a99d9']").attr("name", "week1" + "_" + nameofweeks[1] + "_" + nameofweeks[2]);
 
-                var nameofweek1 = document.getElementById('1c5674eb-a104-472b-84b3-b10bb4b943cf').getAttribute('name');
+                var nameofweek1 = $("input[name*='8f1e5363-6eb6-4e15-bf5a-a4ed82d853f5']").attr('name');
                 var nameofweeks1 = nameofweek1.split("_");
-                var weekId1 = document.getElementById('1c5674eb-a104-472b-84b3-b10bb4b943cf');
-                weekId1.setAttribute("name", "week3" + "_" + nameofweeks1[1] + "_" + nameofweeks1[2]);
+                $("input[name*='8f1e5363-6eb6-4e15-bf5a-a4ed82d853f5']").attr("name", "week1" + "_" + nameofweeks1[1] + "_" + nameofweeks1[2]);
 
-                var nameofweek2 = document.getElementById('6c681c2d-ce9b-4a06-be07-f9568a4a5ef8').getAttribute('name');
+                var nameofweek2 = $("input[name*='1e5656c8-d07d-4f33-94cb-2eeff052cc42']").attr('name');
                 var nameofweeks2 = nameofweek2.split("_");
-                var weekId2 = document.getElementById('6c681c2d-ce9b-4a06-be07-f9568a4a5ef8');
-                weekId2.setAttribute("name", "week3" + "_" + nameofweeks2[1] + "_" + nameofweeks2[2]);
+                $("input[name*='1e5656c8-d07d-4f33-94cb-2eeff052cc42']").attr("name", "week1" + "_" + nameofweeks2[1] + "_" + nameofweeks2[2]);
 
-                var nameofweek3 = document.getElementById('ecef5b59-fce8-4cfb-be20-fe9491f429b8').getAttribute('name');
+                var nameofweek3 = $("input[name*='92231fc8-8bc0-4f3d-9677-09e3d4b64fca']").attr('name');
                 var nameofweeks3 = nameofweek3.split("_");
-                var weekId3 = document.getElementById('ecef5b59-fce8-4cfb-be20-fe9491f429b8');
-                weekId3.setAttribute("name", "week3" + "_" + nameofweeks3[1] + "_" + nameofweeks3[2]);
+                $("input[name*='92231fc8-8bc0-4f3d-9677-09e3d4b64fca']").attr("name", "week1" + "_" + nameofweeks3[1] + "_" + nameofweeks3[2]);
 
                 document.getElementById("1137dbd3-2e50-47c3-97c7-4fae78c737cd").checked = true;
                 document.getElementById("1c5674eb-a104-472b-84b3-b10bb4b943cf").checked = true;
@@ -358,25 +354,22 @@
             else if (weekName === "Week4" && gender === "1") {
                 $("input:radio").attr("checked", false);
                 document.getElementById("week").value = "week4";
-                var nameofweek = document.getElementById('8943fc84-53aa-4fb0-9e94-9fe8bc407435').getAttribute('name');
+
+                var nameofweek = $("input[name*='7b678ab5-0838-4d4a-95d0-8952f74a99d9']").attr('name');
                 var nameofweeks = nameofweek.split("_");
-                var weekId = document.getElementById('8943fc84-53aa-4fb0-9e94-9fe8bc407435');
-                weekId.setAttribute("name", "week4" + "_" + nameofweeks[1] + "_" + nameofweeks[2]);
+                $("input[name*='7b678ab5-0838-4d4a-95d0-8952f74a99d9']").attr("name", "week1" + "_" + nameofweeks[1] + "_" + nameofweeks[2]);
 
-                var nameofweek1 = document.getElementById('f5bf7fc2-64f4-49ba-8647-6e93ead68b77').getAttribute('name');
+                var nameofweek1 = $("input[name*='8f1e5363-6eb6-4e15-bf5a-a4ed82d853f5']").attr('name');
                 var nameofweeks1 = nameofweek1.split("_");
-                var weekId1 = document.getElementById('f5bf7fc2-64f4-49ba-8647-6e93ead68b77');
-                weekId1.setAttribute("name", "week4" + "_" + nameofweeks1[1] + "_" + nameofweeks1[2]);
+                $("input[name*='8f1e5363-6eb6-4e15-bf5a-a4ed82d853f5']").attr("name", "week1" + "_" + nameofweeks1[1] + "_" + nameofweeks1[2]);
 
-                var nameofweek2 = document.getElementById('a39e639e-a902-4fd5-8352-8bc5009198ac').getAttribute('name');
+                var nameofweek2 = $("input[name*='1e5656c8-d07d-4f33-94cb-2eeff052cc42']").attr('name');
                 var nameofweeks2 = nameofweek2.split("_");
-                var weekId2 = document.getElementById('a39e639e-a902-4fd5-8352-8bc5009198ac');
-                weekId2.setAttribute("name", "week4" + "_" + nameofweeks2[1] + "_" + nameofweeks2[2]);
+                $("input[name*='1e5656c8-d07d-4f33-94cb-2eeff052cc42']").attr("name", "week1" + "_" + nameofweeks2[1] + "_" + nameofweeks2[2]);
 
-                var nameofweek3 = document.getElementById('f80ab932-df7e-448b-b41a-2b39db53b42f').getAttribute('name');
+                var nameofweek3 = $("input[name*='92231fc8-8bc0-4f3d-9677-09e3d4b64fca']").attr('name');
                 var nameofweeks3 = nameofweek3.split("_");
-                var weekId3 = document.getElementById('f80ab932-df7e-448b-b41a-2b39db53b42f');
-                weekId3.setAttribute("name", "week4" + "_" + nameofweeks3[1] + "_" + nameofweeks3[2]);
+                $("input[name*='92231fc8-8bc0-4f3d-9677-09e3d4b64fca']").attr("name", "week1" + "_" + nameofweeks3[1] + "_" + nameofweeks3[2]);
 
                 document.getElementById("8943fc84-53aa-4fb0-9e94-9fe8bc407435").checked = true;
                 document.getElementById("f5bf7fc2-64f4-49ba-8647-6e93ead68b77").checked = true;
@@ -386,25 +379,22 @@
             else if (weekName === "Week4" && gender === "0") {
                 $("input:radio").attr("checked", false);
                 document.getElementById("week").value = "week4";
-                var nameofweek = document.getElementById('1137dbd3-2e50-47c3-97c7-4fae78c737cd').getAttribute('name');
+
+                var nameofweek = $("input[name*='7b678ab5-0838-4d4a-95d0-8952f74a99d9']").attr('name');
                 var nameofweeks = nameofweek.split("_");
-                var weekId = document.getElementById('1137dbd3-2e50-47c3-97c7-4fae78c737cd');
-                weekId.setAttribute("name", "week4" + "_" + nameofweeks[1] + "_" + nameofweeks[2]);
+                $("input[name*='7b678ab5-0838-4d4a-95d0-8952f74a99d9']").attr("name", "week1" + "_" + nameofweeks[1] + "_" + nameofweeks[2]);
 
-                var nameofweek1 = document.getElementById('e393b8ac-9c68-4556-a171-a2ebb4d009e3').getAttribute('name');
+                var nameofweek1 = $("input[name*='8f1e5363-6eb6-4e15-bf5a-a4ed82d853f5']").attr('name');
                 var nameofweeks1 = nameofweek1.split("_");
-                var weekId1 = document.getElementById('e393b8ac-9c68-4556-a171-a2ebb4d009e3');
-                weekId1.setAttribute("name", "week4" + "_" + nameofweeks1[1] + "_" + nameofweeks1[2]);
+                $("input[name*='8f1e5363-6eb6-4e15-bf5a-a4ed82d853f5']").attr("name", "week1" + "_" + nameofweeks1[1] + "_" + nameofweeks1[2]);
 
-                var nameofweek2 = document.getElementById('6c681c2d-ce9b-4a06-be07-f9568a4a5ef8').getAttribute('name');
+                var nameofweek2 = $("input[name*='1e5656c8-d07d-4f33-94cb-2eeff052cc42']").attr('name');
                 var nameofweeks2 = nameofweek2.split("_");
-                var weekId2 = document.getElementById('6c681c2d-ce9b-4a06-be07-f9568a4a5ef8');
-                weekId2.setAttribute("name", "week4" + "_" + nameofweeks2[1] + "_" + nameofweeks2[2]);
+                $("input[name*='1e5656c8-d07d-4f33-94cb-2eeff052cc42']").attr("name", "week1" + "_" + nameofweeks2[1] + "_" + nameofweeks2[2]);
 
-                var nameofweek3 = document.getElementById('ecef5b59-fce8-4cfb-be20-fe9491f429b8').getAttribute('name');
+                var nameofweek3 = $("input[name*='92231fc8-8bc0-4f3d-9677-09e3d4b64fca']").attr('name');
                 var nameofweeks3 = nameofweek3.split("_");
-                var weekId3 = document.getElementById('ecef5b59-fce8-4cfb-be20-fe9491f429b8');
-                weekId3.setAttribute("name", "week4" + "_" + nameofweeks3[1] + "_" + nameofweeks3[2]);
+                $("input[name*='92231fc8-8bc0-4f3d-9677-09e3d4b64fca']").attr("name", "week1" + "_" + nameofweeks3[1] + "_" + nameofweeks3[2]);
 
                 document.getElementById("1137dbd3-2e50-47c3-97c7-4fae78c737cd").checked = true;
                 document.getElementById("e393b8ac-9c68-4556-a171-a2ebb4d009e3").checked = true;
@@ -414,25 +404,21 @@
             else if (weekName === "Week5" && gender === "1") {
                 $("input:radio").attr("checked", false);
                 document.getElementById("week").value = "week5";
-                var nameofweek = document.getElementById('8943fc84-53aa-4fb0-9e94-9fe8bc407435').getAttribute('name');
+                var nameofweek = $("input[name*='7b678ab5-0838-4d4a-95d0-8952f74a99d9']").attr('name');
                 var nameofweeks = nameofweek.split("_");
-                var weekId = document.getElementById('8943fc84-53aa-4fb0-9e94-9fe8bc407435');
-                weekId.setAttribute("name", "week5" + "_" + nameofweeks[1] + "_" + nameofweeks[2]);
+                $("input[name*='7b678ab5-0838-4d4a-95d0-8952f74a99d9']").attr("name", "week1" + "_" + nameofweeks[1] + "_" + nameofweeks[2]);
 
-                var nameofweek1 = document.getElementById('ed08ede9-3051-41a5-bcad-b8e43536d45a').getAttribute('name');
+                var nameofweek1 = $("input[name*='8f1e5363-6eb6-4e15-bf5a-a4ed82d853f5']").attr('name');
                 var nameofweeks1 = nameofweek1.split("_");
-                var weekId1 = document.getElementById('ed08ede9-3051-41a5-bcad-b8e43536d45a');
-                weekId1.setAttribute("name", "week5" + "_" + nameofweeks1[1] + "_" + nameofweeks1[2]);
+                $("input[name*='8f1e5363-6eb6-4e15-bf5a-a4ed82d853f5']").attr("name", "week1" + "_" + nameofweeks1[1] + "_" + nameofweeks1[2]);
 
-                var nameofweek2 = document.getElementById('a39e639e-a902-4fd5-8352-8bc5009198ac').getAttribute('name');
+                var nameofweek2 = $("input[name*='1e5656c8-d07d-4f33-94cb-2eeff052cc42']").attr('name');
                 var nameofweeks2 = nameofweek2.split("_");
-                var weekId2 = document.getElementById('a39e639e-a902-4fd5-8352-8bc5009198ac');
-                weekId2.setAttribute("name", "week5" + "_" + nameofweeks2[1] + "_" + nameofweeks2[2]);
+                $("input[name*='1e5656c8-d07d-4f33-94cb-2eeff052cc42']").attr("name", "week1" + "_" + nameofweeks2[1] + "_" + nameofweeks2[2]);
 
-                var nameofweek3 = document.getElementById('f80ab932-df7e-448b-b41a-2b39db53b42f').getAttribute('name');
+                var nameofweek3 = $("input[name*='92231fc8-8bc0-4f3d-9677-09e3d4b64fca']").attr('name');
                 var nameofweeks3 = nameofweek3.split("_");
-                var weekId3 = document.getElementById('f80ab932-df7e-448b-b41a-2b39db53b42f');
-                weekId3.setAttribute("name", "week5" + "_" + nameofweeks3[1] + "_" + nameofweeks3[2]);
+                $("input[name*='92231fc8-8bc0-4f3d-9677-09e3d4b64fca']").attr("name", "week1" + "_" + nameofweeks3[1] + "_" + nameofweeks3[2]);
 
                 document.getElementById("8943fc84-53aa-4fb0-9e94-9fe8bc407435").checked = true;
                 document.getElementById("ed08ede9-3051-41a5-bcad-b8e43536d45a").checked = true;
@@ -442,26 +428,22 @@
             else if (weekName === "Week5" && gender === "0") {
                 $("input:radio").attr("checked", false);
                 document.getElementById("week").value = "week5";
-                var nameofweek = document.getElementById('1137dbd3-2e50-47c3-97c7-4fae78c737cd').getAttribute('name');
+
+                var nameofweek = $("input[name*='7b678ab5-0838-4d4a-95d0-8952f74a99d9']").attr('name');
                 var nameofweeks = nameofweek.split("_");
-                var weekId = document.getElementById('1137dbd3-2e50-47c3-97c7-4fae78c737cd');
-                weekId.setAttribute("name", "week5" + "_" + nameofweeks[1] + "_" + nameofweeks[2]);
+                $("input[name*='7b678ab5-0838-4d4a-95d0-8952f74a99d9']").attr("name", "week1" + "_" + nameofweeks[1] + "_" + nameofweeks[2]);
 
-                var nameofweek1 = document.getElementById('d41491b7-f923-4172-88ff-5e78b6927cf4').getAttribute('name');
+                var nameofweek1 = $("input[name*='8f1e5363-6eb6-4e15-bf5a-a4ed82d853f5']").attr('name');
                 var nameofweeks1 = nameofweek1.split("_");
-                var weekId1 = document.getElementById('d41491b7-f923-4172-88ff-5e78b6927cf4');
-                weekId1.setAttribute("name", "week5" + "_" + nameofweeks1[1] + "_" + nameofweeks1[2]);
+                $("input[name*='8f1e5363-6eb6-4e15-bf5a-a4ed82d853f5']").attr("name", "week1" + "_" + nameofweeks1[1] + "_" + nameofweeks1[2]);
 
-                var nameofweek2 = document.getElementById('6c681c2d-ce9b-4a06-be07-f9568a4a5ef8').getAttribute('name');
+                var nameofweek2 = $("input[name*='1e5656c8-d07d-4f33-94cb-2eeff052cc42']").attr('name');
                 var nameofweeks2 = nameofweek2.split("_");
-                var weekId2 = document.getElementById('6c681c2d-ce9b-4a06-be07-f9568a4a5ef8');
-                weekId2.setAttribute("name", "week5" + "_" + nameofweeks2[1] + "_" + nameofweeks2[2]);
+                $("input[name*='1e5656c8-d07d-4f33-94cb-2eeff052cc42']").attr("name", "week1" + "_" + nameofweeks2[1] + "_" + nameofweeks2[2]);
 
-                var nameofweek3 = document.getElementById('ecef5b59-fce8-4cfb-be20-fe9491f429b8').getAttribute('name');
+                var nameofweek3 = $("input[name*='92231fc8-8bc0-4f3d-9677-09e3d4b64fca']").attr('name');
                 var nameofweeks3 = nameofweek3.split("_");
-                var weekId3 = document.getElementById('ecef5b59-fce8-4cfb-be20-fe9491f429b8');
-                weekId3.setAttribute("name", "week5" + "_" + nameofweeks3[1] + "_" + nameofweeks3[2]);
-
+                $("input[name*='92231fc8-8bc0-4f3d-9677-09e3d4b64fca']").attr("name", "week1" + "_" + nameofweeks3[1] + "_" + nameofweeks3[2]);
                 document.getElementById("1137dbd3-2e50-47c3-97c7-4fae78c737cd").checked = true;
                 document.getElementById("d41491b7-f923-4172-88ff-5e78b6927cf4").checked = true;
                 document.getElementById("6c681c2d-ce9b-4a06-be07-f9568a4a5ef8").checked = true;
@@ -470,25 +452,21 @@
             else if (weekName === "Week6" && gender === "1") {
                 $("input:radio").attr("checked", false);
                 document.getElementById("week").value = "week6";
-                var nameofweek = document.getElementById('8943fc84-53aa-4fb0-9e94-9fe8bc407435').getAttribute('name');
+                var nameofweek = $("input[name*='7b678ab5-0838-4d4a-95d0-8952f74a99d9']").attr('name');
                 var nameofweeks = nameofweek.split("_");
-                var weekId = document.getElementById('8943fc84-53aa-4fb0-9e94-9fe8bc407435');
-                weekId.setAttribute("name", "week6" + "_" + nameofweeks[1] + "_" + nameofweeks[2]);
+                $("input[name*='7b678ab5-0838-4d4a-95d0-8952f74a99d9']").attr("name", "week1" + "_" + nameofweeks[1] + "_" + nameofweeks[2]);
 
-                var nameofweek1 = document.getElementById('ed08ede9-3051-41a5-bcad-b8e43536d45a').getAttribute('name');
+                var nameofweek1 = $("input[name*='8f1e5363-6eb6-4e15-bf5a-a4ed82d853f5']").attr('name');
                 var nameofweeks1 = nameofweek1.split("_");
-                var weekId1 = document.getElementById('ed08ede9-3051-41a5-bcad-b8e43536d45a');
-                weekId1.setAttribute("name", "week6" + "_" + nameofweeks1[1] + "_" + nameofweeks1[2]);
+                $("input[name*='8f1e5363-6eb6-4e15-bf5a-a4ed82d853f5']").attr("name", "week1" + "_" + nameofweeks1[1] + "_" + nameofweeks1[2]);
 
-                var nameofweek2 = document.getElementById('a39e639e-a902-4fd5-8352-8bc5009198ac').getAttribute('name');
+                var nameofweek2 = $("input[name*='1e5656c8-d07d-4f33-94cb-2eeff052cc42']").attr('name');
                 var nameofweeks2 = nameofweek2.split("_");
-                var weekId2 = document.getElementById('a39e639e-a902-4fd5-8352-8bc5009198ac');
-                weekId2.setAttribute("name", "week6" + "_" + nameofweeks2[1] + "_" + nameofweeks2[2]);
+                $("input[name*='1e5656c8-d07d-4f33-94cb-2eeff052cc42']").attr("name", "week1" + "_" + nameofweeks2[1] + "_" + nameofweeks2[2]);
 
-                var nameofweek3 = document.getElementById('f80ab932-df7e-448b-b41a-2b39db53b42f').getAttribute('name');
+                var nameofweek3 = $("input[name*='92231fc8-8bc0-4f3d-9677-09e3d4b64fca']").attr('name');
                 var nameofweeks3 = nameofweek3.split("_");
-                var weekId3 = document.getElementById('f80ab932-df7e-448b-b41a-2b39db53b42f');
-                weekId3.setAttribute("name", "week6" + "_" + nameofweeks3[1] + "_" + nameofweeks3[2]);
+                $("input[name*='92231fc8-8bc0-4f3d-9677-09e3d4b64fca']").attr("name", "week1" + "_" + nameofweeks3[1] + "_" + nameofweeks3[2]);
 
                 document.getElementById("8943fc84-53aa-4fb0-9e94-9fe8bc407435").checked = true;
                 document.getElementById("4ca8e8f2-8f6a-426b-b54f-6380d7a33d64").checked = true;
@@ -498,25 +476,22 @@
             else if (weekName === "Week6" && gender === "0") {
                 $("input:radio").attr("checked", false);
                 document.getElementById("week").value = "week6";
-                var nameofweek = document.getElementById('1137dbd3-2e50-47c3-97c7-4fae78c737cd').getAttribute('name');
+
+                var nameofweek = $("input[name*='7b678ab5-0838-4d4a-95d0-8952f74a99d9']").attr('name');
                 var nameofweeks = nameofweek.split("_");
-                var weekId = document.getElementById('1137dbd3-2e50-47c3-97c7-4fae78c737cd');
-                weekId.setAttribute("name", "week6" + "_" + nameofweeks[1] + "_" + nameofweeks[2]);
+                $("input[name*='7b678ab5-0838-4d4a-95d0-8952f74a99d9']").attr("name", "week1" + "_" + nameofweeks[1] + "_" + nameofweeks[2]);
 
-                var nameofweek1 = document.getElementById('b11a5c07-7753-453f-8427-a5d3b469737a').getAttribute('name');
+                var nameofweek1 = $("input[name*='8f1e5363-6eb6-4e15-bf5a-a4ed82d853f5']").attr('name');
                 var nameofweeks1 = nameofweek1.split("_");
-                var weekId1 = document.getElementById('b11a5c07-7753-453f-8427-a5d3b469737a');
-                weekId1.setAttribute("name", "week6" + "_" + nameofweeks1[1] + "_" + nameofweeks1[2]);
+                $("input[name*='8f1e5363-6eb6-4e15-bf5a-a4ed82d853f5']").attr("name", "week1" + "_" + nameofweeks1[1] + "_" + nameofweeks1[2]);
 
-                var nameofweek2 = document.getElementById('6c681c2d-ce9b-4a06-be07-f9568a4a5ef8').getAttribute('name');
+                var nameofweek2 = $("input[name*='1e5656c8-d07d-4f33-94cb-2eeff052cc42']").attr('name');
                 var nameofweeks2 = nameofweek2.split("_");
-                var weekId2 = document.getElementById('6c681c2d-ce9b-4a06-be07-f9568a4a5ef8');
-                weekId2.setAttribute("name", "week6" + "_" + nameofweeks2[1] + "_" + nameofweeks2[2]);
+                $("input[name*='1e5656c8-d07d-4f33-94cb-2eeff052cc42']").attr("name", "week1" + "_" + nameofweeks2[1] + "_" + nameofweeks2[2]);
 
-                var nameofweek3 = document.getElementById('ecef5b59-fce8-4cfb-be20-fe9491f429b8').getAttribute('name');
+                var nameofweek3 = $("input[name*='92231fc8-8bc0-4f3d-9677-09e3d4b64fca']").attr('name');
                 var nameofweeks3 = nameofweek3.split("_");
-                var weekId3 = document.getElementById('ecef5b59-fce8-4cfb-be20-fe9491f429b8');
-                weekId3.setAttribute("name", "week6" + "_" + nameofweeks3[1] + "_" + nameofweeks3[2]);
+                $("input[name*='92231fc8-8bc0-4f3d-9677-09e3d4b64fca']").attr("name", "week1" + "_" + nameofweeks3[1] + "_" + nameofweeks3[2]);
 
                 document.getElementById("1137dbd3-2e50-47c3-97c7-4fae78c737cd").checked = true;
                 document.getElementById("b11a5c07-7753-453f-8427-a5d3b469737a").checked = true;
