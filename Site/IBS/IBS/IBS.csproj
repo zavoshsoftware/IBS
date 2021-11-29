@@ -1191,6 +1191,7 @@
     <Content Include="Views\TextItemTypes\Details.cshtml" />
     <Content Include="Views\TextItemTypes\Edit.cshtml" />
     <Content Include="Views\TextItemTypes\Index.cshtml" />
+    <Content Include="Views\UserSelectedAudios\SelectNewAudios.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

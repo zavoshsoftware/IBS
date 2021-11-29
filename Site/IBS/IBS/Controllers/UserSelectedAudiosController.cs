@@ -26,7 +26,7 @@ namespace IBS.Controllers
         {
             List<UserSelectedAudioViewModel> res = new List<UserSelectedAudioViewModel>();
             ViewBag.Id = id;
-            for (int i = 1; i <= 4; i++)
+            for (int i = 1; i <= 6; i++)
             {
                 List<UserSelectedAudio> userSelectedAudios = db.UserSelectedAudios.Include(u => u.Audio)
                     .Where(u => u.IsDeleted == false && u.UserQuestionnaireId == id && u.WeekNo == i)
@@ -198,10 +198,51 @@ namespace IBS.Controllers
         }
 
 
-        public ActionResult SelectNewAudios(Guid id,int weekNo)
+        public ActionResult SelectNewAudios(Guid id,int weekNo, string gender)
         {
-       
-            return View();
+            ChooseVoiceViewModel res = new ChooseVoiceViewModel();
+            List<ChooseVoiceItemViewModel> audios = new List<ChooseVoiceItemViewModel>();
+
+            List<AudioGroup> audioGroups = db.AudioGroups.Where(c => c.IsDeleted == false && c.IsActive)
+                .OrderBy(c => c.Order).ToList();
+            var userid = Guid.Parse("d066d842-6eab-4f26-a0ac-1219372e35cc");
+            var userq = db.UserQuestionnaires.FirstOrDefault(c =>
+                c.Id == userid);
+            var user = db.Users.FirstOrDefault(u => u.Id == userq.UserId);
+            if (gender == null)
+                gender = "1";
+
+            bool genderBool = true;
+
+            if (gender == "0")
+                genderBool = false;
+
+
+            //audioGroups = audioGroups.Where(c => c.Title != "Therapy").ToList();
+           
+
+            foreach (AudioGroup audioGroup in audioGroups)
+            {
+                audios.Add(new ChooseVoiceItemViewModel()
+                {
+                    AudioGroup = audioGroup,
+                    Audios = db.Audios.Where(c =>
+                            c.AudioGroupId == audioGroup.Id && c.IsDeleted == false && c.Gender == genderBool &&
+                            c.IsActive == true)
+                        .OrderBy(c => c.Order).ToList()
+                });
+            }
+
+            res.Audios = audios;
+
+
+            //ViewBag.result = result;
+
+            ViewBag.gender = gender;
+            ViewBag.qId = id;
+            ViewBag.weekNo = weekNo;
+
+            return View(res);
         }
 
     }
