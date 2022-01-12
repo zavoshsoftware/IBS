@@ -26,6 +26,7 @@ namespace IBS.Controllers
         {
             List<UserSelectedAudioViewModel> res = new List<UserSelectedAudioViewModel>();
             ViewBag.Id = id;
+            UserQuestionnaire userQuestionnaire = db.UserQuestionnaires.Find(id);
             for (int i = 1; i <= 6; i++)
             {
                 List<UserSelectedAudio> userSelectedAudios = db.UserSelectedAudios.Include(u => u.Audio)
@@ -34,11 +35,15 @@ namespace IBS.Controllers
                     .ToList();
 
                 int weekNo = i;
-                string inductionAudio="";
+                string inductionAudio = "";
                 string deepeningAudio = "";
                 string endingAudio = "";
                 string TherapyAudio = "";
                 bool isChoose = false;
+                bool isAvailable = false;
+
+                if (DateTime.Today.Date >= userQuestionnaire.CreationDate.AddDays(i * 7))
+                    isAvailable = true;
 
                 foreach (var userSelectedAudio in userSelectedAudios)
                 {
@@ -70,7 +75,8 @@ namespace IBS.Controllers
                     InductionAudio = inductionAudio,
                     TherapyAudio = TherapyAudio,
                     WeekNo = weekNo,
-                    IsChoose = isChoose
+                    IsChoose = isChoose,
+                    IsAvailable = isAvailable
                 });
             }
 
@@ -198,7 +204,7 @@ namespace IBS.Controllers
         }
 
 
-        public ActionResult SelectNewAudios(Guid id,int weekNo, string gender)
+        public ActionResult SelectNewAudios(Guid id, int weekNo, string gender)
         {
             ChooseVoiceViewModel res = new ChooseVoiceViewModel();
             List<ChooseVoiceItemViewModel> audios = new List<ChooseVoiceItemViewModel>();
@@ -219,7 +225,7 @@ namespace IBS.Controllers
 
 
             //audioGroups = audioGroups.Where(c => c.Title != "Therapy").ToList();
-           
+
 
             foreach (AudioGroup audioGroup in audioGroups)
             {

@@ -182,6 +182,17 @@
     <Content Include="Content\Admin\style.css" />
     <Content Include="Content\Authentication\main.css" />
     <Content Include="Content\Authentication\style.css" />
+    <Content Include="Content\chart\css\styles.css" />
+    <Content Include="Content\chart\images\logo.png" />
+    <Content Include="Content\chart\js\chartinator.js" />
+    <Content Include="Content\chart\lib\html5shiv\html5shiv.js" />
+    <Content Include="Content\chart\lib\jquery-legacy\jquery.js" />
+    <Content Include="Content\chart\lib\jquery-responsive-menu\menu-btn.png" />
+    <Content Include="Content\chart\lib\jquery-responsive-menu\responsive-menu.css" />
+    <Content Include="Content\chart\lib\jquery-responsive-menu\responsive-menu.js" />
+    <Content Include="Content\chart\lib\jquery-responsive-menu\responsive-menu.min.css" />
+    <Content Include="Content\chart\lib\jquery-responsive-menu\responsive-menu.min.js" />
+    <Content Include="Content\chart\lib\modernizr\modernizr-custom.js" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\ionicons.svg" />
     <Content Include="Content\fonts\Simple-Line-Icons.svg" />
@@ -532,6 +543,7 @@
     <Content Include="fonts\fontAwesome\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Images\61457.png" />
     <Content Include="Images\avatar_default.jpg" />
     <Content Include="Images\tutorial.jpg" />
     <Content Include="Images\tutorial.png" />
@@ -724,6 +736,7 @@
     <Content Include="fonts\IranSans\woff\Vazir-Medium.woff" />
     <Content Include="fonts\IranSans\woff\Vazir-Thin.woff" />
     <Content Include="fonts\IranSans\woff\Vazir.woff" />
+    <Content Include="Content\chart\lib\normalize.scss\_normalize.scss" />
     <None Include="Scripts\kendo\2017.3.913\kendo.all-vsdoc.js" />
     <None Include="Scripts\kendo\2017.3.913\kendo.all.min.intellisense.js" />
     <Content Include="Scripts\kendo\2017.3.913\kendo.all.min.js" />
@@ -1193,6 +1206,7 @@
     <Content Include="Views\TextItemTypes\Edit.cshtml" />
     <Content Include="Views\TextItemTypes\Index.cshtml" />
     <Content Include="Views\UserSelectedAudios\SelectNewAudios.cshtml" />
+    <Content Include="Views\UserQuestionnaires\GetChart.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

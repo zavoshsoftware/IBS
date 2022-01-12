@@ -13,5 +13,6 @@ namespace ViewModels
         public string TherapyAudio { get; set; }
         public string EndingAudio { get; set; }
         public bool IsChoose { get; set; }
+        public bool IsAvailable { get; set; }
     }
 }

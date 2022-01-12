@@ -46,171 +46,216 @@
 }
 
 @{
-    int i = 1;
+	int i = 1;
 
-    foreach (var questionGroup in Model)
-    {
-    <div class="question-card" id="part@(i)">
-        @if (i == 1)
-        {
+	foreach (var questionGroup in Model)
+	{
+		<div class="question-card" id="part@(i)">
+			@if (i == 1)
+			{
 
-        <div class="row">
-            <div class="col-md-12">
-                <div class="logo">
-                </div>
-                <div style="background-color: white">
-                    @*<p class="summery">
-                        This form is designed to enable us to record and monitor the severity of your IBS. It is to be expected that your symptoms might vary over time, so please try and answer the questions based on how you currently feel (i.e. over the last 10 days or so). All information will be kept in strict confidence.
-                    </p>
-                    <p class="summery">
-                        1. For questions where a number of different responses are a possibility please Choose the option appropriate to you.
-                    </p>
-                    <p class="summery">
-                        2. Some questions will require you to write in an appropriate response.
-                    </p>
-                    <p class="summery">
-                        3. Some questions require you to use the sliding bar which enables us to judge the severity of a particular problem.
-                    </p>
-                    <p class="summery">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="logo">
+						</div>
+						<div style="background-color: white">
+							@*<p class="summery">
+										This form is designed to enable us to record and monitor the severity of your IBS. It is to be expected that your symptoms might vary over time, so please try and answer the questions based on how you currently feel (i.e. over the last 10 days or so). All information will be kept in strict confidence.
+								</p>
+								<p class="summery">
+										1. For questions where a number of different responses are a possibility please Choose the option appropriate to you.
+								</p>
+								<p class="summery">
+										2. Some questions will require you to write in an appropriate response.
+								</p>
+								<p class="summery">
+										3. Some questions require you to use the sliding bar which enables us to judge the severity of a particular problem.
+								</p>
+								<p class="summery">
 
-                        <img src="~/Images/tutorial.jpg" class="img-responsive" />
-                    </p>*@
-                @Html.Raw(@questionGroup.TextItems[0].Body)
-                </div>
-            </div>
-        </div>
-        }
+										<img src="~/Images/tutorial.jpg" class="img-responsive" />
+								</p>*@
+							@Html.Raw(@questionGroup.TextItems[0].Body)
+						</div>
+					</div>
+				</div>
+			}
 
-        @if (i == 2)
-        {
-        <div class="row">
-            <div class="col-md-12">
-                <div class="logo">
-                </div>
-                <div style="background-color: white">
-                    @*<p class="summery">
-                        this form is designed to enable us to record and monitor the severity of your IBS. It is to be expected that your symptoms might vary over time, so please try and answer the questions based on how you currently feel (i.e. over the last 10 days or so). All information will be kept in strict confidence.
-                    </p>
-                    <p class="summery">
-                        1. For questions where a number of different responses are a possibility please Choose the option appropriate to you.
-                    </p>
-                    <p class="summery">
-                        2. Some questions will require you to write in an appropriate response.
-                    </p>
-                    <p class="summery">
-                        3. Some questions require you to use the sliding bar which enables us to judge the severity of a particular problem.
-                    </p>
-                    <p class="summery">
+			@if (i == 2)
+			{
+				<div class="row">
+					<div class="col-md-12">
+						<div class="logo">
+						</div>
+						<div style="background-color: white">
+							@*<p class="summery">
+										this form is designed to enable us to record and monitor the severity of your IBS. It is to be expected that your symptoms might vary over time, so please try and answer the questions based on how you currently feel (i.e. over the last 10 days or so). All information will be kept in strict confidence.
+								</p>
+								<p class="summery">
+										1. For questions where a number of different responses are a possibility please Choose the option appropriate to you.
+								</p>
+								<p class="summery">
+										2. Some questions will require you to write in an appropriate response.
+								</p>
+								<p class="summery">
+										3. Some questions require you to use the sliding bar which enables us to judge the severity of a particular problem.
+								</p>
+								<p class="summery">
 
-                        <img src="~/Images/tutorial.jpg" class="img-responsive" />
-                    </p>*@
-                @Html.Raw(@questionGroup.TextItems[1].Body)
-                </div>
-            </div>
-        </div>
-        }
+										<img src="~/Images/tutorial.jpg" class="img-responsive" />
+								</p>*@
+							@Html.Raw(@questionGroup.TextItems[1].Body)
+						</div>
+					</div>
+				</div>
+			}
 
-        <div class="row userinfo">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
-
-
+			<div class="row userinfo">
+				<div class="col-md-2"></div>
+				<div class="col-md-8">
 
 
 
-                <div class="question-card-heading">
-                    Part @questionGroup.QuestionGroup.Order: @questionGroup.QuestionGroup.Title
-
-                </div>
-                <div class="question-card-body">
-                    @foreach (var question in questionGroup.Questions)
-                    {
-                        <div class="question-item">
-                            <p>
-                                <strong>Question @question.Order:</strong> @question.Title
-                            </p>
-                            @if (question.AnswerType.Title == "yes/no")
-                            {
-                                <select id="@question.Id" class="form-control">
-                                    <option>Yes</option>
-                                    <option>No</option>
-                                </select>
-                            }
-                            else if (question.AnswerType.Title == "percentage")
-                            {
-                                <input type="range" min="0" max="100" step="1" id="@question.Id" data-rangeslider>
-                                <output></output>
-                            }
-                            else if (question.AnswerType.Title == "number")
-                            {
-                                <p>
-                                    Number of days with pain:
-
-                                    <input id="@question.Id" class="form-control" min="0" type="number" />
-                                </p>
-                            }
-                            else if (question.AnswerType.Title == "numberwithoption")
-                            {
-                                <p>
-                                    Number of times:
-
-                                    <input class="form-control" type="number" min="0" />
-                                    per
-                                    <select class="form-control" id="@question.Id">
-                                        <option>day</option>
-                                        <option>week</option>
-                                        <option>month</option>
-                                    </select>
-                                </p>
-                            }
-                            else if (question.AnswerType.Title == "multioption")
-                            {
-                                <div class=" ml-sm-5 pl-sm-5 pt-2">
-                                    <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options(@question.Order)">
-                                        @foreach (var answerItem in question.AnswerItems)
-                                        {
-                                            <label id="options(@question.Order)" class="options">
-                                                @answerItem.Title
-                                                <input type="radio" name="radio(@question.Order)" value="@answerItem.Id" id="@answerItem.Id">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                            <br />
-                                        }
-                                    </div>
-                                </div>
-                            }
-                        </div>
-                    }
-                    <div class="question-card-footer">
-                        @if (i == 2)
-                        {
-                            <button onclick="apearDiv('part@(i - 1)');" type="button" class="btn btn-success">previous Step</button>
-                        }
-                        <button onclick="apearDiv('part@(i + 1)');" type="button" class="btn btn-success">Next Step</button>
-
-                    </div>
-                </div>
-
-            </div>
 
 
+					<div class="question-card-heading">
+						Part @questionGroup.QuestionGroup.Order: @questionGroup.QuestionGroup.Title
 
-        </div>
+					</div>
+					<div class="question-card-body">
+						@foreach (var question in questionGroup.Questions)
+						{
+							<div class="question-item">
+								<p>
+									<strong>Question @question.Order:</strong> @question.Title
+								</p>
+								@if (question.AnswerType.Title == "yes/no")
+								{
+									<select id="@question.Id" class="form-control">
+										<option>Yes</option>
+										<option>No</option>
+									</select>
+								}
+								else if (question.AnswerType.Title == "percentage")
+								{
+									<input type="range" min="0" max="100" step="1" id="@question.Id" data-rangeslider>
+									<output></output>
+								}
+								else if (question.AnswerType.Title == "number")
+								{
+									<p>
+										Number of days with pain:
 
-    </div>
-        i++;
-        
-    }
+										<input id="@question.Id" class="form-control" min="0" type="number" />
+									</p>
+								}
+								else if (question.AnswerType.Title == "numberwithoption")
+								{
+									<p>
+										Number of times:
+
+										<input class="form-control" type="number" min="0" />
+										per
+										<select class="form-control" id="@question.Id">
+											<option>day</option>
+											<option>week</option>
+											<option>month</option>
+										</select>
+									</p>
+								}
+								else if (question.AnswerType.Title == "multioption")
+								{
+									<div class=" ml-sm-5 pl-sm-5 pt-2">
+										<div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options(@question.Order)">
+											@foreach (var answerItem in question.AnswerItems)
+											{
+												<label id="options(@question.Order)" class="options">
+													@answerItem.Title
+													<input type="radio" name="radio(@question.Order)" value="@answerItem.Id" id="@answerItem.Id">
+													<span class="checkmark"></span>
+												</label>
+												<br />
+											}
+										</div>
+									</div>
+								}
+							</div>
+						}
+						<div class="question-card-footer">
+							@if (i == 2)
+							{
+								<button onclick="apearDiv('part@(i - 1)');" type="button" class="btn btn-success">previous Step</button>
+							}
+							<button onclick="apearDiv('part@(i + 1)');" type="button" class="btn btn-success">Next Step</button>
+
+						</div>
+					</div>
+
+				</div>
+
+
+
+			</div>
+
+		</div>
+		i++;
+
+	}
 }
 
 @section scripts{
 	<script src="/Scripts/rangeslider.js"></script>
 	<script>
-		$(document).ready(function() {
+		$(document).ready(function () {
 			$(".question-card").css('display', 'none');
 
 			apearDiv('part1');
 		});
+
+		function showError(r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12, r13, r14) {
+			if (r1 === '' || r1 === 'undefined' || r1 === undefined) {
+				return 1;
+			}
+			else if (r2 === '' || r2 === 'undefined' || r2 === undefined) {
+				return 2;
+			}
+			else if (r3 === '' || r3 === 'undefined' || r3 === undefined) {
+				return 3;
+			}
+			else if (r4 === '' || r4=== 'undefined' || r4 === undefined) {
+				return 4;
+			}
+			else if (r5 === '' || r5 === 'undefined' || r5 === undefined) {
+				return 5;
+			}
+			else if (r6 === '' || r6 === 'undefined' || r6 === undefined) {
+				return 6;
+			}
+			else if (r7 === '' || r7 === 'undefined' || r7 === undefined) {
+				return 7;
+			}
+			else if (r8 === '' || r8 === 'undefined' || r8 === undefined) {
+				return 8;
+			}
+			else if (r9 === '' || r9 === 'undefined' || r9 === undefined) {
+				return 9;
+			}
+			else if (r10 === '' || r10 === 'undefined' || r10 === undefined) {
+				return 10;
+			}
+			else if (r11 === '' || r11 === 'undefined' || r11 === undefined) {
+				return 11;
+			}
+			else if (r12 === '' || r12 === 'undefined' || r12 === undefined) {
+				return 12;
+			}
+			else if (r13 === '' || r13 === 'undefined' || r13 === undefined) {
+				return 13;
+			}
+			else if (r14 === '' || r14 === 'undefined' || r14 === undefined) {
+				return 14;
+			}
+		}
 
 		function apearDiv(id) {
 			if (id === 'part3') {
@@ -237,65 +282,73 @@
 				var r13 = $("input[name='radio(13)']:checked").val();
 				var r14 = $("input[name='radio(14)']:checked").val();
 
+				var num = showError(r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12, r13, r14);
 
-				$.ajax(
-					{
-						url: "/Questions/SubmitQuestion",
-						data: {
-							Q1: q1,
-							Q2: q2,
-							Q3: q3,
-							Q4: q4,
-							Q5: q5,
-							Q6: q6,
-							Q7: q7,
-							R1: r1,
-							R2: r2,
-							R3: r3,
-							R4: r4,
-							R5: r5,
-							R6: r6,
-							R7: r7,
-							R8: r8,
-							R9: r9,
-							R10: r10,
-							R11: r11,
-							R12: r12,
-							R13: r13,
-							R14: r14
-						},
-						type: "GET"
-					}).done(function(result) {
+				if (num !== '' && num !== 'undefined' && num !== undefined) {
+					alert('please answer question ' + num);
+				}
+					else
+				{
+					$.ajax(
+						{
+							url: "/Questions/SubmitQuestion",
+							data: {
+								Q1: q1,
+								Q2: q2,
+								Q3: q3,
+								Q4: q4,
+								Q5: q5,
+								Q6: q6,
+								Q7: q7,
+								R1: r1,
+								R2: r2,
+								R3: r3,
+								R4: r4,
+								R5: r5,
+								R6: r6,
+								R7: r7,
+								R8: r8,
+								R9: r9,
+								R10: r10,
+								R11: r11,
+								R12: r12,
+								R13: r13,
+								R14: r14
+							},
+							type: "GET"
+						}).done(function (result) {
 
-					if (result !== 'false') {
+							if (result !== 'false') {
 
-						var res = result.split('|');
-						if (res[1] !== '') {
-							window.location.href = "/audios/choosevoice?qId=" + res[0] + "&result=" + res[1];
+								var res = result.split('|');
+								if (res[1] !== '') {
+									window.location.href = "/audios/choosevoice?qId=" + res[0] + "&result=" + res[1];
 
-						} else {
-							window.location.href = "/audios/choosevoice?qId=" + res[0];
+								} else {
+									window.location.href = "/audios/choosevoice?qId=" + res[0];
 
-						}
+								}
 
-					} else {
-						alert('an error occurred');
-					}
+							} else {
+								alert('an error occurred');
+							}
 
-				});
+						});
+				}
 
 
 			} else {
 				$(".question-card").css('display', 'none');
 				$("#" + id).css('display', 'block');
 				$("html, body").animate({
-						scrollTop: 800
-					},
+					scrollTop: 800
+				},
 					1000);
 			}
 		}
 
-		$(function() {
+
+		$(function () {
 
 			var $document = $(document);
 			var selector = '[data-rangeslider]';
@@ -325,14 +378,14 @@
 
 			$document.on('input',
 				'input[type="range"], ' + selector,
-				function(e) {
+				function (e) {
 					valueOutput(e.target);
 				});
 
 			// Example functionality to demonstrate disabled functionality
 			$document.on('click',
 				'#js-example-disabled button[data-behaviour="toggle"]',
-				function(e) {
+				function (e) {
 					var $inputRange = $(selector, e.target.parentNode);
 
 					if ($inputRange[0].disabled) {
@@ -346,7 +399,7 @@
 			// Example functionality to demonstrate programmatic value changes
 			$document.on('click',
 				'#js-example-change-value button',
-				function(e) {
+				function (e) {
 					var $inputRange = $(selector, e.target.parentNode);
 					var value = $('input[type="number"]', e.target.parentNode)[0].value;
 
@@ -356,7 +409,7 @@
 			// Example functionality to demonstrate programmatic attribute changes
 			$document.on('click',
 				'#js-example-change-attributes button',
-				function(e) {
+				function (e) {
 					var $inputRange = $(selector, e.target.parentNode);
 					var attributes = {
 						min: $('input[name="min"]', e.target.parentNode)[0].value,
@@ -376,18 +429,18 @@
 				polyfill: false,
 
 				// Callback function
-				onInit: function() {
+				onInit: function () {
 					valueOutput(this.$element[0]);
 				},
 
 				// Callback function
-				onSlide: function(position, value) {
+				onSlide: function (position, value) {
 					console.log('onSlide');
 					console.log('position: ' + position, 'value: ' + value);
 				},
 
 				// Callback function
-				onSlideEnd: function(position, value) {
+				onSlideEnd: function (position, value) {
 					console.log('onSlideEnd');
 					console.log('position: ' + position, 'value: ' + value);
 				}
@@ -400,4 +453,3 @@
 		}
 	</script>
 }
- 

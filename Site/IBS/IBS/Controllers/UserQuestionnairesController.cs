@@ -21,6 +21,10 @@ namespace IBS.Controllers
             var userQuestionnaires = db.UserQuestionnaires.Include(u => u.PatientType).Where(u=>u.IsDeleted==false).OrderByDescending(u=>u.CreationDate).Include(u => u.User).Where(u=>u.IsDeleted==false).OrderByDescending(u=>u.CreationDate);
             return View(userQuestionnaires.ToList());
         }
+  public ActionResult GetChart()
+        {
+            return View();
+        }
 
         // GET: UserQuestionnaires/Details/5
         public ActionResult Details(Guid? id)

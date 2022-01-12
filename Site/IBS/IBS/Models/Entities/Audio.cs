@@ -19,6 +19,7 @@ namespace Models
         public string FileUrl { get; set; }
         public virtual ICollection<UserSelectedAudio> UserSelectedAudios { get; set; }
 
+        [Display(Name = "Male")]
         public bool Gender { get; set; }
     }
 }

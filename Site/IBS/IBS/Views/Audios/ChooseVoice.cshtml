@@ -64,65 +64,85 @@
 		.pause {
 			display: none;
 		}
-        .tab {
-            overflow: hidden;
-            border: 1px solid #ccc;
-            background-color: #f1f1f1;
-        }
-        .tab button {
-            background-color: inherit;
-            float: left;
-            border: none;
-            outline: none;
-            cursor: pointer;
-            padding: 22px 16px;
-            transition: 0.3s;
-        }
-        .tab button:hover {
-            background-color: #ddd;
-        }
-        .tab button.active {
-            background-color: #ccc;
-        }
-        /*.tab {*/
-        /*    float: left;*/
-            /*border: 1px solid #ccc;
-            background-color: #f1f1f1;
 
-        }*/
+		.tab {
+			overflow: hidden;
+			border: 1px solid #ccc;
+			background-color: #f1f1f1;
+		}
 
-        /* Style the buttons that are used to open the tab content */
-        /*.tab button {
-            display: block;
-            background-color: inherit;
-            color: black;
-            padding: 22px 16px;
-            border: none;
-            outline: none;
-            text-align: left;
-            cursor: pointer;
-            transition: 0.3s;
-        }*/
-        
+			.tab button {
+				background-color: inherit;
+				float: left;
+				border: none;
+				outline: none;
+				cursor: pointer;
+				padding: 22px 16px;
+				transition: 0.3s;
+				border-right: 1px solid #ddd;
+			}
+
+				.tab button:hover {
+					background-color: #ddd;
+				}
+
+				.tab button.active {
+					background-color: #ccc;
+				}
+		/*.tab {*/
+		/*    float: left;*/
+		/*border: 1px solid #ccc;
+						background-color: #f1f1f1;
+
+				}*/
+
+		/* Style the buttons that are used to open the tab content */
+		/*.tab button {
+						display: block;
+						background-color: inherit;
+						color: black;
+						padding: 22px 16px;
+						border: none;
+						outline: none;
+						text-align: left;
+						cursor: pointer;
+						transition: 0.3s;
+				}*/
+
 	</style>
 }
 
 <div class="row">
-    <div class="col-md-12">
-        <div class="logo">
-            <img src="~/Content/logo.png" />
-        </div>
+	<div class="col-md-12">
+		<div class="logo">
+			<img src="~/Content/logo.png" />
+		</div>
 
-    </div>
+	</div>
 </div>
-<input type ="hidden"/>
+<input type="hidden" />
 <div class="tab">
-    <button class="tablinks" id="week1" onclick="selectAudio(event, 'Week1')">Week1</button>
-    <button class="tablinks" id="week2" onclick="selectAudio(event, 'Week2')">Week2</button>
-    <button class="tablinks" id="week3" onclick="selectAudio(event, 'Week3')">Week3</button>
-    <button class="tablinks" id="week4" onclick="selectAudio(event, 'Week4')">Week4</button>
-    <button class="tablinks" id="week5" onclick="selectAudio(event, 'Week5')">Week5</button>
-    <button class="tablinks" id="week6" onclick="selectAudio(event, 'Week6')">Week6</button>
+	<button class="tablinks" id="week1" onclick="selectAudio(event, 'Week1')">Week1</button>
+	<button class="tablinks" id="week2" onclick="selectAudio(event, 'Week2')" disabled="disabled">
+		<img src="~/Images/61457.png" width="15px" />
+		Week2
+	</button>
+	<button class="tablinks" id="week3" onclick="selectAudio(event, 'Week3')" disabled="disabled">
+		<img src="~/Images/61457.png" width="15px" />
+		Week3
+	</button>
+	<button class="tablinks" id="week4" onclick="selectAudio(event, 'Week4')" disabled="disabled">
+		<img src="~/Images/61457.png" width="15px" />
+		Week4
+	</button>
+	<button class="tablinks" id="week5" onclick="selectAudio(event, 'Week5')" disabled="disabled">
+		<img src="~/Images/61457.png" width="15px" />
+		Week5
+	</button>
+	<button class="tablinks" id="week6" onclick="selectAudio(event, 'Week6')" disabled="disabled">
+		<img src="~/Images/61457.png" width="15px" />
+		Week6
+	</button>
 </div>
 <div class="row userinfo question-card">
 	<div class="col-md-12">
@@ -136,42 +156,42 @@
 				<option value="0">Female</option>
 			</select>
 		</p>
-        <div class="row">
-            @foreach (var audio in Model.Audios)
-            {
-                <div class="col-md-3">
-                    <div class="audiogroup-card">
-                        <div class="audiogroup-card-head">
-                            @audio.AudioGroup.Title
-                        </div>
-                        <div class="audiogroup-card-body">
-                            @foreach (var item in audio.Audios)
-                            {
-                                <div class="audio-item">
-                                    @if (ViewBag.gender == "1")
-                                    {
-                                        <input type="radio" value="@item.Id" id="@item.Id" name="week1_m_@audio.AudioGroup.Id" />
-                                    }
-                                    else
-                                    {
-                                        <input type="radio" value="@item.Id" id="@item.Id" name="week1_f_@audio.AudioGroup.Id" />
-                                    }
-                                    <a href="#" class="btn btn-success" for="@item.Id">@item.Title</a>
+		<div class="row">
+			@foreach (var audio in Model.Audios)
+			{
+				<div class="col-md-3">
+					<div class="audiogroup-card">
+						<div class="audiogroup-card-head">
+							@audio.AudioGroup.Title
+						</div>
+						<div class="audiogroup-card-body">
+							@foreach (var item in audio.Audios)
+							{
+								<div class="audio-item">
+									@if (ViewBag.gender == "1")
+									{
+										<input type="radio" value="@item.Id" id="@item.Id" name="week1_m_@audio.AudioGroup.Id" />
+									}
+									else
+									{
+										<input type="radio" value="@item.Id" id="@item.Id" name="week1_f_@audio.AudioGroup.Id" />
+									}
+									<a href="#" class="btn btn-success" for="@item.Id">@item.Title</a>
 
-                                    <button id="play_@item.Id" class="btn btn-default play" type="button" onclick="play('audio_@item.Id')"><i class="fa fa-play"></i></button>
-                                    <button id="pause_@item.Id" class="btn btn-default pause" type="button" onclick="pause('audio_@item.Id')"><i class="fa fa-pause"></i></button>
-                                    <audio id="audio_@item.Id" src="@item.FileUrl"></audio>
-                                    <div class="clearfix"></div>
-                                </div>
-                            }
-                        </div>
-                    </div>
-                </div>
-            }
+									<button id="play_@item.Id" class="btn btn-default play" type="button" onclick="play('audio_@item.Id')"><i class="fa fa-play"></i></button>
+									<button id="pause_@item.Id" class="btn btn-default pause" type="button" onclick="pause('audio_@item.Id')"><i class="fa fa-pause"></i></button>
+									<audio id="audio_@item.Id" src="@item.FileUrl"></audio>
+									<div class="clearfix"></div>
+								</div>
+							}
+						</div>
+					</div>
+				</div>
+			}
 
 
-        </div>
-        <input type="hidden" id="week"/>
+		</div>
+		<input type="hidden" id="week" />
 		<div class="row">
 			<button class="btn btn-primary" style="width: 100%" onclick="submitUserAudio('@ViewBag.gender');">Submit</button>
 		</div>
@@ -181,7 +201,7 @@
 @section scripts
 {
 
-    <script>
+	<script>
         $(document).ready(function () {
             document.getElementById("week").value = "week1";
             document.getElementById("week1").click();
@@ -199,7 +219,7 @@
             for (i = 0; i < tablinks.length; i++) {
                 tablinks[i].className = tablinks[i].className.replace(" active", "");
             }
-            
+
             evt.currentTarget.className += " active";
             if (weekName === "Week1" && gender === "1") {
                 $("input:radio").attr("checked", false);
@@ -220,7 +240,7 @@
                 var nameofweek3 = $("input[name*='92231fc8-8bc0-4f3d-9677-09e3d4b64fca']").attr('name');
                 var nameofweeks3 = nameofweek3.split("_");
                 $("input[name*='92231fc8-8bc0-4f3d-9677-09e3d4b64fca']").attr("name", "week1" + "_" + nameofweeks3[1] + "_" + nameofweeks3[2]);
-               
+
                 document.getElementById("8943fc84-53aa-4fb0-9e94-9fe8bc407435").checked = true;
                 document.getElementById("c49835c8-a058-40bd-8097-3bc12df94929").checked = true;
                 document.getElementById("0c8d365c-eeb2-4602-bfea-af76e0b78f49").checked = true;
@@ -233,7 +253,7 @@
                 var nameofweek = $("input[name*='7b678ab5-0838-4d4a-95d0-8952f74a99d9']").attr('name');
                 var nameofweeks = nameofweek.split("_");
                 $("input[name*='7b678ab5-0838-4d4a-95d0-8952f74a99d9']").attr("name", "week1" + "_" + nameofweeks[1] + "_" + nameofweeks[2]);
-                
+
                 var nameofweek1 = $("input[name*='8f1e5363-6eb6-4e15-bf5a-a4ed82d853f5']").attr('name');
                 var nameofweeks1 = nameofweek1.split("_");
                 $("input[name*='8f1e5363-6eb6-4e15-bf5a-a4ed82d853f5']").attr("name", "week1" + "_" + nameofweeks1[1] + "_" + nameofweeks1[2]);
@@ -511,7 +531,7 @@
                     var audiomen2 = $("input[name='week1_m_8f1e5363-6eb6-4e15-bf5a-a4ed82d853f5']:checked").val();
                     var audiomen3 = $("input[name='week1_m_1e5656c8-d07d-4f33-94cb-2eeff052cc42']:checked").val();
                     var audiomen4 = $("input[name='week1_m_92231fc8-8bc0-4f3d-9677-09e3d4b64fca']:checked").val();
-         
+
                 }
                 else if (weekName === "week2") {
                     weekNo = 2;
@@ -658,5 +678,5 @@
                 $('#ddlGender').val('0');
             }
         });
-    </script>
+	</script>
 }

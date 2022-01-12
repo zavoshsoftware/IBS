@@ -1,0 +1,174 @@
+﻿
+@{
+	ViewBag.Title = "GetChart";
+	Layout = "~/Views/Shared/BackEndLayout/_BackEndLayout.cshtml";
+}
+
+@section head{
+	<!-- Unessential CSS and JS - Just here to make this sample page prettier -->
+	<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700|Roboto:400,700' rel='stylesheet' type='text/css'>
+	<link href="css/styles.css" rel="stylesheet">
+
+	<!-- Load modernizr or html5shiv -->
+	<script src="//cdn.jsdelivr.net/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
+	<script>window.modernizr || document.write('<script src="lib/modernizr/modernizr-custom.js"><\/script>')</script>
+	<!--<script src="lib/html5shiv/html5shiv.js"></script>-->
+	<!-- Load jQuery -->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="lib/jquery-legacy/jquery.js"><\/script>')</script>
+
+	<!-- Chartinator  -->
+	<script src="~/Content/chart/js/chartinator.js"></script>
+	<script type="text/javascript">
+	jQuery(function ($) {
+			/**
+			 * A jQuery plugin that loads data from HTML tables, Google Sheets and data arrays and draws charts using Google Charts.
+			 *
+			 * Using HTML Tables
+			 * HTML tables can help make the chart data accessible.
+			 * You can either display the table with the chart or accessibly hide the table
+			 *
+			 * Suggested HTML Table setup
+			 * Create an HTML table with a caption and 'th' elements in the first row
+			 * For each 'th' element apply one of the following
+			 * 'data-type' attribute: 'string' 'number' 'boolean' 'date' 'datetime' 'timeofday'
+			 * or 'data-role' attribute:  'tooltip','annotation'
+			 * The caption element's text is used as a title for the chart by default.
+			 *
+			 * Apply the jQuery Chartinator plugin to the chart canvas(es)
+			 * or select the table(s) and Chartinator will insert a new chart canvas(es) after the table
+			 * or create js data arrays
+			 * See examples below and the readme file for more info
+			 */
+
+
+			//  Line Chart Example
+			var chart6 = $('#lineChart').chartinator({
+
+				// Custom Options ------------------------------------------------------
+				// note: This example uses js data arrays for data instead of HTML tables
+
+				// Columns - The columns data-array
+				columns: [
+					{ label: 'Country', type: 'string' },
+					{ label: 'Week', type: 'number' },
+					{ role: ' ', type: 'string' },
+					{ label: ' ', type: 'number' },
+					{ role: ' ', type: 'string' },
+					{ label: ' ', type: 'number' },
+					{ role: ' ', type: 'string' }],
+
+				// Rows - The rows data-array
+				// If colIndexes array has values the row data will be inserted into the columns
+				// defined in the colindexes array. Otherwise the row data will be appended
+				// to any existing row data extracted from an HTML table or Google Sheet
+				rows: [
+					['Week 2', 18, '18', 0, '0', 0, '0'],
+					['Week 2', 12, '12', 0, '0', 0, '0'],
+					['Week 3', 10, '10', 0, '0', 0, '0'],
+					['Week 4', 5, '5', 0, '0', 0, '0'],
+					['Week 5', 6, '6', 0, '0', 0, '0'],
+					['Week 6', 4, '4', 0, '0', 0, '0']
+				],
+
+				// The chart type - String
+				// Derived from the Google Charts visualization class name
+				// Default: 'BarChart'
+				// Use TitleCase names. eg. BarChart, PieChart, ColumnChart, Calendar, GeoChart, Table.
+				// See Google Charts Gallery for a complete list of Chart types
+				// https://developers.google.com/chart/interactive/docs/gallery
+				chartType: 'LineChart',
+
+				// The chart aspect ratio custom option - width/height
+				// Used to calculate the chart dimensions relative to the width or height
+				// this is overridden if the Google Chart's height and width options have values
+				// Suggested value: 1.25
+				// Default: false - not used
+				//chartAspectRatio: 1.25,
+
+				// Google Line Chart Options
+				lineChart: {
+
+					// Width of chart in pixels - Number
+					// Default: automatic (unspecified)
+					width: null,
+
+					// Height of chart in pixels - Number
+					// Default: automatic (unspecified)
+					height: 310,
+
+					chartArea: {
+						left: "10%",
+						top: 40,
+						width: "85%",
+						height: "65%"
+					},
+
+					// The font size in pixels - Number
+					// Or use css selectors as keywords to assign font sizes from the page
+					// For example: 'body'
+					// Default: false - Use Google Charts defaults
+					//fontSize: 'body',
+
+					// The font family name. String
+					// Default: body font family
+					fontName: 'Roboto',
+
+					// Chart Title - String
+					// Default: Table caption.
+					title: 'User Questionnaire Score',
+
+					titleTextStyle: {
+
+						// The font size in pixels - Number
+						// Or use css selectors as keywords to assign font sizes from the page
+						// For example: 'body'
+						// Default: false - Use Google Charts defaults
+						fontSize: 'h4'
+					},
+					legend: {
+
+						// Legend position - String
+						// Options: bottom, top, left, right, in, none.
+						// Default: bottom
+						position: 'bottom'
+					},
+
+					// Array of colours
+					colors: ['#94ac27', '#fff', '#fff'],
+
+					tooltip: {
+
+						// Shows tooltip with values on hover - String
+						// Options: focus, none.
+						// Default: focus
+						trigger: 'focus'
+					}
+				}
+
+				// Show table as well as chart - String
+				// Options: 'show', 'hide', 'remove'
+				//showTable: 'show'
+			});
+
+
+		});</script>
+
+	<!-- Responsive Menu -->
+	@*<link href="lib/jquery-responsive-menu/responsive-menu.css" rel="stylesheet">*@
+	@*<script src="lib/jquery-responsive-menu/responsive-menu.js"></script>s*@
+	<script>jQuery(function ($) { var menu = $('.rm-nav').rMenu({ minWidth: '1060px' }); });</script>
+
+}
+
+<div>
+	
+	<div class="col">
+		<div id="lineChart" class="lineChart chart"></div>
+	</div>
+</div>
+@section scripts{
+
+	<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+	<script>$(function() { $('pre').addClass('prettyprint'); })</script>
+}

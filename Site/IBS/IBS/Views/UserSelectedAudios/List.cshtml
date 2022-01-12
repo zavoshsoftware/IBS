@@ -107,9 +107,18 @@
 						<td>
 							@if (!item.IsChoose)
 							{
-							<a href="/userselectedaudios/SelectNewAudios/@ViewBag.Id?weekNo=@item.WeekNo">
-								select
-							</a>
+								if (item.IsAvailable)
+								{
+									<a class="btn" href="/userselectedaudios/SelectNewAudios/@ViewBag.Id?weekNo=@item.WeekNo">
+										select
+									</a>
+								}
+								else
+								{
+									<button disabled="disabled" class="btn">
+										<img src="~/Images/61457.png" width="15px" /> select
+									</button>
+								}
 							}
 						</td>
 

@@ -15,19 +15,15 @@ ViewBag.Title = "فهرست ";
 							//columns.Bound(model => model.PatientType.Title);
 							columns.Bound(model => model.User.FullName);
 									columns.Bound(model => model.Result);
-									columns.Bound(model => model.IsActive);
 									columns.Bound(model => model.CreationDate);
 									columns.Bound(item => @item.Id).Title("دستورات").Filterable(false).Groupable(false)
 									.Template(@<text>
 									@Html.ActionLink("جزییات", "details", new {id = @item.Id}, new {@class = "k-button"})
 									@Html.ActionLink("حذف", "Delete", new {id = @item.Id}, new {@class = "k-button"})
+									@Html.ActionLink("مشاهده نمودار", "GetChart", new {id = @item.Id}, new {@class = "k-button"})
 									</text>).Width(200);  
 		})
-		.ToolBar(toolbar =>
-					{				
-						toolbar.Custom().Action("Create","UserQuestionnaires").Text("افزودن");                          
-					}
-		)         
+	        .Filterable().Sortable()
 		.DataSource(dataSource => dataSource
 									.Server()
 							
