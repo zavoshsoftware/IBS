@@ -977,6 +977,7 @@
     <Compile Include="ViewModels\RegisterViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\QuestionListViewModel.cs" />
+    <Compile Include="ViewModels\UserQuestionDetailViewModel.cs" />
     <Compile Include="ViewModels\UserQuestionnaireDetailViewModel.cs" />
     <Compile Include="ViewModels\UserSelectedAudioViewModel.cs" />
   </ItemGroup>

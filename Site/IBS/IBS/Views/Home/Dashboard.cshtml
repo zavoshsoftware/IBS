@@ -1,4 +1,4 @@
-﻿
+﻿@model List<ViewModels.UserQuestionDetailViewModel>
 @{
 	ViewBag.Title = "Dashboard";
 	Layout = "~/Views/Shared/FrontEnd/_FronEndLayout.cshtml";
@@ -11,9 +11,24 @@
 	</script>
 }
 <div id = "container" style = "width: 550px; height: 400px; margin: 0 auto">
+
 </div>
+
 <script language = "JavaScript">
+	
 	function drawChart() {
+
+		$.ajax({
+			url: 'Home/GetChart',
+			type: 'GET',
+			dataType: 'json',
+			//data: {},
+			//contentType: 'application/json; charset=utf-8',
+			success: function (data) {
+				console.log(data)
+			}
+        });
+
 		// Define the chart to be drawn.
 		var data = google.visualization.arrayToDataTable([
 			['Score', 'Week1', 'Week2'],
