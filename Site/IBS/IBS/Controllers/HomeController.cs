@@ -21,5 +21,9 @@ namespace IBS.Controllers
         {
             return View();
         }
+        public ActionResult Dashboard()
+        {
+            return View();
+        }
     }
 }

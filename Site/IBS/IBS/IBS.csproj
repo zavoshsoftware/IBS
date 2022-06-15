@@ -1207,6 +1207,7 @@
     <Content Include="Views\TextItemTypes\Index.cshtml" />
     <Content Include="Views\UserSelectedAudios\SelectNewAudios.cshtml" />
     <Content Include="Views\UserQuestionnaires\GetChart.cshtml" />
+    <Content Include="Views\Home\Dashboard.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
