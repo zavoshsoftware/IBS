@@ -18,23 +18,18 @@
 	
 	function drawChart() {
 
-		$.ajax({
-			url: 'Home/GetChart',
-			type: 'GET',
-			dataType: 'json',
-			//data: {},
-			//contentType: 'application/json; charset=utf-8',
-			success: function (data) {
-				console.log(data)
-			}
-        });
+
 
 		// Define the chart to be drawn.
+		var pain = @Html.Raw(Json.Encode(@ViewBag.Pain));
+        var bloating = @Html.Raw(Json.Encode(@ViewBag.Bloating));
+		var wellBeing = @Html.Raw(Json.Encode(@ViewBag.WellBeing));
+        var week = @Html.Raw(Json.Encode(@ViewBag.Score));
 		var data = google.visualization.arrayToDataTable([
-			['Score', 'Week1', 'Week2'],
-			['Pain',  10,      22],
-			['Bloating',  8,      20],
-			['WellBeing',  8,      11]
+			week,
+            pain,
+			bloating,
+			wellBeing
 		]);
 
 		var options = {title: 'Test History', isStacked:true};  
