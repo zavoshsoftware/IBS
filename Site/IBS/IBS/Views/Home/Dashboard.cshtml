@@ -4,18 +4,46 @@
 	Layout = "~/Views/Shared/FrontEnd/_FronEndLayout.cshtml";
 }
 @section head{
-	<script type = "text/javascript" src = "https://www.gstatic.com/charts/loader.js">
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js">
 	</script>
-	<script type = "text/javascript">
-		google.charts.load('current', {packages: ['corechart']});     
+	<script type="text/javascript">
+		google.charts.load('current', { packages: ['corechart'] });
 	</script>
+
+
+	<link href="/content/commingsoon/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+	<link href="/content/commingsoon/css/style.css" rel="stylesheet">
 }
-<div id = "container" style = "width: 550px; height: 400px; margin: 0 auto">
+@if (ViewBag.NextTest == "true")
+{
+	<a href="/Questions/List" class="btn btn-success mt-5 mb-5" style="width: 100%">Start Test</a>
+}
+else
+{
+	<h2 class="text-center">
+		Nest Test:
+	</h2>
+	<div class="countdown-header">
+		<div class="countdown" data-date="@ViewBag.NextTestDate"></div>
+	</div>
+}
+
+<h2 class="text-center">
+Test Dashboard</h2>
+<div id="container" style="width: 550px; height: 400px; margin: 0 auto">
 
 </div>
 
-<script language = "JavaScript">
-	
+
+<script src="/content/commingsoon/lib/jquery/jquery.min.js"></script>
+<script src="/content/commingsoon/lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="/content/commingsoon/lib/php-mail-form/validate.js"></script>
+<script src="/content/commingsoon/lib/countdown/jquery.plugin.min.js"></script>
+<script src="~/Content/CommingSoon/lib/countdown/jquery.countdown.min.js"></script>
+<script src="/content/commingsoon/js/main.js"></script>
+
+<script language="JavaScript">
+
 	function drawChart() {
 
 
@@ -32,7 +60,7 @@
 			wellBeing
 		]);
 
-		var options = {title: 'Test History', isStacked:true};  
+		var options = {title: 'Test Dashboard', isStacked:true};
 
 		// Instantiate and draw the chart.
 		var chart = new google.visualization.BarChart(document.getElementById('container'));
@@ -40,3 +68,5 @@
 	}
 	google.charts.setOnLoadCallback(drawChart);
 </script>
+
+

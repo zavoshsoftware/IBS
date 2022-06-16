@@ -193,6 +193,28 @@
     <Content Include="Content\chart\lib\jquery-responsive-menu\responsive-menu.min.css" />
     <Content Include="Content\chart\lib\jquery-responsive-menu\responsive-menu.min.js" />
     <Content Include="Content\chart\lib\modernizr\modernizr-custom.js" />
+    <Content Include="Content\CommingSoon\contactform\contactform.php" />
+    <Content Include="Content\CommingSoon\contactform\Readme.txt" />
+    <Content Include="Content\CommingSoon\css\style.css" />
+    <Content Include="Content\CommingSoon\img\apple-touch-icon.png" />
+    <Content Include="Content\CommingSoon\img\browser.png" />
+    <Content Include="Content\CommingSoon\img\favicon.png" />
+    <Content Include="Content\CommingSoon\img\header-2.JPG" />
+    <Content Include="Content\CommingSoon\img\header.jpg" />
+    <Content Include="Content\CommingSoon\img\logo.png" />
+    <Content Include="Content\CommingSoon\js\main.js" />
+    <Content Include="Content\CommingSoon\lib\bootstrap\css\bootstrap.css" />
+    <Content Include="Content\CommingSoon\lib\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Content\CommingSoon\lib\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\CommingSoon\lib\bootstrap\js\bootstrap.js" />
+    <Content Include="Content\CommingSoon\lib\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Content\CommingSoon\lib\countdown\jquery.countdown.min.js" />
+    <Content Include="Content\CommingSoon\lib\countdown\jquery.plugin.min.js" />
+    <Content Include="Content\CommingSoon\lib\ionicons\css\ionicons.min.css" />
+    <Content Include="Content\CommingSoon\lib\ionicons\fonts\ionicons.svg" />
+    <Content Include="Content\CommingSoon\lib\jquery\jquery.js" />
+    <Content Include="Content\CommingSoon\lib\jquery\jquery.min.js" />
+    <Content Include="Content\CommingSoon\lib\php-mail-form\validate.js" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\ionicons.svg" />
     <Content Include="Content\fonts\Simple-Line-Icons.svg" />
@@ -737,6 +759,13 @@
     <Content Include="fonts\IranSans\woff\Vazir-Thin.woff" />
     <Content Include="fonts\IranSans\woff\Vazir.woff" />
     <Content Include="Content\chart\lib\normalize.scss\_normalize.scss" />
+    <Content Include="Content\CommingSoon\lib\bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\CommingSoon\lib\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\CommingSoon\lib\bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\CommingSoon\lib\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\CommingSoon\lib\ionicons\fonts\ionicons.eot" />
+    <Content Include="Content\CommingSoon\lib\ionicons\fonts\ionicons.ttf" />
+    <Content Include="Content\CommingSoon\lib\ionicons\fonts\ionicons.woff" />
     <None Include="Scripts\kendo\2017.3.913\kendo.all-vsdoc.js" />
     <None Include="Scripts\kendo\2017.3.913\kendo.all.min.intellisense.js" />
     <Content Include="Scripts\kendo\2017.3.913\kendo.all.min.js" />
@@ -1209,6 +1238,7 @@
     <Content Include="Views\UserSelectedAudios\SelectNewAudios.cshtml" />
     <Content Include="Views\UserQuestionnaires\GetChart.cshtml" />
     <Content Include="Views\Home\Dashboard.cshtml" />
+    <Content Include="Views\UserSelectedAudios\List2.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

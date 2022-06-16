@@ -1,0 +1,144 @@
+﻿@model IEnumerable<ViewModels.UserSelectedAudioViewModel>
+@{
+	Layout = "~/Views/Shared/FrontEnd/_FronEndLayout.cshtml";
+
+}
+
+@section head{
+
+	<style>
+		*,
+		*:before,
+		*:after {
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			box-sizing: border-box;
+		}
+
+		output {
+			display: block;
+			font-size: 30px;
+			font-weight: bold;
+			text-align: center;
+			margin: 30px 0;
+			width: 100%;
+		}
+
+		.u-left {
+			float: left;
+		}
+
+		.u-cf:before,
+		.u-cf:after {
+			content: "";
+			display: table;
+		}
+
+		.u-cf:after {
+			clear: both;
+		}
+
+		.u-text-left {
+			text-align: left;
+		}
+	</style>
+}
+
+<div class="row">
+	<div class="col-md-12">
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>Week</th>
+					<th>Induction</th>
+					<th>Deepening</th>
+					<th>Therapy</th>
+					<th>Ending</th>
+					@*<th>Select Audio</th>*@
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var item in Model)
+				{
+					<tr>
+						<td>
+							@item.WeekNo
+						</td>
+						<td>
+							@if (!string.IsNullOrEmpty(item.InductionAudio))
+							{
+								<button onclick="play('Induction')">
+									<i class="fa fa-play"></i>Play
+								</button>
+								<audio id="Induction" src="@item.InductionAudio"></audio>
+							}
+						</td>
+
+						<td>
+							@if (!string.IsNullOrEmpty(item.DeepeningAudio))
+							{
+								<button onclick="play('Deepening')">
+									<i class="fa fa-play"></i>Play
+								</button>
+								<audio id="Deepening" src="@item.DeepeningAudio"></audio>
+							}
+						</td>
+
+						<td>
+							@if (!string.IsNullOrEmpty(item.TherapyAudio))
+							{
+								<button onclick="play('Therapy')">
+									<i class="fa fa-play"></i>Play
+								</button>
+								<audio id="Therapy" src="@item.TherapyAudio"></audio>
+							}
+						</td>
+
+						<td>
+							@if (!string.IsNullOrEmpty(item.EndingAudio))
+							{
+								<button onclick="play('Ending')">
+									<i class="fa fa-play"></i>Play
+								</button>
+								<audio id="Ending" src="@item.EndingAudio"></audio>
+							}
+						</td>
+
+						@*<td>
+							@if (!item.IsChoose)
+							{
+								if (item.IsAvailable)
+								{
+									<a class="btn" href="/userselectedaudios/SelectNewAudios/@ViewBag.Id?weekNo=@item.WeekNo">
+										select
+									</a>
+								}
+								else
+								{
+									<button disabled="disabled" class="btn">
+										<img src="~/Images/61457.png" width="15px" /> select
+									</button>
+								}
+							}
+						</td>*@
+
+
+					</tr>
+				}
+
+
+			</tbody>
+		</table>
+
+	</div>
+</div>
+
+@section scripts{
+	<script>
+		function play(id) {
+			var audio = document.getElementById(id);
+
+			audio.play();
+		}
+	</script>
+}

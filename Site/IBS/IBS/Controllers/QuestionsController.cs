@@ -146,6 +146,14 @@ namespace IBS.Controllers
         [Authorize(Roles = "customer")]
         public ActionResult List()
         {
+
+            var userId = Guid.Parse(User.Identity.Name);
+            var userQuestionnaires = db.UserQuestionnaires.Where(w => w.IsDeleted == false && w.UserId == userId).OrderByDescending(o => o.CreationDate).FirstOrDefault();
+            if (userQuestionnaires != null)
+                if (DateTime.Today.Date < userQuestionnaires.CreationDate.AddDays(7))
+                    return Redirect("/home/dashboard");
+
+
             List<QuestionListViewModel> result = new List<QuestionListViewModel>();
 
             List<QuestionGroup> questionGroups =
@@ -179,6 +187,10 @@ namespace IBS.Controllers
                 string id = identity.FindFirst(System.Security.Claims.ClaimTypes.Name).Value;
 
                 User user = db.Users.Find(ToGuid(id));
+                bool isFirstQuestionare = true;
+                var userQuestionnaires = db.UserQuestionnaires.Where(w => w.IsDeleted == false && w.UserId == user.Id).OrderByDescending(o => o.CreationDate).FirstOrDefault();
+                if (userQuestionnaires != null)
+                    isFirstQuestionare = false;
 
                 string result = "";
 
@@ -243,7 +255,7 @@ namespace IBS.Controllers
                 }
                 db.SaveChanges();
 
-                return Json(userQuestionnaire.Id + "|" + userQuestionnaire.Result, JsonRequestBehavior.AllowGet);
+                return Json(userQuestionnaire.Id + "|" + userQuestionnaire.Result+"|"+isFirstQuestionare, JsonRequestBehavior.AllowGet);
 
             }
             catch (Exception e)

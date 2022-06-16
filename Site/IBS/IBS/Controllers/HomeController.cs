@@ -28,6 +28,19 @@ namespace IBS.Controllers
 
         public ActionResult Dashboard()
         {
+            var userId = Guid.Parse(User.Identity.Name);
+            var userQuestionnaires = db.UserQuestionnaires.Where(w => w.IsDeleted == false && w.UserId == userId).OrderByDescending(o => o.CreationDate).FirstOrDefault();
+            if (userQuestionnaires != null)
+                if (DateTime.Today.Date >= userQuestionnaires.CreationDate.AddDays(7))
+                {
+                    ViewBag.NextTest = "true";
+                }
+                else
+                {
+                    ViewBag.NextTest = "false";
+                    ViewBag.NextTestDate = userQuestionnaires.CreationDate.AddDays(7).Date.ToShortDateString();
+                }
+
             var scoreCount = GetChart("Pain", "3b96726a-8a0d-487c-b992-1a31fa6fd0d7").Length;
             ViewBag.Pain = GetChart("Pain", "3b96726a-8a0d-487c-b992-1a31fa6fd0d7");
             ViewBag.Bloating = GetChart("Bloating", "802374e7-0c5d-4dd8-b88e-e8c9139bb298");
@@ -38,9 +51,9 @@ namespace IBS.Controllers
 
         public object[] GetChart(string type, string id)
         {
-            object[] chartItem = new object[]{};
-            var UserId = Guid.Parse(User.Identity.Name);
-            var userQuestionnaires = db.UserQuestionnaires.Where(w => w.IsDeleted == false && w.UserId == UserId).OrderBy(o => o.CreationDate).ToList();
+            object[] chartItem = new object[] { };
+            var userId = Guid.Parse(User.Identity.Name);
+            var userQuestionnaires = db.UserQuestionnaires.Where(w => w.IsDeleted == false && w.UserId == userId).OrderBy(o => o.CreationDate).ToList();
             var answers = db.UserQuestionnaireDetails.Where(w => w.IsDeleted == false);
             List<UserQuestionDetailViewModel> userQuestionDetailViewModelList = new List<UserQuestionDetailViewModel>();
             foreach (var userQuestionId in userQuestionnaires)
@@ -83,7 +96,7 @@ namespace IBS.Controllers
                     }
 
                 }
-                else if(id == "4ec1ece0-44db-4574-8895-af0086f1ba1a")
+                else if (id == "4ec1ece0-44db-4574-8895-af0086f1ba1a")
                 {
                     if (answer != null)
                     {
@@ -103,7 +116,7 @@ namespace IBS.Controllers
 
             }
 
-            
+
             return chartItem;
 
         }
@@ -115,11 +128,11 @@ namespace IBS.Controllers
             chartWeek[0] = "Score";
             for (int j = 1; j < weekCount; j++)
             {
-                chartWeek[j] = "Week"+ j.ToString();
+                chartWeek[j] = "Week" + j.ToString();
             }
             return chartWeek;
         }
-        
 
-        }
+
+    }
 }

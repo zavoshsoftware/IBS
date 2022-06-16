@@ -521,7 +521,7 @@
         }
 
         function submitUserAudio(gender) {
-            var weekName = document.getElementById("week").value;
+           var weekName = document.getElementById("week").value;
             var weekNo = 1;
             if (gender === '1') {
                 if (weekName === "week1") {
@@ -634,7 +634,8 @@
                     type: "GET"
                 }).done(function(result) {
                 alert('success');
-                console.log(result);
+                  //console.log(result);
+                window.location.href = "/home/dashboard";
             });
         }
 

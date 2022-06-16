@@ -215,44 +215,31 @@
 		function showError(r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12, r13, r14) {
 			if (r1 === '' || r1 === 'undefined' || r1 === undefined) {
 				return 1;
-			}
-			else if (r2 === '' || r2 === 'undefined' || r2 === undefined) {
+			} else if (r2 === '' || r2 === 'undefined' || r2 === undefined) {
 				return 2;
-			}
-			else if (r3 === '' || r3 === 'undefined' || r3 === undefined) {
+			} else if (r3 === '' || r3 === 'undefined' || r3 === undefined) {
 				return 3;
-			}
-			else if (r4 === '' || r4=== 'undefined' || r4 === undefined) {
+			} else if (r4 === '' || r4 === 'undefined' || r4 === undefined) {
 				return 4;
-			}
-			else if (r5 === '' || r5 === 'undefined' || r5 === undefined) {
+			} else if (r5 === '' || r5 === 'undefined' || r5 === undefined) {
 				return 5;
-			}
-			else if (r6 === '' || r6 === 'undefined' || r6 === undefined) {
+			} else if (r6 === '' || r6 === 'undefined' || r6 === undefined) {
 				return 6;
-			}
-			else if (r7 === '' || r7 === 'undefined' || r7 === undefined) {
+			} else if (r7 === '' || r7 === 'undefined' || r7 === undefined) {
 				return 7;
-			}
-			else if (r8 === '' || r8 === 'undefined' || r8 === undefined) {
+			} else if (r8 === '' || r8 === 'undefined' || r8 === undefined) {
 				return 8;
-			}
-			else if (r9 === '' || r9 === 'undefined' || r9 === undefined) {
+			} else if (r9 === '' || r9 === 'undefined' || r9 === undefined) {
 				return 9;
-			}
-			else if (r10 === '' || r10 === 'undefined' || r10 === undefined) {
+			} else if (r10 === '' || r10 === 'undefined' || r10 === undefined) {
 				return 10;
-			}
-			else if (r11 === '' || r11 === 'undefined' || r11 === undefined) {
+			} else if (r11 === '' || r11 === 'undefined' || r11 === undefined) {
 				return 11;
-			}
-			else if (r12 === '' || r12 === 'undefined' || r12 === undefined) {
+			} else if (r12 === '' || r12 === 'undefined' || r12 === undefined) {
 				return 12;
-			}
-			else if (r13 === '' || r13 === 'undefined' || r13 === undefined) {
+			} else if (r13 === '' || r13 === 'undefined' || r13 === undefined) {
 				return 13;
-			}
-			else if (r14 === '' || r14 === 'undefined' || r14 === undefined) {
+			} else if (r14 === '' || r14 === 'undefined' || r14 === undefined) {
 				return 14;
 			}
 		}
@@ -286,9 +273,7 @@
 
 				if (num !== '' && num !== 'undefined' && num !== undefined) {
 					alert('please answer question ' + num);
-				}
-					else
-				{
+				} else {
 					$.ajax(
 						{
 							url: "/Questions/SubmitQuestion",
@@ -321,14 +306,20 @@
 							if (result !== 'false') {
 
 								var res = result.split('|');
-								if (res[1] !== '') {
-									window.location.href = "/audios/choosevoice?qId=" + res[0] + "&result=" + res[1];
+								var isFirstQuestionare = res[2];
+
+								if (isFirstQuestionare === "False") {
+									window.location.href = "/home/dashboard";
 
 								} else {
-									window.location.href = "/audios/choosevoice?qId=" + res[0];
+									if (res[1] !== '') {
+										window.location.href = "/audios/choosevoice?qId=" + res[0] + "&result=" + res[1];
 
+									} else {
+										window.location.href = "/audios/choosevoice?qId=" + res[0];
+
+									}
 								}
-
 							} else {
 								alert('an error occurred');
 							}
