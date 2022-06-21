@@ -46,7 +46,7 @@
 
 <div class="row">
 	<div class="col-md-12">
-		<table class="table table-bordered">
+		<table id="audiosTable" class="table table-bordered table-responsive">
 			<thead>
 				<tr>
 					<th>Week</th>
@@ -67,40 +67,42 @@
 						<td>
 							@if (!string.IsNullOrEmpty(item.InductionAudio))
 							{
-								<button onclick="play('Induction')">
+								@*<button onclick="play('Induction')">
 									<i class="fa fa-play"></i>Play
-								</button>
-								<audio id="Induction" src="@item.InductionAudio"></audio>
+								</button>*@
+							
+                                <audio class="media" controls id="Induction_@item.WeekNo" src="@item.InductionAudio"></audio>
 							}
 						</td>
 
 						<td>
 							@if (!string.IsNullOrEmpty(item.DeepeningAudio))
 							{
-								<button onclick="play('Deepening')">
+								@*<button onclick="play('Deepening')">
 									<i class="fa fa-play"></i>Play
-								</button>
-								<audio id="Deepening" src="@item.DeepeningAudio"></audio>
+								</button>*@
+							    <audio class="media" controls id="Deepening_@item.WeekNo" src="@item.DeepeningAudio"></audio>
+								@*<audio controls="controls" id="Deepening" src="@item.DeepeningAudio"></audio>*@
 							}
 						</td>
 
 						<td>
 							@if (!string.IsNullOrEmpty(item.TherapyAudio))
 							{
-								<button onclick="play('Therapy')">
+								@*<button onclick="play('Therapy')">
 									<i class="fa fa-play"></i>Play
-								</button>
-								<audio id="Therapy" src="@item.TherapyAudio"></audio>
+								</button>*@
+								<audio class="media" controls="controls" id="Therapy_@item.WeekNo" src="@item.TherapyAudio"></audio>
 							}
 						</td>
 
 						<td>
 							@if (!string.IsNullOrEmpty(item.EndingAudio))
 							{
-								<button onclick="play('Ending')">
+								@*<button onclick="play('Ending')">
 									<i class="fa fa-play"></i>Play
-								</button>
-								<audio id="Ending" src="@item.EndingAudio"></audio>
+								</button>*@
+								<audio class="media" controls="controls" id="Ending_@item.WeekNo" src="@item.EndingAudio"></audio>
 							}
 						</td>
 
@@ -134,11 +136,44 @@
 </div>
 
 @section scripts{
-	<script>
-		function play(id) {
-			var audio = document.getElementById(id);
+    <script>
+        function play(id) {
+            var audio = document.getElementById(id);
 
-			audio.play();
+            audio.play();
 		}
-	</script>
+
+        document.addEventListener('play', function(e) {
+            var audios = document.getElementsByTagName('audio');
+            for (var i = 0, len = audios.length; i < len; i++) {
+                if (audios[i] != e.target) {
+					audios[i].pause();
+                    audios[i].currentTime = 0;
+                }
+            }
+        }, true);
+        var audios = document.getElementsByClassName('media');
+        var j =audios.length;
+        var table = document.getElementById("audiosTable");
+        var totalRowCount = table.rows.length;
+        for (let i = 1; i < totalRowCount; i++) {
+			document.getElementById("Induction_" + i).onended = function () {
+                
+                //document.querySelectorAll('audio').forEach(el => el.pause());
+                document.getElementById("Deepening_" + i).play();
+            };
+
+			document.getElementById("Deepening_" + i).onended = function () {
+             
+             /*   document.querySelectorAll('audio').forEach(el => el.pause());*/
+                document.getElementById("Therapy_" + i).play();
+            };
+
+			document.getElementById("Therapy_" + i).onended = function () {
+              
+                //document.querySelectorAll('audio').forEach(el => el.pause());
+                document.getElementById("Ending_" + i).play();
+            };
+        }
+    </script>
 }
