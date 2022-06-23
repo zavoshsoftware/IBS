@@ -150,7 +150,7 @@ namespace IBS.Controllers
             var userId = Guid.Parse(User.Identity.Name);
             var userQuestionnaires = db.UserQuestionnaires.Where(w => w.IsDeleted == false && w.UserId == userId).OrderByDescending(o => o.CreationDate).FirstOrDefault();
             if (userQuestionnaires != null)
-                if (DateTime.Today.Date < userQuestionnaires.CreationDate.AddDays(7))
+                if (DateTime.Today.Date < userQuestionnaires.CreationDate.Date.AddDays(7))
                     return Redirect("/home/dashboard");
 
 
