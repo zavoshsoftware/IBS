@@ -1,35 +1,36 @@
 ﻿@model List<ViewModels.UserQuestionDetailViewModel>
 @{
-	ViewBag.Title = "Dashboard";
-	Layout = "~/Views/Shared/FrontEnd/_FronEndLayout.cshtml";
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/FrontEnd/_FronEndLayout.cshtml";
 }
 @section head{
-	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js">
-	</script>
-	<script type="text/javascript">
-		google.charts.load('current', { packages: ['corechart'] });
-	</script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js">
+    </script>
+    <script type="text/javascript">
+        google.charts.load('current', { packages: ['corechart'] });
+    </script>
 
 
-	<link href="/content/commingsoon/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
-	<link href="/content/commingsoon/css/style.css" rel="stylesheet">
+    <link href="/content/commingsoon/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+    <link href="/content/commingsoon/css/style.css" rel="stylesheet">
 }
 @if (ViewBag.NextTest == "true")
 {
-	<a href="/Questions/List" class="btn btn-success mt-5 mb-5" style="width: 100%">Start Test</a>
+    <a href="/Questions/List" class="btn btn-success mt-5 mb-5" style="width: 100%">Start Test</a>
 }
 else
 {
-	<h2 class="text-center">
-		Nest Test:
-	</h2>
-	<div class="countdown-header">
-		<div class="countdown" data-date="@ViewBag.NextTestDate"></div>
-	</div>
+    <h2 class="text-center">
+        Nest Test:
+    </h2>
+    <div class="countdown-header">
+        <div class="countdown" data-date="@ViewBag.NextTestDate"></div>
+    </div>
 }
 
 <h2 class="text-center">
-Test Dashboard</h2>
+    Test Dashboard
+</h2>
 <div id="container" style="width: 550px; height: 400px; margin: 0 auto">
 
 </div>
@@ -42,7 +43,7 @@ Test Dashboard</h2>
 <script src="~/Content/CommingSoon/lib/countdown/jquery.countdown.min.js"></script>
 <script src="/content/commingsoon/js/main.js"></script>
 
-<script language="JavaScript">
+@*<script language="JavaScript">
 
 	function drawChart() {
 
@@ -67,6 +68,33 @@ Test Dashboard</h2>
 		chart.draw(data, options);
 	}
 	google.charts.setOnLoadCallback(drawChart);
+</script>*@
+@{ 
+    int _param = 0;
+}
+<script type="text/javascript">
+    google.charts.load('current', { 'packages': ['bar'] });
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+            [ @Html.Raw(string.Join(",", (ViewBag.Score as object[]).Select(s=>$"'{s}'")))], 
+                   [ @Html.Raw(string.Join(",", (ViewBag.Pain as object[]).Select(s=>int.TryParse(s.ToString(),out _param) ?s: $"'{s}'")))],
+             [ @Html.Raw(string.Join(",", (ViewBag.Bloating as object[]).Select(s=>int.TryParse(s.ToString(),out _param) ?s: $"'{s}'")))],
+            [ @Html.Raw(string.Join(",", (ViewBag.WellBeing as object[]).Select(s=>int.TryParse(s.ToString(),out _param) ?s: $"'{s}'")))]
+        ]);
+
+        var options = {
+            chart: {
+                //title: 'Company Performance',
+                //subtitle: 'Sales, Expenses, and Profit: 2014-2017',
+            }
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('container'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+    }
 </script>
 
 
