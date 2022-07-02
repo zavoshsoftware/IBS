@@ -63,8 +63,8 @@ namespace IBS.Controllers
                     IsDeleted = false,
                     IsActive = true,
                     RoleId = new Guid("5ae6bff3-1dce-43a5-bc27-7f2f47ac4fde"),
-                    Gender = model.Gender
-
+                    Gender = model.Gender,
+                    Age=model.Age
                 };
                 db.Users.Add(oUser);
                 db.SaveChanges();

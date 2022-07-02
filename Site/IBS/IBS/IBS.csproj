@@ -979,6 +979,10 @@
     <Compile Include="Migrations\202110190947065_v14.Designer.cs">
       <DependentUpon>202110190947065_v14.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202207020728116_V-15.cs" />
+    <Compile Include="Migrations\202207020728116_V-15.Designer.cs">
+      <DependentUpon>202207020728116_V-15.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DatabaseContext.cs" />
     <Compile Include="Models\DatabaseContextInitializer.cs" />
@@ -1293,6 +1297,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202110190947065_v14.resx">
       <DependentUpon>202110190947065_v14.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202207020728116_V-15.resx">
+      <DependentUpon>202207020728116_V-15.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

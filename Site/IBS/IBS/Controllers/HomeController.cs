@@ -29,24 +29,53 @@ namespace IBS.Controllers
         public ActionResult Dashboard()
         {
             var userId = Guid.Parse(User.Identity.Name);
-            var userQuestionnaires = db.UserQuestionnaires.Where(w => w.IsDeleted == false && w.UserId == userId).OrderByDescending(o => o.CreationDate).FirstOrDefault();
-            if (userQuestionnaires != null)
-                if (DateTime.Today.Date >= userQuestionnaires.CreationDate.AddDays(7))
-                {
-                    ViewBag.NextTest = "true";
-                }
-                else
-                {
-                    ViewBag.NextTest = "false";
-                    ViewBag.NextTestDate = userQuestionnaires.CreationDate.AddDays(7).Date.ToShortDateString();
-                }
+            var user = db.Users.FirstOrDefault(u => u.Id == userId);
+            if (user!=null)
+            {
+                var userQuestionnaires = db.UserQuestionnaires.Where(w => w.IsDeleted == false && w.UserId == userId)
+                    .OrderByDescending(o => o.CreationDate).FirstOrDefault();
+                DateTime examdate = userQuestionnaires.CreationDate.AddDays(7).Date;
+                if (userQuestionnaires != null)
+                    if (DateTime.Today.Date >= examdate)
+                    {
+                        ViewBag.NextTest = "true";
+                    }
+                    else
+                    {
+                        ViewBag.NextTest = "false";
+                        ViewBag.NextTestDate = userQuestionnaires.CreationDate.AddDays(7).Date.ToShortDateString();
+                    }
+                var scoreCount = GetChart("Pain", "3b96726a-8a0d-487c-b992-1a31fa6fd0d7").Length;
+                ViewBag.Pain = GetChart("Pain", "3b96726a-8a0d-487c-b992-1a31fa6fd0d7");
+                ViewBag.Bloating = GetChart("Bloating", "802374e7-0c5d-4dd8-b88e-e8c9139bb298");
+                ViewBag.WellBeing = GetChart("WellBeing", "4ec1ece0-44db-4574-8895-af0086f1ba1a");
+                ViewBag.Score = GetWeek(scoreCount);
 
-            var scoreCount = GetChart("Pain", "3b96726a-8a0d-487c-b992-1a31fa6fd0d7").Length;
-            ViewBag.Pain = GetChart("Pain", "3b96726a-8a0d-487c-b992-1a31fa6fd0d7");
-            ViewBag.Bloating = GetChart("Bloating", "802374e7-0c5d-4dd8-b88e-e8c9139bb298");
-            ViewBag.WellBeing = GetChart("WellBeing", "4ec1ece0-44db-4574-8895-af0086f1ba1a");
-            ViewBag.Score = GetWeek(scoreCount);
-            return View();
+                DashBoardViewModel dashBoard = new DashBoardViewModel();
+                dashBoard.CurrentWeek = (ViewBag.Score as object[]).LastOrDefault().ToString();
+                dashBoard.Profile=new ProfileViewModel()
+                {
+                    Age=user.Age.ToString(),
+                    Email=user.Email,
+                    FullName=user.FullName};
+                return View(dashBoard);
+            }
+            return Redirect("/Login");
+        } 
+        public bool CheckTestDate()
+        {
+
+            var userId = Guid.Parse(User.Identity.Name);
+            var userQuestionnaires = db.UserQuestionnaires.Where(w => w.IsDeleted == false && w.UserId == userId).OrderByDescending(o => o.CreationDate).FirstOrDefault();
+            if (DateTime.Today.Date >= userQuestionnaires.CreationDate.AddDays(7).Date)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
         }
 
         public object[] GetChart(string type, string id)

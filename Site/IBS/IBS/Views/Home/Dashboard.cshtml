@@ -1,4 +1,4 @@
-﻿@model List<ViewModels.UserQuestionDetailViewModel>
+﻿@model ViewModels.DashBoardViewModel
 @{
     ViewBag.Title = "Dashboard";
     Layout = "~/Views/Shared/FrontEnd/_FronEndLayout.cshtml";
@@ -14,25 +14,63 @@
     <link href="/content/commingsoon/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
     <link href="/content/commingsoon/css/style.css" rel="stylesheet">
 }
+<br />
+<div class="p-3">
+    <div class="row">
+        <div class="col-6 text-center container bg-light" style="border-radius:10px 0 0 10px !important">
+            <div class="card w-75">
+                <div class="card-header">
+                    Profile
+                </div>
+                <div class="card-body text-left">
+                    <p class="card-text text-left"><b>FullName:</b>@Model.Profile.FullName</p>
+                    <p class="card-text text-left"><b>Email:</b>@Model.Profile.Email</p>
+                    <p class="card-text text-left"><b>Age:</b>@Model.Profile.Age</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 text-center container bg-light" style="border-radius: 0 10px 10px 0 !important ">
+            <div class="card w-75">
+                <div class="card-header">
+                    @Model.CurrentWeek
+                </div>
+                <div class="card-body">
+                    @if (ViewBag.NextTest == "true")
+                    {
+                        <p><a class="btn btn-success" id="btnTestNow" href="/Questions/List">Test Now</a></p>
+                        <p><a class="btn btn-success" id="btnListenNow" href="/Audios/Index" style="display:none">Listen Now</a></p>
+                    }
+                    else
+                    {
+                        <p><a class="btn btn-success" id="btnTestNow" href="/Questions/List" style="display:none">Test Now</a></p>
+                        <p><a class="btn btn-success" id="btnListenNow" href="/Audios/Index">Listen Now</a></p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div> @ViewBag.NextTestDate
 @if (ViewBag.NextTest == "true")
 {
-    <a href="/Questions/List" class="btn btn-success mt-5 mb-5" style="width: 100%">Start Test</a>
-}
-else
-{
-    <h2 class="text-center">
-        Nest Test:
-    </h2>
-    <div class="countdown-header">
+    <a href="/Questions/List" class="btn btn-success mt-5 mb-5" id="btnTestStart" style="width: 100%">Start Test</a>
+    <div class="countdown-header" id="divCounter" style="display:none">
+        <h5 class="ml-2">Next test in:</h5>
         <div class="countdown" data-date="@ViewBag.NextTestDate"></div>
     </div>
 }
+else
+{
+    <a href="/Questions/List" class="btn btn-success mt-5 mb-5" id="btnTestStart" style="width: 100%; display: none">Start Test</a>
+    <div class="countdown-header" id="divCounter">
+        <h5 class="ml-2">Next test in:</h5>
+        <div class="countdown" data-date="@ViewBag.NextTestDate" ></div>
+    </div>
+}
 
-<h2 class="text-center">
-    Test Dashboard
-</h2>
-<div id="container" style="width: 550px; height: 400px; margin: 0 auto">
+<div class="container bg-white">
+    <div id="container" class="w-100" style=" height: 400px; margin: 0 auto">
 
+    </div>
 </div>
 
 
@@ -45,31 +83,31 @@ else
 
 @*<script language="JavaScript">
 
-	function drawChart() {
+        function drawChart() {
 
 
 
-		// Define the chart to be drawn.
-		var pain = @Html.Raw(Json.Encode(@ViewBag.Pain));
-        var bloating = @Html.Raw(Json.Encode(@ViewBag.Bloating));
-		var wellBeing = @Html.Raw(Json.Encode(@ViewBag.WellBeing));
-        var week = @Html.Raw(Json.Encode(@ViewBag.Score));
-		var data = google.visualization.arrayToDataTable([
-			week,
-            pain,
-			bloating,
-			wellBeing
-		]);
+            // Define the chart to be drawn.
+            var pain = @Html.Raw(Json.Encode(@ViewBag.Pain));
+            var bloating = @Html.Raw(Json.Encode(@ViewBag.Bloating));
+            var wellBeing = @Html.Raw(Json.Encode(@ViewBag.WellBeing));
+            var week = @Html.Raw(Json.Encode(@ViewBag.Score));
+            var data = google.visualization.arrayToDataTable([
+                week,
+                pain,
+                bloating,
+                wellBeing
+            ]);
 
-		var options = {title: 'Test Dashboard', isStacked:true};
+            var options = {title: 'Test Dashboard', isStacked:true};
 
-		// Instantiate and draw the chart.
-		var chart = new google.visualization.BarChart(document.getElementById('container'));
-		chart.draw(data, options);
-	}
-	google.charts.setOnLoadCallback(drawChart);
-</script>*@
-@{ 
+            // Instantiate and draw the chart.
+            var chart = new google.visualization.BarChart(document.getElementById('container'));
+            chart.draw(data, options);
+        }
+        google.charts.setOnLoadCallback(drawChart);
+    </script>*@
+@{
     int _param = 0;
 }
 <script type="text/javascript">
@@ -78,13 +116,14 @@ else
 
     function drawChart() {
         var data = google.visualization.arrayToDataTable([
-            [ @Html.Raw(string.Join(",", (ViewBag.Score as object[]).Select(s=>$"'{s}'")))], 
+            [ @Html.Raw(string.Join(",", (ViewBag.Score as object[]).Select(s=>$"'{s}'")))],
                    [ @Html.Raw(string.Join(",", (ViewBag.Pain as object[]).Select(s=>int.TryParse(s.ToString(),out _param) ?s: $"'{s}'")))],
              [ @Html.Raw(string.Join(",", (ViewBag.Bloating as object[]).Select(s=>int.TryParse(s.ToString(),out _param) ?s: $"'{s}'")))],
             [ @Html.Raw(string.Join(",", (ViewBag.WellBeing as object[]).Select(s=>int.TryParse(s.ToString(),out _param) ?s: $"'{s}'")))]
         ]);
 
         var options = {
+            bar: { groupWidth: "15%" },
             chart: {
                 //title: 'Company Performance',
                 //subtitle: 'Sales, Expenses, and Profit: 2014-2017',
@@ -95,6 +134,20 @@ else
 
         chart.draw(data, google.charts.Bar.convertOptions(options));
     }
+    var refreshIntervalId =  setInterval(function () {
+        $.ajax({
+            url: '/Home/CheckTestDate'
+        }).done(function (data) {
+            console.log(data)
+            if (data=='true') {
+                document.getElementById("btnTestStart").style.display = "block";
+                document.getElementById("divCounter").style.display = "none";
+                document.getElementById("btnTestNow").style.display = "block";
+                document.getElementById("btnListenNow").style.display = "none";
+                clearInterval(refreshIntervalId);
+            }
+        });
+    }, 1000);
 </script>
 
 

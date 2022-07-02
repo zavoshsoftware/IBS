@@ -13,5 +13,21 @@ namespace ViewModels
         public string PainAnswer { get; set; }
         public string BloatingAnswer { get; set; }
         public string WellBeingAnswer { get; set; }
+
+        public ProfileViewModel Profile { get; set; }
+    }
+
+
+    public class DashBoardViewModel
+    {
+        public string CurrentWeek { get; set; }
+        public ProfileViewModel Profile { get; set; }
+    }
+
+    public class ProfileViewModel
+    {
+        public string  FullName { get; set; }
+        public string  Email { get; set; }
+        public string  Age { get; set; }
     }
 }

@@ -243,8 +243,8 @@ input {
 
 .countdown-header .uppercase {
   display: block;
-  font-weight: 600;
-  margin-bottom: 24px;
+  font-weight: 300;
+  margin-bottom: 15px;
 }
 
 @media all and (max-width: 768px) {
@@ -255,12 +255,12 @@ input {
 
 .countdown {
   text-align: center;
-  margin-top: 72px;
+  margin-top: 15px;
 }
 
 .countdown-row {
   color: #fff;
-  font-size: 80px;
+  font-size: 30px;
   font-weight: 300;
 }
 
@@ -444,6 +444,7 @@ input {
 
 .countdown-header {
     color: #000 !important;
+
 }
 
 .countdown-header *{

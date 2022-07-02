@@ -35,7 +35,8 @@
 
         public Guid RoleId { get; set; }
 
- 
+        public int Age { get; set; }
+
         public virtual Role Role { get; set; }
         public virtual ICollection<UserQuestionnaire> UserQuestionnaires { get; set; }
 
