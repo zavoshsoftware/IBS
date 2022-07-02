@@ -38,12 +38,12 @@
                     @if (ViewBag.NextTest == "true")
                     {
                         <p><a class="btn btn-success" id="btnTestNow" href="/Questions/List">Test Now</a></p>
-                        <p><a class="btn btn-success" id="btnListenNow" href="/Audios/Index" style="display:none">Listen Now</a></p>
+                        <p><a class="btn btn-success" id="btnListenNow" href="/UserSelectedAudios/GetCurrentWeekAudioList" style="display:none">Listen Now</a></p>
                     }
                     else
                     {
                         <p><a class="btn btn-success" id="btnTestNow" href="/Questions/List" style="display:none">Test Now</a></p>
-                        <p><a class="btn btn-success" id="btnListenNow" href="/Audios/Index">Listen Now</a></p>
+                        <p><a class="btn btn-success" id="btnListenNow" href="/UserSelectedAudios/GetCurrentWeekAudioList">Listen Now</a></p>
                     }
                 </div>
             </div>
@@ -137,8 +137,7 @@ else
     var refreshIntervalId =  setInterval(function () {
         $.ajax({
             url: '/Home/CheckTestDate'
-        }).done(function (data) {
-            console.log(data)
+        }).done(function (data) { 
             if (data=='True') {
                 document.getElementById("btnTestStart").style.display = "block";
                 document.getElementById("divCounter").style.display = "none";

@@ -82,8 +82,93 @@ namespace IBS.Controllers
 
             return View(res);
         }
+        public object[] GetWeek(int weekCount)
+        {
+            object[] chartWeek = new object[] { };
+            chartWeek = new object[weekCount];
+            chartWeek[0] = "Score";
+            for (int j = 1; j < weekCount; j++)
+            {
+                chartWeek[j] = "Week" + j.ToString();
+            }
+            return chartWeek;
+        }
 
-     [Authorize(Roles = "customer")]
+
+
+        public object[] GetChart(string type, string id)
+        {
+            object[] chartItem = new object[] { };
+            var userId = Guid.Parse(User.Identity.Name);
+            var userQuestionnaires = db.UserQuestionnaires.Where(w => w.IsDeleted == false && w.UserId == userId).OrderBy(o => o.CreationDate).ToList();
+            var answers = db.UserQuestionnaireDetails.Where(w => w.IsDeleted == false);
+            List<UserQuestionDetailViewModel> userQuestionDetailViewModelList = new List<UserQuestionDetailViewModel>();
+            foreach (var userQuestionId in userQuestionnaires)
+            {
+                var Id = userQuestionId.Id;
+                var questionId = Guid.Parse(id);
+
+                var answer = answers.FirstOrDefault(w => w.UserQuestionnaireId == Id && w.QuestionId == questionId);
+                if (id == "3b96726a-8a0d-487c-b992-1a31fa6fd0d7")
+                {
+                    if (answer != null)
+                    {
+                        userQuestionDetailViewModelList.Add(new UserQuestionDetailViewModel()
+                        {
+                            PainAnswer = answer.Answer,
+                        });
+                    }
+                    chartItem = new object[userQuestionDetailViewModelList.Count + 1];
+                    chartItem[0] = type;
+                    for (int j = 0; j < userQuestionDetailViewModelList.Count; j++)
+                    {
+                        chartItem[j + 1] = Int32.Parse(userQuestionDetailViewModelList[j].PainAnswer);
+                    }
+
+                }
+                else if (id == "802374e7-0c5d-4dd8-b88e-e8c9139bb298")
+                {
+                    if (answer != null)
+                    {
+                        userQuestionDetailViewModelList.Add(new UserQuestionDetailViewModel()
+                        {
+                            BloatingAnswer = answer.Answer,
+                        });
+                    }
+                    chartItem = new object[userQuestionDetailViewModelList.Count + 1];
+                    chartItem[0] = type;
+                    for (int j = 0; j < userQuestionDetailViewModelList.Count; j++)
+                    {
+                        chartItem[j + 1] = Int32.Parse(userQuestionDetailViewModelList[j].BloatingAnswer);
+                    }
+
+                }
+                else if (id == "4ec1ece0-44db-4574-8895-af0086f1ba1a")
+                {
+                    if (answer != null)
+                    {
+                        userQuestionDetailViewModelList.Add(new UserQuestionDetailViewModel()
+                        {
+                            WellBeingAnswer = answer.Answer,
+                        });
+                    }
+                    chartItem = new object[userQuestionDetailViewModelList.Count + 1];
+                    chartItem[0] = type;
+                    for (int j = 0; j < userQuestionDetailViewModelList.Count; j++)
+                    {
+                        chartItem[j + 1] = Int32.Parse(userQuestionDetailViewModelList[j].WellBeingAnswer);
+                    }
+
+                }
+
+            }
+
+
+            return chartItem;
+
+        }
+
+        [Authorize(Roles = "customer")]
         public ActionResult List2()
         {
             var identity = (System.Security.Claims.ClaimsIdentity)User.Identity;
@@ -112,7 +197,7 @@ namespace IBS.Controllers
 
                 //if (DateTime.Today.Date >= userQuestionnaire.CreationDate.AddDays(i * 7))
                 //    isAvailable = true;
-
+                 
                 foreach (var userSelectedAudio in userSelectedAudios)
                 {
                     if (userSelectedAudio.Audio.AudioGroup.Title.ToLower() == "induction")
@@ -319,5 +404,63 @@ namespace IBS.Controllers
             return View(res);
         }
 
+
+        public ActionResult GetCurrentWeekAudioList()
+        {
+            var identity = (System.Security.Claims.ClaimsIdentity)User.Identity;
+
+            string id = identity.FindFirst(System.Security.Claims.ClaimTypes.Name).Value;
+            var scoreCount = GetChart("Pain", "3b96726a-8a0d-487c-b992-1a31fa6fd0d7").Length; 
+            var currentWeek = GetWeek(scoreCount);
+            Guid userId = new Guid(id);
+            int weekNo = (currentWeek.Count() - 1);
+            ViewBag.CurrentWeek = currentWeek.LastOrDefault().ToString();
+            List<UserSelectedAudio> userSelectedAudios = db.UserSelectedAudios.Include(u => u.Audio)
+                    .Where(u => u.IsDeleted == false && u.UserQuestionnaire.UserId == userId )
+                    .OrderByDescending(u => u.CreationDate).Include(u => u.UserQuestionnaire)
+                    .ToList();
+            string inductionAudio = "";
+            string deepeningAudio = "";
+            string endingAudio = "";
+            string TherapyAudio = "";
+            bool isChoose = false;
+            bool isAvailable = false;
+            var res = new List<UserSelectedAudioViewModel>();
+            foreach (var userSelectedAudio in userSelectedAudios)
+            {
+                if (userSelectedAudio.Audio.AudioGroup.Title.ToLower() == "induction")
+                {
+                    inductionAudio = userSelectedAudio.Audio.FileUrl;
+                }
+                if (userSelectedAudio.Audio.AudioGroup.Title.ToLower() == "deepening")
+                {
+                    deepeningAudio = userSelectedAudio.Audio.FileUrl;
+                }
+
+                if (userSelectedAudio.Audio.AudioGroup.Title.ToLower() == "therapy")
+                {
+                    TherapyAudio = userSelectedAudio.Audio.FileUrl;
+                }
+                if (userSelectedAudio.Audio.AudioGroup.Title.ToLower() == "ending")
+                {
+                    endingAudio = userSelectedAudio.Audio.FileUrl;
+                }
+
+                isChoose = true;
+            }
+
+            res.Add(new UserSelectedAudioViewModel()
+            {
+                DeepeningAudio = deepeningAudio,
+                EndingAudio = endingAudio,
+                InductionAudio = inductionAudio,
+                TherapyAudio = TherapyAudio,
+                WeekNo = currentWeek.Count()-1,
+                IsChoose = isChoose,
+                IsAvailable = isAvailable
+            });
+
+            return View(res.Where(r=>r.WeekNo== weekNo));
+        }
     }
 }
