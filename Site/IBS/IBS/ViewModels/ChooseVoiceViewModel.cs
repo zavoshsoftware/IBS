@@ -15,5 +15,9 @@ namespace ViewModels
     {
         public AudioGroup AudioGroup { get; set; }
         public List<Audio> Audios { get; set; }
+        public Guid AudioId1 { get; set; }
+        public Guid AudioId2 { get; set; }
+        public Guid AudioId3 { get; set; }
+        public Guid AudioId4 { get; set; }
     } 
 }

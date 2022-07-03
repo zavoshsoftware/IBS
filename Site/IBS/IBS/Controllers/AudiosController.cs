@@ -430,7 +430,85 @@ namespace IBS.Controllers
                 return Json("false", JsonRequestBehavior.AllowGet);
             }
         }
+         
 
+        public ActionResult SubmitEditaudioCollection(AudioSelectionViewModel input)
+        {
+            try
+            {
+                string audio1 = input.Audiomen1;
+                string audio2 = input.Audiomen2;
+                string audio3 = input.Audiomen3;
+                string audio4 = input.Audiomen4;
+                if (input.gender == "0")
+                {
+                    audio1 = input.Audiowomen1;
+                    audio2 = input.Audiowomen2;
+                    audio3 = input.Audiowomen3;
+                    audio4 = input.Audiowomen4;
+                }
+
+                UserSelectedAudio userSelectedAudio = new UserSelectedAudio()
+                {
+                    Id = Guid.NewGuid(),
+                    CreationDate = DateTime.Now,
+                    IsActive = true,
+                    IsDeleted = false,
+                    UserQuestionnaireId = new Guid(input.QuestionnarieId),
+                    AudioId = new Guid(audio1),
+                    WeekNo = input.WeekNo,
+                };
+
+                db.UserSelectedAudios.Add(userSelectedAudio);
+
+                userSelectedAudio = new UserSelectedAudio()
+                {
+                    Id = Guid.NewGuid(),
+                    CreationDate = DateTime.Now,
+                    IsActive = true,
+                    IsDeleted = false,
+                    UserQuestionnaireId = new Guid(input.QuestionnarieId),
+                    AudioId = new Guid(audio2),
+                    WeekNo = input.WeekNo,
+                };
+
+                db.UserSelectedAudios.Add(userSelectedAudio);
+
+                userSelectedAudio = new UserSelectedAudio()
+                {
+                    Id = Guid.NewGuid(),
+                    CreationDate = DateTime.Now,
+                    IsActive = true,
+                    IsDeleted = false,
+                    UserQuestionnaireId = new Guid(input.QuestionnarieId),
+                    AudioId = new Guid(audio3),
+                    WeekNo = input.WeekNo,
+                };
+
+                db.UserSelectedAudios.Add(userSelectedAudio);
+
+                userSelectedAudio = new UserSelectedAudio()
+                {
+                    Id = Guid.NewGuid(),
+                    CreationDate = DateTime.Now,
+                    IsActive = true,
+                    IsDeleted = false,
+                    UserQuestionnaireId = new Guid(input.QuestionnarieId),
+                    AudioId = new Guid(audio4),
+                    WeekNo = input.WeekNo,
+                };
+
+                db.UserSelectedAudios.Add(userSelectedAudio);
+
+                db.SaveChanges();
+                return Json("true", JsonRequestBehavior.AllowGet);
+
+            }
+            catch (Exception e)
+            {
+                return Json("false", JsonRequestBehavior.AllowGet);
+            }
+        }
 
     }
 }

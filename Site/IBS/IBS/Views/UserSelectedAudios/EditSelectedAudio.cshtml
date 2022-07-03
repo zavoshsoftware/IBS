@@ -111,42 +111,36 @@
 
     </style>
 }
-
-<div class="row">
-    <div class="col-md-12">
-        <div class="logo">
-            <img src="~/Content/logo.png" />
-        </div>
-
-    </div>
-</div>
+<br />
 <input type="hidden" />
-<div class="tab">
-    <button class="tablinks" id="week1" onclick="selectAudio(event, 'Week1')">Week1</button>
+
+<div class="tab"> 
+    <button class="tablinks" id="week1" onclick="selectAudio(event, 'Week1')" disabled="disabled">   <img src="":"/Images/61457.png")" width="15px" />Week1</button>
     <button class="tablinks" id="week2" onclick="selectAudio(event, 'Week2')" disabled="disabled">
-        <img src="~/Images/61457.png" width="15px" />
+        <img src="@(ViewBag.CurrentWeek=="Week2"?"":"/Images/61457.png")" width="15px" />
         Week2
     </button>
     <button class="tablinks" id="week3" onclick="selectAudio(event, 'Week3')" disabled="disabled">
-        <img src="~/Images/61457.png" width="15px" />
+        <img src="@(ViewBag.CurrentWeek=="Week3"?"":"/Images/61457.png")" width="15px" />
         Week3
     </button>
     <button class="tablinks" id="week4" onclick="selectAudio(event, 'Week4')" disabled="disabled">
-        <img src="~/Images/61457.png" width="15px" />
+        <img src="@(ViewBag.CurrentWeek=="Week4"?"":"/Images/61457.png")" width="15px" />
         Week4
     </button>
     <button class="tablinks" id="week5" onclick="selectAudio(event, 'Week5')" disabled="disabled">
-        <img src="~/Images/61457.png" width="15px" />
+        <img src="@(ViewBag.CurrentWeek=="Week5"?"":"/Images/61457.png")" width="15px" />
         Week5
     </button>
     <button class="tablinks" id="week6" onclick="selectAudio(event, 'Week6')" disabled="disabled">
-        <img src="~/Images/61457.png" width="15px" />
+        <img src="@(ViewBag.CurrentWeek=="Week6"?"":"/Images/61457.png")" width="15px" />
         Week6
     </button>
 </div>
+
 <div class="row userinfo question-card">
     <div class="col-md-12">
-        <p>
+        <p >
             your questionnaire submitted successfully,
             Result: you have pain and excited
         </p>

@@ -425,42 +425,117 @@ namespace IBS.Controllers
             string TherapyAudio = "";
             bool isChoose = false;
             bool isAvailable = false;
+            Guid audioId1 = Guid.Empty;
+            Guid audioId2 = Guid.Empty;
+            Guid audioId3 = Guid.Empty;
+            Guid audioId4 = Guid.Empty;
+            Guid userSelectedId=Guid.Empty;
             var res = new List<UserSelectedAudioViewModel>();
             foreach (var userSelectedAudio in userSelectedAudios)
             {
                 if (userSelectedAudio.Audio.AudioGroup.Title.ToLower() == "induction")
                 {
                     inductionAudio = userSelectedAudio.Audio.FileUrl;
+                    audioId1 = userSelectedAudio.AudioId;
                 }
                 if (userSelectedAudio.Audio.AudioGroup.Title.ToLower() == "deepening")
                 {
                     deepeningAudio = userSelectedAudio.Audio.FileUrl;
+                    audioId2 = userSelectedAudio.AudioId;
                 }
 
                 if (userSelectedAudio.Audio.AudioGroup.Title.ToLower() == "therapy")
                 {
                     TherapyAudio = userSelectedAudio.Audio.FileUrl;
+                    audioId3 = userSelectedAudio.AudioId;
                 }
                 if (userSelectedAudio.Audio.AudioGroup.Title.ToLower() == "ending")
                 {
                     endingAudio = userSelectedAudio.Audio.FileUrl;
+                    audioId4 = userSelectedAudio.AudioId;
                 }
-
+                userSelectedId = userSelectedAudio.Id;
                 isChoose = true;
             }
 
             res.Add(new UserSelectedAudioViewModel()
             {
+                Id= userSelectedId,
                 DeepeningAudio = deepeningAudio,
                 EndingAudio = endingAudio,
                 InductionAudio = inductionAudio,
                 TherapyAudio = TherapyAudio,
                 WeekNo = currentWeek.Count()-1,
                 IsChoose = isChoose,
-                IsAvailable = isAvailable
+                IsAvailable = isAvailable,
+                AudioId1=audioId1, AudioId2 = audioId2,
+                AudioId3=audioId3,AudioId4=audioId4
             });
 
             return View(res.Where(r=>r.WeekNo== weekNo));
+        }
+
+        public ActionResult EditSelectedAudio(Guid id, Guid id1, Guid id2,Guid id3,Guid id4, string result, string gender)
+        {
+            ChooseVoiceViewModel res = new ChooseVoiceViewModel();
+            List<ChooseVoiceItemViewModel> audios = new List<ChooseVoiceItemViewModel>();
+            
+            List<AudioGroup> audioGroups = db.AudioGroups.Where(c => c.IsDeleted == false && c.IsActive)
+                .OrderBy(c => c.Order).ToList();
+
+            var identity = (System.Security.Claims.ClaimsIdentity)User.Identity;
+             
+            var scoreCount = GetChart("Pain", "3b96726a-8a0d-487c-b992-1a31fa6fd0d7").Length;
+            var currentWeek = GetWeek(scoreCount);
+            Guid userId = new Guid(identity.FindFirst(System.Security.Claims.ClaimTypes.Name).Value);
+            int weekNo = (currentWeek.Count() - 1);
+            ViewBag.CurrentWeek = currentWeek.LastOrDefault().ToString();
+            Guid audioId1 = Guid.Empty;
+            Guid audioId2 = Guid.Empty;
+            Guid audioId3 = Guid.Empty;
+            Guid audioId4 = Guid.Empty;
+            if (gender == null)
+                gender = "1";
+
+            bool genderBool = true;
+
+            if (gender == "0")
+                genderBool = false;
+
+            //if (!string.IsNullOrEmpty(result))
+            //{
+                res.NeedTherapy = true;
+            //}
+            //else
+            //{
+            //    audioGroups = audioGroups.Where(c => c.Title != "Therapy").ToList();
+            //}
+
+            foreach (AudioGroup audioGroup in audioGroups)
+            {
+                audios.Add(new ChooseVoiceItemViewModel()
+                {
+                    AudioGroup = audioGroup,
+                    Audios = db.Audios.Where(c =>
+                            c.AudioGroupId == audioGroup.Id && c.IsDeleted == false && c.Gender == genderBool &&
+                            c.IsActive == true)
+                        .OrderBy(c => c.Order).ToList(),
+                    AudioId1=audioId1,
+                    AudioId2=audioId2,
+                    AudioId3=audioId3,
+                    AudioId4=audioId4
+                });
+            }
+
+            res.Audios = audios;
+
+          
+            ViewBag.result = result;
+            
+            ViewBag.gender = gender;
+            ViewBag.qId = id;
+            
+            return View(res);
         }
     }
 }

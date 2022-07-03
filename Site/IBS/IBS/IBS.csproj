@@ -1244,6 +1244,7 @@
     <Content Include="Views\Home\Dashboard.cshtml" />
     <Content Include="Views\UserSelectedAudios\List2.cshtml" />
     <Content Include="Views\UserSelectedAudios\GetCurrentWeekAudioList.cshtml" />
+    <Content Include="Views\UserSelectedAudios\EditSelectedAudio.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

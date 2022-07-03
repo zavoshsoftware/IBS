@@ -46,7 +46,13 @@
     </style>
 }
 <div class="row">
+    
     <div class="col-md-12">
+        <div class="container">
+            <div class="alert alert-info">
+                @ViewBag.CurrentWeek
+            </div>
+        </div>
         <table id="audiosTable" class="table table-bordered table-responsive">
             <thead>
                 <tr>
@@ -54,6 +60,7 @@
                     <th>Deepening</th>
                     <th>Therapy</th>
                     <th>Ending</th>
+                    <th>#</th>
                     @*<th>Select Audio</th>*@
                 </tr>
             </thead>
@@ -103,11 +110,12 @@
                             }
                         </td>
 
-
+                        <td>
+                            <a class="btn btn-success text-white btn-block" href="/UserSelectedAudios/EditSelectedAudio?id=@item.Id&id1=@item.AudioId1
+                               &id2=@item.AudioId2&id3=@item.AudioId3&id4=@item.AudioId4">Edit</a>
+                        </td>
                     </tr>
-                }
-
-
+                } 
             </tbody>
         </table>
 
