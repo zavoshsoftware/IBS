@@ -114,30 +114,29 @@
 <br />
 <input type="hidden" />
 
-<div class="tab"> 
-    <button class="tablinks" id="week1" onclick="selectAudio(event, 'Week1')" disabled="disabled">   <img src="":"/Images/61457.png")" width="15px" />Week1</button>
-    <button class="tablinks" id="week2" onclick="selectAudio(event, 'Week2')" disabled="disabled">
-        <img src="@(ViewBag.CurrentWeek=="Week2"?"":"/Images/61457.png")" width="15px" />
+<div class="tab">
+    <button class="tablinks" id="week1" onclick="selectAudio(event, 'Week1')">Week1</button>
+    <button class="tablinks" id="week2" onclick="selectAudio(event, 'Week2')">
+ 
         Week2
     </button>
-    <button class="tablinks" id="week3" onclick="selectAudio(event, 'Week3')" disabled="disabled">
-        <img src="@(ViewBag.CurrentWeek=="Week3"?"":"/Images/61457.png")" width="15px" />
+    <button class="tablinks" id="week3" onclick="selectAudio(event, 'Week3')">
+      
         Week3
     </button>
-    <button class="tablinks" id="week4" onclick="selectAudio(event, 'Week4')" disabled="disabled">
-        <img src="@(ViewBag.CurrentWeek=="Week4"?"":"/Images/61457.png")" width="15px" />
+    <button class="tablinks" id="week4" onclick="selectAudio(event, 'Week4')" >
+     
         Week4
     </button>
-    <button class="tablinks" id="week5" onclick="selectAudio(event, 'Week5')" disabled="disabled">
-        <img src="@(ViewBag.CurrentWeek=="Week5"?"":"/Images/61457.png")" width="15px" />
+    <button class="tablinks" id="week5" onclick="selectAudio(event, 'Week5')" >
+    
         Week5
     </button>
-    <button class="tablinks" id="week6" onclick="selectAudio(event, 'Week6')" disabled="disabled">
-        <img src="@(ViewBag.CurrentWeek=="Week6"?"":"/Images/61457.png")" width="15px" />
+    <button class="tablinks" id="week6" onclick="selectAudio(event, 'Week6')" >
+        <img src="~/Images/61457.png" width="15px" />
         Week6
     </button>
 </div>
-
 <div class="row userinfo question-card">
     <div class="col-md-12">
         <p >
@@ -197,8 +196,9 @@
 
     <script>
         $(document).ready(function () {
-            document.getElementById("week").value = "week1";
-            document.getElementById("week1").click();
+            document.getElementById("week").value = @Html.Raw(ViewBag.CurrentWeek.ToString().ToLower());
+            document.getElementById("@($"{Html.Raw(ViewBag.CurrentWeek.ToString().ToLower())}")").click();
+            alert('d');
             //var t1 = $('#ddlGender').val();
             //var t = $('#ddlGender :selected').text();
             //alert('p');
@@ -206,6 +206,7 @@
         });
 
         function selectAudio(evt, weekName) {
+            alert('r');
             var i, tablinks, gender;
             var result = '@Html.Raw(@ViewBag.result)';
             tablinks = document.getElementsByClassName("tablinks");
