@@ -53,71 +53,79 @@
                 @ViewBag.CurrentWeek
             </div>
         </div>
-        <table id="audiosTable" class="table table-bordered table-responsive">
-            <thead>
-                <tr>
-                    <th>Induction</th>
-                    <th>Deepening</th>
-                    <th>Therapy</th>
-                    <th>Ending</th>
-                    <th>#</th>
-                    @*<th>Select Audio</th>*@
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
+        @if (Model.Any())
+        {
+            <table id="audiosTable" class="table table-bordered table-responsive">
+                <thead>
                     <tr>
-                        <td>
-                            @if (!string.IsNullOrEmpty(item.InductionAudio))
-                            {
-                                @*<button onclick="play('Induction')">
-                                        <i class="fa fa-play"></i>Play
-                                    </button>*@
-
-                                <audio class="media" controls id="Induction_@item.WeekNo" src="@item.InductionAudio"></audio>
-                            }
-                        </td>
-
-                        <td>
-                            @if (!string.IsNullOrEmpty(item.DeepeningAudio))
-                            {
-                                @*<button onclick="play('Deepening')">
-                                        <i class="fa fa-play"></i>Play
-                                    </button>*@
-                                <audio class="media" controls id="Deepening_@item.WeekNo" src="@item.DeepeningAudio"></audio>
-                                @*<audio controls="controls" id="Deepening" src="@item.DeepeningAudio"></audio>*@
-                            }
-                        </td>
-
-                        <td>
-                            @if (!string.IsNullOrEmpty(item.TherapyAudio))
-                            {
-                                @*<button onclick="play('Therapy')">
-                                        <i class="fa fa-play"></i>Play
-                                    </button>*@
-                                <audio class="media" controls="controls" id="Therapy_@item.WeekNo" src="@item.TherapyAudio"></audio>
-                            }
-                        </td>
-
-                        <td>
-                            @if (!string.IsNullOrEmpty(item.EndingAudio))
-                            {
-                                @*<button onclick="play('Ending')">
-                                        <i class="fa fa-play"></i>Play
-                                    </button>*@
-                                <audio class="media" controls="controls" id="Ending_@item.WeekNo" src="@item.EndingAudio"></audio>
-                            }
-                        </td>
-
-                        <td>
-                            <a class="btn btn-success text-white btn-block" href="/UserSelectedAudios/EditSelectedAudio?id=@item.Id&id1=@item.AudioId1
-                               &id2=@item.AudioId2&id3=@item.AudioId3&id4=@item.AudioId4">Edit</a>
-                        </td>
+                        <th>Induction</th>
+                        <th>Deepening</th>
+                        <th>Therapy</th>
+                        <th>Ending</th>
+                        <th>#</th>
+                        @*<th>Select Audio</th>*@
                     </tr>
-                } 
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        if (!string.IsNullOrEmpty(item.InductionAudio) || !string.IsNullOrEmpty(item.DeepeningAudio)
+                            || !string.IsNullOrEmpty(item.TherapyAudio) || !string.IsNullOrEmpty(item.EndingAudio)
+                            )
+                        {
+                            <tr>
+                                <td>
+                                    @if (!string.IsNullOrEmpty(item.InductionAudio))
+                                    {
+                                        @*<button onclick="play('Induction')">
+                                <i class="fa fa-play"></i>Play
+                            </button>*@
+
+                                        <audio class="media" controls id="Induction_@item.WeekNo" src="@item.InductionAudio"></audio>
+                                    }
+                                </td>
+
+                                <td>
+                                    @if (!string.IsNullOrEmpty(item.DeepeningAudio))
+                                    {
+                                        @*<button onclick="play('Deepening')">
+                                <i class="fa fa-play"></i>Play
+                            </button>*@
+                                        <audio class="media" controls id="Deepening_@item.WeekNo" src="@item.DeepeningAudio"></audio>
+                                        @*<audio controls="controls" id="Deepening" src="@item.DeepeningAudio"></audio>*@
+                                    }
+                                </td>
+
+                                <td>
+                                    @if (!string.IsNullOrEmpty(item.TherapyAudio))
+                                    {
+                                        @*<button onclick="play('Therapy')">
+                                <i class="fa fa-play"></i>Play
+                            </button>*@
+                                        <audio class="media" controls="controls" id="Therapy_@item.WeekNo" src="@item.TherapyAudio"></audio>
+                                    }
+                                </td>
+
+                                <td>
+                                    @if (!string.IsNullOrEmpty(item.EndingAudio))
+                                    {
+                                        @*<button onclick="play('Ending')">
+                                <i class="fa fa-play"></i>Play
+                            </button>*@
+                                        <audio class="media" controls="controls" id="Ending_@item.WeekNo" src="@item.EndingAudio"></audio>
+                                    }
+                                </td>
+
+                                <td>
+                                    <a class="btn btn-success text-white btn-block" href="/UserSelectedAudios/EditSelectedAudio?id=@item.Id&id1=@item.AudioId1
+                               &id2=@item.AudioId2&id3=@item.AudioId3&id4=@item.AudioId4">Edit</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        }
 
     </div>
 </div>
