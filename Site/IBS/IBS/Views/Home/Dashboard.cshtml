@@ -56,17 +56,19 @@
 {
 <a href="/Questions/List" class="btn btn-success mt-5 mb-5" id="btnTestStart" style="width: 100%">Take your Test</a>
     <div class="countdown-header" id="divCounter" style="display:none">
-        <h5 class="ml-2 text-center">Next test in:</h5>
-        <div class="countdown" data-date="@ViewBag.NextTestDate"></div>
+   
+	    <div class="countdown" data-date="@ViewBag.NextTestDate"></div>
+	    <h5 class="ml-2 text-center">To Next Stage</h5>
     </div>
 }
 else
 {
 <a href="/Questions/List" class="btn btn-success mt-5 mb-5" id="btnTestStart" style="width: 100%; display: none">Take your Test</a>
-    <div class="countdown-header" id="divCounter">
-        <h5 class="ml-2 text-center">Next test in:</h5>
-        <div class="countdown" data-date="@ViewBag.NextTestDate" ></div>
-    </div>
+<div class="countdown-header" id="divCounter">
+	<div class="countdown" data-date="@ViewBag.NextTestDate"></div>
+	<h5 class="ml-2 text-center">To Next Stage</h5>
+
+</div>
 }
 
 <div class="container bg-white">
