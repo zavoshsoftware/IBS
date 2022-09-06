@@ -415,6 +415,7 @@ namespace IBS.Controllers
             Guid userId = new Guid(id);
             int weekNo = (currentWeek.Count() - 1);
             ViewBag.CurrentWeek = currentWeek.LastOrDefault().ToString();
+            ViewBag.weekNo = weekNo;
             List<UserSelectedAudio> userSelectedAudios = db.UserSelectedAudios.Include(u => u.Audio)
                     .Where(u => u.IsDeleted == false && u.UserQuestionnaire.UserId == userId )
                     .OrderByDescending(u => u.CreationDate).Include(u => u.UserQuestionnaire)

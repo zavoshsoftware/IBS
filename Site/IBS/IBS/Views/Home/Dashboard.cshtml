@@ -18,32 +18,34 @@
 <div class="p-3">
     <div class="row">
         <div class="col-6 text-center container bg-light" style="border-radius:10px 0 0 10px !important">
-            <div class="card w-75">
+            <div class="card w-100">
                 <div class="card-header">
                     Profile
                 </div>
                 <div class="card-body text-left">
-                    <p class="card-text text-left"><b>FullName:</b>@Model.Profile.FullName</p>
-                    <p class="card-text text-left"><b>Email:</b>@Model.Profile.Email</p>
-                    <p class="card-text text-left"><b>Age:</b>@Model.Profile.Age</p>
+	                <p class="card-text text-left"><b style="font-size: 18px; color: #000;">
+		                FullName:
+	                </b>@Model.Profile.FullName</p>
+                    <p class="card-text text-left"><b style="font-size:18px; color: #000;">Email:</b>@Model.Profile.Email</p>
+                    <p class="card-text text-left"><b style="font-size:18px; color: #000;">Age:</b>@Model.Profile.Age</p>
                 </div>
             </div>
         </div>
         <div class="col-6 text-center container bg-light" style="border-radius: 0 10px 10px 0 !important ">
-            <div class="card w-75 h-100">
+            <div class="card w-100 h-100">
                 <div class="card-header">
                     @Model.CurrentWeek
                 </div>
                 <div class="card-body">
                     @if (ViewBag.NextTest == "true")
                     {
-                        <p><a class="btn btn-success" id="btnTestNow" href="/Questions/List">Test Now</a></p>
-                        <p><a class="btn btn-success" id="btnListenNow" href="/UserSelectedAudios/GetCurrentWeekAudioList" style="display:none">Listen Now</a></p>
+                        <p><a class="btn btn-success" id="btnTestNow" href="/Questions/List">Take your Test</a></p>
+                        <p><a class="btn btn-success" id="btnListenNow" href="/UserSelectedAudios/GetCurrentWeekAudioList" style="display:none">Start Hypnotherapy</a></p>
                     }
                     else
                     {
-                        <p><a class="btn btn-success" id="btnTestNow" href="/Questions/List" style="display:none">Test Now</a></p>
-                        <p><a class="btn btn-success" id="btnListenNow" href="/UserSelectedAudios/GetCurrentWeekAudioList">Listen Now</a></p>
+                        <p><a class="btn btn-success" id="btnTestNow" href="/Questions/List" style="display:none">Take your Test</a></p>
+                        <p><a class="btn btn-success" id="btnListenNow" href="/UserSelectedAudios/GetCurrentWeekAudioList">Start Hypnotherapy</a></p>
                     }
                 </div>
             </div>
@@ -52,17 +54,17 @@
 </div> 
 @if (ViewBag.NextTest == "true")
 {
-    <a href="/Questions/List" class="btn btn-success mt-5 mb-5" id="btnTestStart" style="width: 100%">Start Test</a>
+<a href="/Questions/List" class="btn btn-success mt-5 mb-5" id="btnTestStart" style="width: 100%">Take your Test</a>
     <div class="countdown-header" id="divCounter" style="display:none">
-        <h5 class="ml-2">Next test in:</h5>
+        <h5 class="ml-2 text-center">Next test in:</h5>
         <div class="countdown" data-date="@ViewBag.NextTestDate"></div>
     </div>
 }
 else
 {
-    <a href="/Questions/List" class="btn btn-success mt-5 mb-5" id="btnTestStart" style="width: 100%; display: none">Start Test</a>
+<a href="/Questions/List" class="btn btn-success mt-5 mb-5" id="btnTestStart" style="width: 100%; display: none">Take your Test</a>
     <div class="countdown-header" id="divCounter">
-        <h5 class="ml-2">Next test in:</h5>
+        <h5 class="ml-2 text-center">Next test in:</h5>
         <div class="countdown" data-date="@ViewBag.NextTestDate" ></div>
     </div>
 }
