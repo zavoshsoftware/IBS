@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using ViewModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
+using System.Data.Entity.Validation;
 
 namespace IBS.Controllers
 {
@@ -51,24 +52,37 @@ namespace IBS.Controllers
                     return View(model);
                 }
 
-                oUser = new User()
+               
+                try
                 {
-                    Id=Guid.NewGuid(),
-                    FullName = model.FullName,
-                    Email = model.Email,
-                    CellNum = model.Email,
-                    Code = 0,
-                    CreationDate = DateTime.Now,
-                    Password = model.Password,
-                    IsDeleted = false,
-                    IsActive = true,
-                    RoleId = new Guid("5ae6bff3-1dce-43a5-bc27-7f2f47ac4fde"),
-                    Gender = model.Gender,
-                    Age=model.Age
-                };
-                db.Users.Add(oUser);
-                db.SaveChanges();
-
+                    oUser = new User()
+                    {
+                        Id = Guid.NewGuid(),
+                        FullName = model.FullName,
+                        Email = model.Email,
+                        CellNum = model.Email,
+                        Code = 0,
+                        CreationDate = DateTime.Now,
+                        Password = model.Password,
+                        IsDeleted = false,
+                        IsActive = true,
+                        RoleId = new Guid("5ae6bff3-1dce-43a5-bc27-7f2f47ac4fde"),
+                        Gender = model.Gender,
+                        Age = model.Age
+                    };
+                    db.Users.Add(oUser);
+                    db.SaveChanges();
+                }
+                catch (DbEntityValidationException ee)
+                {
+                    foreach (var error in ee.EntityValidationErrors)
+                    {
+                        foreach (var thisError in error.ValidationErrors)
+                        {
+                            var errorMessage = thisError.ErrorMessage;
+                        }
+                    }
+                }
 
                 TempData["success"] =
                     "Your account is active now and you can login to site";
