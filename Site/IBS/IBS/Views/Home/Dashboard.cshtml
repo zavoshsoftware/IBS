@@ -77,13 +77,8 @@ else
     </div>
 </div>
 
+ 
 
-<script src="/content/commingsoon/lib/jquery/jquery.min.js"></script>
-<script src="/content/commingsoon/lib/bootstrap/js/bootstrap.min.js"></script>
-<script src="/content/commingsoon/lib/php-mail-form/validate.js"></script>
-<script src="/content/commingsoon/lib/countdown/jquery.plugin.min.js"></script>
-<script src="~/Content/CommingSoon/lib/countdown/jquery.countdown.min.js"></script>
-<script src="/content/commingsoon/js/main.js"></script>
 
 @*<script language="JavaScript">
 
@@ -114,7 +109,8 @@ else
 @{
     int _param = 0;
 }
-<script type="text/javascript">
+@section scripts{
+    <script type="text/javascript">
     google.charts.load('current', { 'packages': ['bar'] });
     google.charts.setOnLoadCallback(drawChart);
 
@@ -141,7 +137,7 @@ else
     var refreshIntervalId =  setInterval(function () {
         $.ajax({
             url: '/Home/CheckTestDate'
-        }).done(function (data) { 
+        }).done(function (data) {
             if (data=='True') {
                 document.getElementById("btnTestStart").style.display = "block";
                 document.getElementById("divCounter").style.display = "none";
@@ -151,6 +147,7 @@ else
             }
         });
     }, 1000);
-</script>
+    </script>
+    }
 
 

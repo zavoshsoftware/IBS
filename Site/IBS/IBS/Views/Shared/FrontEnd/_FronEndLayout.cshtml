@@ -5,36 +5,40 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta name="viewport" content="width=device-width" />
-	<title>Index</title>
-	<link rel="stylesheet" href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css'>
-	<script src='https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js'></script>
-	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
-	<link rel="stylesheet" href="/Scripts/rangeslider.css">
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title> 
+    <link rel="stylesheet" href="/Scripts/rangeslider.css">
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+    @RenderSection("head", required: false)
 
-	<link href="~/Content/style.css" rel="stylesheet" />
-	@RenderSection("head", required: false)
-
-	<!--[if lt IE 9]>
-		<script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
-	<![endif]-->
+    <!--[if lt IE 9]>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <![endif]-->
 </head>
 <body>
-	<div class="container">
+    <div class="container">
 
 
 
 
 
 
-		@Html.Partial("FrontEnd/_MenuPartial")
-		@RenderBody()
+        @Html.Partial("FrontEnd/_MenuPartial")
+        @RenderBody()
 
 
-	</div>
+    </div>
+    <script src="~/Scripts/kendo/2017.3.913/"></script>
+    <script src="/content/commingsoon/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/content/commingsoon/lib/php-mail-form/validate.js"></script>
+    <script src="/content/commingsoon/lib/countdown/jquery.plugin.min.js"></script>
+    <script src="~/Content/CommingSoon/lib/countdown/jquery.countdown.min.js"></script>
+    <script src="/content/commingsoon/js/main.js"></script>
+    @RenderSection("scripts", required: false)
 
-	<script src="~/Scripts/kendo/2017.3.913/jquery.min.js"></script>
-	@RenderSection("scripts", required: false)
-	 
 </body>
 </html>
