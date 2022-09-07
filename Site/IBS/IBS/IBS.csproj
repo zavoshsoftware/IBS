@@ -567,6 +567,7 @@
     <Content Include="Global.asax" />
     <Content Include="Images\61457.png" />
     <Content Include="Images\avatar_default.jpg" />
+    <Content Include="Images\Picture1.jpg" />
     <Content Include="Images\tutorial.jpg" />
     <Content Include="Images\tutorial.png" />
     <Content Include="Scripts\AdminJS\app.v2.js" />
@@ -1245,6 +1246,7 @@
     <Content Include="Views\UserSelectedAudios\List2.cshtml" />
     <Content Include="Views\UserSelectedAudios\GetCurrentWeekAudioList.cshtml" />
     <Content Include="Views\UserSelectedAudios\EditSelectedAudio.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

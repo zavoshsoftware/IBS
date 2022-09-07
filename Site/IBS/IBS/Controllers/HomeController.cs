@@ -62,6 +62,12 @@ namespace IBS.Controllers
             }
             return Redirect("/Login");
         } 
+        public ActionResult About()
+        {
+           
+                return View();
+         
+        } 
         public bool CheckTestDate()
         {
 
