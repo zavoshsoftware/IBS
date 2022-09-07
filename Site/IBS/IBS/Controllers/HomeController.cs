@@ -34,7 +34,7 @@ namespace IBS.Controllers
             {
                 var userQuestionnaires = db.UserQuestionnaires.Where(w => w.IsDeleted == false && w.UserId == userId)
                     .OrderByDescending(o => o.CreationDate).FirstOrDefault();
-                DateTime examdate = userQuestionnaires.CreationDate.AddDays(7).Date;
+                DateTime examdate = userQuestionnaires.CreationDate.AddDays(1).Date;
                 if (userQuestionnaires != null)
                     if (DateTime.Today.Date >= examdate)
                     {
@@ -43,7 +43,7 @@ namespace IBS.Controllers
                     else
                     {
                         ViewBag.NextTest = "false";
-                        ViewBag.NextTestDate = userQuestionnaires.CreationDate.AddDays(7).Date.ToShortDateString();
+                        ViewBag.NextTestDate = userQuestionnaires.CreationDate.AddDays(1).Date.ToShortDateString();
                     }
                 var scoreCount = GetChart("Pain", "3b96726a-8a0d-487c-b992-1a31fa6fd0d7").Length;
                 ViewBag.Pain = GetChart("Pain", "3b96726a-8a0d-487c-b992-1a31fa6fd0d7");
@@ -73,7 +73,7 @@ namespace IBS.Controllers
 
             var userId = Guid.Parse(User.Identity.Name);
             var userQuestionnaires = db.UserQuestionnaires.Where(w => w.IsDeleted == false && w.UserId == userId).OrderByDescending(o => o.CreationDate).FirstOrDefault();
-            if (DateTime.Today.Date >= userQuestionnaires.CreationDate.AddDays(7).Date)
+            if (DateTime.Today.Date >= userQuestionnaires.CreationDate.AddDays(1).Date)
             {
                 return true;
             }
